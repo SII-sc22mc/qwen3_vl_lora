@@ -89,45 +89,6 @@ def set_model(model_args, model):
         model.lm_head.requires_grad = False
 
 
-def is_rank0():
-    if torch.distributed.is_available() and torch.distributed.is_initialized():
-        return torch.distributed.get_rank() == 0
-    return True
-
-
-def print_trainable_parameter_summary(model):
-    total_params = 0
-    trainable_params = 0
-    group_trainable = {
-        "visual": 0,
-        "language_model": 0,
-        "other": 0,
-    }
-    for name, param in model.named_parameters():
-        count = param.numel()
-        total_params += count
-        if not param.requires_grad:
-            continue
-        trainable_params += count
-        if ".visual." in name or name.startswith("visual."):
-            group_trainable["visual"] += count
-        elif ".language_model." in name or name.startswith("language_model."):
-            group_trainable["language_model"] += count
-        else:
-            group_trainable["other"] += count
-
-    ratio = trainable_params / total_params if total_params else 0.0
-    print(
-        "Trainable parameter summary:",
-        f"trainable={trainable_params:,}",
-        f"total={total_params:,}",
-        f"ratio={ratio:.6%}",
-        f"visual_trainable={group_trainable['visual']:,}",
-        f"language_trainable={group_trainable['language_model']:,}",
-        f"other_trainable={group_trainable['other']:,}",
-    )
-
-
 def train(attn_implementation="flash_attention_2"):
     global local_rank
 
@@ -206,42 +167,15 @@ def train(attn_implementation="flash_attention_2"):
         for p in model.parameters():
             p.requires_grad = False
 
-        lora_r = training_args.lora_r if training_args.lora_r is not None else 64
-        lora_alpha = (
-            training_args.lora_alpha if training_args.lora_alpha is not None else 128
-        )
-        lora_dropout = (
-            training_args.lora_dropout
-            if training_args.lora_dropout is not None
-            else 0.05
-        )
-
         lora_config = LoraConfig(
-<<<<<<< HEAD
-            r=lora_r,
-            lora_alpha=lora_alpha,
-            lora_dropout=lora_dropout,
-=======
             r=64,
             lora_alpha=128,
             lora_dropout=0.05,
->>>>>>> 445ec39 (0701)
             target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],  # Qwen 的 attention 线性层
             bias="none",
             task_type=TaskType.CAUSAL_LM,
         )
         model = get_peft_model(model, lora_config)
-        if is_rank0():
-            print(
-                "LoRA config:",
-                f"r={lora_r}",
-                f"alpha={lora_alpha}",
-                f"dropout={lora_dropout}",
-                "target_modules=q_proj,k_proj,v_proj,o_proj",
-            )
-            if hasattr(model, "print_trainable_parameters"):
-                model.print_trainable_parameters()
-            print_trainable_parameter_summary(model)
     else:
         set_model(model_args, model)
 
