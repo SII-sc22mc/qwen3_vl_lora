@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import random
 from pathlib import Path
@@ -105,17 +106,118 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
     return records
 
 
-def load_tag_csv(path: Path | None) -> dict[tuple[str, str], dict[str, Any]]:
+TAG_META_FIELDS = (
+    "cancer_type",
+    "table_key",
+    "table_name_cn",
+    "tag_id",
+    "tag_name",
+    "field_key",
+    "annotation_scope",
+    "description",
+    "description_source",
+    "remark",
+    "nested_keys",
+    "schema_merge_components",
+    "schema_merge_reason",
+)
+
+
+def clean_str(value: Any) -> str:
+    return str(value or "").strip()
+
+
+def normalize_tag_row(row: dict[str, Any]) -> dict[str, Any]:
+    tag = {
+        field: row.get(field, "")
+        for field in TAG_META_FIELDS
+        if row.get(field) not in (None, "")
+    }
+    if "remark" not in tag:
+        remark = row.get("value") or row.get("备注") or row.get("description")
+        if remark not in (None, ""):
+            tag["remark"] = remark
+    return tag
+
+
+def load_remove_tag_names(path: Path | None) -> set[str]:
     if path is None or not path.exists():
-        return {}
-    tags: dict[tuple[str, str], dict[str, Any]] = {}
+        return set()
+    obj = json.loads(path.read_text(encoding="utf-8"))
+    values: list[Any] = []
+    if isinstance(obj, dict):
+        if "v" in obj:
+            values.append(obj["v"])
+        values.extend(obj.values())
+    elif isinstance(obj, list):
+        for item in obj:
+            if isinstance(item, str):
+                values.append(item)
+            elif isinstance(item, dict) and "v" in item:
+                values.append(item["v"])
+    return {clean_str(value) for value in values if clean_str(value)}
+
+
+def load_tag_csv(path: Path | None, remove_tag_names: set[str] | None = None) -> list[dict[str, Any]]:
+    if path is None or not path.exists():
+        return []
+    remove_tag_names = remove_tag_names or set()
+    tags: list[dict[str, Any]] = []
     with path.open(encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
+        has_annotation_scope = "annotation_scope" in (reader.fieldnames or [])
         for row in reader:
-            table_name = str(row.get("table_name_cn") or "").strip()
-            tag_name = str(row.get("tag_name") or "").strip()
-            if table_name and tag_name:
-                tags[(table_name, tag_name)] = row
+            if not clean_str(row.get("tag_name")):
+                continue
+            if has_annotation_scope and clean_str(row.get("annotation_scope")).lower() != "structured":
+                continue
+            if clean_str(row.get("tag_name")) in remove_tag_names:
+                continue
+            tags.append(normalize_tag_row(row))
+    return tags
+
+
+def load_add_tags(path: Path | None) -> list[dict[str, Any]]:
+    if path is None or not path.exists():
+        return []
+    tags: list[dict[str, Any]] = []
+    with path.open(encoding="utf-8") as f:
+        for line_no, line in enumerate(f, start=1):
+            line = line.strip()
+            if not line:
+                continue
+            row = json.loads(line)
+            tag_name = clean_str(row.get("tag_name"))
+            table_name_cn = clean_str(row.get("table_name_cn"))
+            if not tag_name or not table_name_cn:
+                raise ValueError(
+                    f"{path}:{line_no} must contain non-empty table_name_cn and tag_name."
+                )
+            field_key = clean_str(row.get("field_key"))
+            if not field_key:
+                digest = hashlib.sha1(
+                    f"{table_name_cn}:{tag_name}".encode("utf-8")
+                ).hexdigest()[:12]
+                field_key = f"manual_{digest}"
+            tag_id = clean_str(row.get("tag_id"))
+            if not tag_id:
+                tag_id = f"manual:{field_key}"
+            normalized = normalize_tag_row(row)
+            normalized.update(
+                {
+                    "table_name_cn": table_name_cn,
+                    "tag_name": tag_name,
+                    "field_key": field_key,
+                    "tag_id": tag_id,
+                    "cancer_type": clean_str(row.get("cancer_type")) or "乳腺癌",
+                    "annotation_scope": clean_str(row.get("annotation_scope")) or "structured",
+                }
+            )
+            description = clean_str(row.get("description"))
+            if description:
+                normalized["description"] = description
+                normalized.setdefault("remark", description)
+            tags.append(normalized)
     return tags
 
 
@@ -127,25 +229,110 @@ def infer_tag_csv(train_dir: Path) -> Path | None:
     return None
 
 
+def infer_add_jsonl(train_dir: Path) -> Path | None:
+    for parent in [train_dir, *train_dir.parents]:
+        candidate = parent / "add.jsonl"
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def infer_remove_json(train_dir: Path) -> Path | None:
+    for parent in [train_dir, *train_dir.parents]:
+        candidate = parent / "remove.json"
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def merge_add_tags(base_tags: list[dict[str, Any]], add_tags: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    seen = {
+        (clean_str(tag.get("table_name_cn")), clean_str(tag.get("tag_name")))
+        for tag in base_tags
+    }
+    merged = list(base_tags)
+    for tag in add_tags:
+        key = (clean_str(tag.get("table_name_cn")), clean_str(tag.get("tag_name")))
+        if key in seen:
+            continue
+        merged.append(tag)
+        seen.add(key)
+    return merged
+
+
 def is_not_null(value: Any) -> bool:
     return value is not None
 
 
-def enriched_record(row: dict[str, Any], tag_index: dict[tuple[str, str], dict[str, Any]]) -> dict[str, Any]:
-    table_name = str(row.get("table_name_cn") or "").strip()
-    tag_name = str(row.get("tag_name") or "").strip()
-    csv_row = tag_index.get((table_name, tag_name), {})
-    merged = dict(csv_row)
-    merged.update(row)
+def merge_preserving_metadata(base: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
+    merged = dict(base) if base else {}
+    if not merged:
+        merged.update({key: value for key, value in row.items() if value not in (None, "")})
+    for key, value in row.items():
+        if key == "v":
+            merged[key] = value
+        elif key not in TAG_META_FIELDS and value not in (None, ""):
+            merged[key] = value
     return merged
 
 
-def normalized_tag(row: dict[str, Any], tag_index: dict[tuple[str, str], dict[str, Any]]) -> dict[str, Any]:
-    merged = enriched_record(row, tag_index)
+class TagLookup:
+    def __init__(self, tags: list[dict[str, Any]]):
+        self.by_exact: dict[tuple[str, str], dict[str, Any]] = {}
+        self.by_table_key: dict[tuple[str, str], dict[str, Any]] = {}
+        self.by_tag_id: dict[str, dict[str, Any]] = {}
+        self.by_field_key: dict[str, dict[str, Any]] = {}
+        by_tag_name: dict[str, list[dict[str, Any]]] = {}
+        for tag in tags:
+            table_name = clean_str(tag.get("table_name_cn"))
+            table_key = clean_str(tag.get("table_key"))
+            tag_name = clean_str(tag.get("tag_name"))
+            tag_id = clean_str(tag.get("tag_id"))
+            field_key = clean_str(tag.get("field_key"))
+            if table_name and tag_name:
+                self.by_exact[(table_name, tag_name)] = tag
+            if table_key and tag_name:
+                self.by_table_key[(table_key, tag_name)] = tag
+            if tag_id:
+                self.by_tag_id[tag_id] = tag
+            if field_key:
+                self.by_field_key[field_key] = tag
+            if tag_name:
+                by_tag_name.setdefault(tag_name, []).append(tag)
+        self.by_unique_tag_name = {
+            tag_name: values[0]
+            for tag_name, values in by_tag_name.items()
+            if len(values) == 1
+        }
+
+    def match(self, row: dict[str, Any]) -> dict[str, Any]:
+        tag_id = clean_str(row.get("tag_id"))
+        if tag_id and tag_id in self.by_tag_id:
+            return self.by_tag_id[tag_id]
+        field_key = clean_str(row.get("field_key"))
+        if field_key and field_key in self.by_field_key:
+            return self.by_field_key[field_key]
+        table_name = clean_str(row.get("table_name_cn"))
+        tag_name = clean_str(row.get("tag_name"))
+        if table_name and tag_name and (table_name, tag_name) in self.by_exact:
+            return self.by_exact[(table_name, tag_name)]
+        table_key = clean_str(row.get("table_key"))
+        if table_key and tag_name and (table_key, tag_name) in self.by_table_key:
+            return self.by_table_key[(table_key, tag_name)]
+        if tag_name and tag_name in self.by_unique_tag_name:
+            return self.by_unique_tag_name[tag_name]
+        return {}
+
+
+def enriched_record(row: dict[str, Any], tag_lookup: TagLookup) -> dict[str, Any]:
+    return merge_preserving_metadata(tag_lookup.match(row), row)
+
+
+def normalized_tag(row: dict[str, Any]) -> dict[str, Any]:
     return {
-        field: merged.get(field)
+        field: row.get(field)
         for field in PROMPT_TAG_FIELDS
-        if merged.get(field) not in (None, "")
+        if row.get(field) not in (None, "")
     }
 
 
@@ -221,7 +408,18 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
     tag_csv = args.tag_csv
     if tag_csv is None and not args.no_auto_tag_csv:
         tag_csv = infer_tag_csv(train_dir)
-    tag_index = load_tag_csv(tag_csv)
+    add_jsonl = args.add_jsonl
+    if add_jsonl is None and not args.no_auto_add_jsonl:
+        add_jsonl = infer_add_jsonl(train_dir)
+    remove_json = args.remove_json
+    if remove_json is None and not args.no_auto_remove_json:
+        remove_json = infer_remove_json(train_dir)
+    remove_tag_names = load_remove_tag_names(remove_json)
+    tag_library = merge_add_tags(
+        load_tag_csv(tag_csv, remove_tag_names=remove_tag_names),
+        load_add_tags(add_jsonl),
+    )
+    tag_lookup = TagLookup(tag_library)
 
     rng = random.Random(args.seed)
     examples: list[dict[str, Any]] = []
@@ -230,22 +428,67 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
     stage1_count = 0
     stage2_count = 0
     skipped_empty_jsonl = 0
+    missing_tag_id = 0
+    missing_description = 0
+    missing_examples: list[dict[str, str]] = []
+    unmatched_records: list[dict[str, str]] = []
+    skipped_unmatched_records = 0
 
     for image_path, jsonl_path in iter_image_label_pairs(train_dir):
         image_count += 1
-        records = [
-            enriched_record(row, tag_index)
-            for row in read_jsonl(jsonl_path)
-        ]
+        records = []
+        for raw_row in read_jsonl(jsonl_path):
+            matched_tag = tag_lookup.match(raw_row)
+            if not matched_tag:
+                unmatched = {
+                    "image": image_path.name,
+                    "table_name_cn": clean_str(raw_row.get("table_name_cn")),
+                    "table_key": clean_str(raw_row.get("table_key")),
+                    "field_key": clean_str(raw_row.get("field_key")),
+                    "tag_id": clean_str(raw_row.get("tag_id")),
+                    "tag_name": clean_str(raw_row.get("tag_name")),
+                }
+                unmatched_records.append(unmatched)
+                if args.allow_unmatched:
+                    skipped_unmatched_records += 1
+                    continue
+                if len(unmatched_records) >= args.max_missing_examples:
+                    raise ValueError(
+                        "Some jsonl records do not match the final tag pool "
+                        "(tag-pool minus remove plus add). Examples: "
+                        + strict_json(unmatched_records[: args.max_missing_examples])
+                    )
+                continue
+            records.append(merge_preserving_metadata(matched_tag, raw_row))
+        if unmatched_records and not args.allow_unmatched:
+            raise ValueError(
+                "Some jsonl records do not match the final tag pool "
+                "(tag-pool minus remove plus add). Examples: "
+                + strict_json(unmatched_records[: args.max_missing_examples])
+            )
         if not records:
             skipped_empty_jsonl += 1
             continue
         jsonl_count += 1
         image_value = image_for_output(image_path, train_dir, args.image_path_mode)
+        for row in records:
+            if not clean_str(row.get("tag_id")):
+                missing_tag_id += 1
+            if not clean_str(row.get("description")):
+                missing_description += 1
+                if len(missing_examples) < args.max_missing_examples:
+                    missing_examples.append(
+                        {
+                            "image": image_path.name,
+                            "table_name_cn": clean_str(row.get("table_name_cn")),
+                            "table_key": clean_str(row.get("table_key")),
+                            "tag_name": clean_str(row.get("tag_name")),
+                        }
+                    )
 
         if args.include_stage1:
             for chunk in random_chunks(records, rng, args.min_presence_tags, args.max_presence_tags):
-                tags = [normalized_tag(row, tag_index) for row in chunk]
+                tags = [normalized_tag(row) for row in chunk]
                 answer = {
                     "items": [
                         stage_answer_item(row, is_not_null(row.get("v")))
@@ -266,7 +509,7 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
             for row in records:
                 if not is_not_null(row.get("v")):
                     continue
-                tags = [normalized_tag(row, tag_index)]
+                tags = [normalized_tag(row)]
                 answer = {"items": [stage_answer_item(row, True, include_value=True)]}
                 examples.append(
                     build_example(
@@ -288,7 +531,15 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
         "stage1_examples": stage1_count,
         "stage2_examples": stage2_count,
         "total_examples": len(examples),
-        "tag_csv_loaded": len(tag_index),
+        "tag_csv": str(tag_csv) if tag_csv else "",
+        "add_jsonl": str(add_jsonl) if add_jsonl else "",
+        "remove_json": str(remove_json) if remove_json else "",
+        "remove_tag_names_loaded": len(remove_tag_names),
+        "tag_library_loaded": len(tag_library),
+        "records_missing_tag_id_after_enrich": missing_tag_id,
+        "records_missing_description_after_enrich": missing_description,
+        "missing_description_examples": missing_examples,
+        "skipped_unmatched_records": skipped_unmatched_records,
     }
     return examples, summary
 
@@ -329,9 +580,42 @@ def parse_args() -> argparse.Namespace:
         help="Optional tag-pool CSV used to enrich tag_id/description by table_name_cn + tag_name.",
     )
     parser.add_argument(
+        "--add-jsonl",
+        type=Path,
+        default=None,
+        help="Optional add.jsonl used to enrich manually added/merged tags.",
+    )
+    parser.add_argument(
+        "--remove-json",
+        type=Path,
+        default=None,
+        help="Optional remove.json used exactly like API extraction: remove CSV tags by tag_name before adding add.jsonl.",
+    )
+    parser.add_argument(
         "--no-auto-tag-csv",
         action="store_true",
         help="Do not search parent directories for tag-pool_乳腺癌_20260610.csv.",
+    )
+    parser.add_argument(
+        "--no-auto-add-jsonl",
+        action="store_true",
+        help="Do not search parent directories for add.jsonl.",
+    )
+    parser.add_argument(
+        "--no-auto-remove-json",
+        action="store_true",
+        help="Do not search parent directories for remove.json.",
+    )
+    parser.add_argument(
+        "--allow-unmatched",
+        action="store_true",
+        help="Skip jsonl records that cannot be matched to tag-pool minus remove plus add. By default this is an error.",
+    )
+    parser.add_argument(
+        "--max-missing-examples",
+        type=int,
+        default=20,
+        help="Maximum missing-description examples to print in the summary.",
     )
     parser.add_argument("--seed", type=int, default=20260624)
     parser.add_argument("--min-presence-tags", type=int, default=1)

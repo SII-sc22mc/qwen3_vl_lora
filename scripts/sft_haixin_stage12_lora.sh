@@ -28,12 +28,41 @@ run_name=${RUN_NAME:-haixin_stage12_lora}
 
 # Official training entry and DeepSpeed config
 entry_file=qwenvl/train/train_qwen.py
-deepspeed_config=${DEEPSPEED_CONFIG:-./scripts/zero2.json}
+deepspeed_config=${DEEPSPEED_CONFIG:-./outputs/haixin_stage12_lora_zero2_auto.json}
+if [ -z "${DEEPSPEED_CONFIG:-}" ]; then
+    mkdir -p "$(dirname "${deepspeed_config}")"
+    cat > "${deepspeed_config}" <<'JSON'
+{
+    "fp16": {
+        "enabled": "auto",
+        "loss_scale": 0,
+        "loss_scale_window": 1000,
+        "initial_scale_power": 16,
+        "hysteresis": 2,
+        "min_loss_scale": 1
+    },
+    "bf16": {
+        "enabled": "auto"
+    },
+    "train_micro_batch_size_per_gpu": "auto",
+    "train_batch_size": "auto",
+    "gradient_accumulation_steps": "auto",
+    "zero_optimization": {
+        "stage": 2,
+        "overlap_comm": true,
+        "contiguous_gradients": true,
+        "sub_group_size": 1e9,
+        "reduce_bucket_size": "auto"
+    }
+}
+JSON
+fi
 
 echo "model=${llm}"
 echo "dataset_use=${datasets}"
 echo "annotation=/inspire/hdd/global_user/chaimingxu-240108540141/haixin/label/haixin_stage12_single_image.json"
 echo "output_dir=${output_dir}"
+echo "deepspeed_config=${deepspeed_config}"
 echo "nproc_per_node=${NPROC_PER_NODE}"
 echo "batch_size=${batch_size}"
 echo "grad_accum_steps=${grad_accum_steps}"
