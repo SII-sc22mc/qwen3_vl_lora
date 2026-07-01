@@ -217,9 +217,15 @@ def train(attn_implementation="flash_attention_2"):
         )
 
         lora_config = LoraConfig(
+<<<<<<< HEAD
             r=lora_r,
             lora_alpha=lora_alpha,
             lora_dropout=lora_dropout,
+=======
+            r=64,
+            lora_alpha=128,
+            lora_dropout=0.05,
+>>>>>>> 445ec39 (0701)
             target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],  # Qwen 的 attention 线性层
             bias="none",
             task_type=TaskType.CAUSAL_LM,
