@@ -26,12 +26,18 @@ VIDEOCHATGPT = {
     "data_path": "PATH_TO_VIDEOCHATGPT_DATA",
 }
 
+HAIXIN_STAGE12 = {
+    "annotation_path": "/inspire/hdd/global_user/chaimingxu-240108540141/haixin/label/haixin_stage12_single_image.json",
+    "data_path": "",
+}
+
 data_dict = {
     "cambrian_737k": CAMBRIAN_737K,
     "cambrian_737k_pack": CAMBRIAN_737K_PACK,
     "mp_doc": MP_DOC,
     "clevr_mc": CLEVR_MC,
     "videochatgpt": VIDEOCHATGPT,
+    "haixin_stage12": HAIXIN_STAGE12,
 }
 
 
