@@ -427,6 +427,8 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
     jsonl_count = 0
     stage1_count = 0
     stage2_count = 0
+    stage2_positive_count = 0
+    stage2_negative_count = 0
     skipped_empty_jsonl = 0
     missing_tag_id = 0
     missing_description = 0
@@ -506,9 +508,9 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
                 stage1_count += 1
 
         if args.include_stage2:
-            for row in records:
-                if not is_not_null(row.get("v")):
-                    continue
+            positive_rows = [row for row in records if is_not_null(row.get("v"))]
+            negative_rows = [row for row in records if not is_not_null(row.get("v"))]
+            for row in positive_rows:
                 tags = [normalized_tag(row)]
                 answer = {"items": [stage_answer_item(row, True, include_value=True)]}
                 examples.append(
@@ -520,6 +522,29 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
                     )
                 )
                 stage2_count += 1
+                stage2_positive_count += 1
+
+            if args.stage2_negative_ratio > 0 and negative_rows:
+                if positive_rows:
+                    negative_count = int(len(positive_rows) * args.stage2_negative_ratio)
+                    if args.stage2_negative_ratio > 0 and negative_count == 0:
+                        negative_count = 1
+                else:
+                    negative_count = 1 if args.stage2_include_negative_without_positive else 0
+                negative_count = min(negative_count, len(negative_rows))
+                for row in rng.sample(negative_rows, k=negative_count):
+                    tags = [normalized_tag(row)]
+                    answer = {"items": [stage_answer_item(row, False, include_value=True)]}
+                    examples.append(
+                        build_example(
+                            image_value,
+                            build_user_text(tags, "extract"),
+                            answer,
+                            "stage2_extract_negative" if args.include_task_field else None,
+                        )
+                    )
+                    stage2_count += 1
+                    stage2_negative_count += 1
 
     if args.shuffle_examples:
         rng.shuffle(examples)
@@ -530,6 +555,9 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
         "skipped_empty_jsonl": skipped_empty_jsonl,
         "stage1_examples": stage1_count,
         "stage2_examples": stage2_count,
+        "stage2_positive_examples": stage2_positive_count,
+        "stage2_negative_examples": stage2_negative_count,
+        "stage2_negative_ratio": args.stage2_negative_ratio,
         "total_examples": len(examples),
         "tag_csv": str(tag_csv) if tag_csv else "",
         "add_jsonl": str(add_jsonl) if add_jsonl else "",
@@ -621,6 +649,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--min-presence-tags", type=int, default=1)
     parser.add_argument("--max-presence-tags", type=int, default=5)
     parser.add_argument(
+        "--stage2-negative-ratio",
+        type=float,
+        default=0.5,
+        help="Sample about this many stage2 negative examples per positive example, per image. Use 0 to disable.",
+    )
+    parser.add_argument(
+        "--stage2-include-negative-without-positive",
+        action="store_true",
+        help="If an image has no stage2 positive rows, sample one negative row from it.",
+    )
+    parser.add_argument(
         "--image-path-mode",
         choices=("absolute", "relative"),
         default="absolute",
@@ -653,6 +692,8 @@ def parse_args() -> argparse.Namespace:
         raise ValueError("--min-presence-tags must be >= 1")
     if args.max_presence_tags < args.min_presence_tags:
         raise ValueError("--max-presence-tags must be >= --min-presence-tags")
+    if args.stage2_negative_ratio < 0:
+        raise ValueError("--stage2-negative-ratio must be >= 0")
     return args
 
 
