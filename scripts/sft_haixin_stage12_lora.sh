@@ -25,6 +25,9 @@ min_pixels=${MIN_PIXELS:-784}
 max_pixels=${MAX_PIXELS:-50176}
 report_to=${REPORT_TO:-none}
 run_name=${RUN_NAME:-haixin_stage12_lora}
+lora_r=${LORA_R:-64}
+lora_alpha=${LORA_ALPHA:-128}
+lora_dropout=${LORA_DROPOUT:-0.0}
 
 # Official training entry and DeepSpeed config
 entry_file=qwenvl/train/train_qwen.py
@@ -70,6 +73,9 @@ echo "epochs=${epochs}"
 echo "model_max_length=${model_max_length}"
 echo "min_pixels=${min_pixels}"
 echo "max_pixels=${max_pixels}"
+echo "lora_r=${lora_r}"
+echo "lora_alpha=${lora_alpha}"
+echo "lora_dropout=${lora_dropout}"
 
 args="
     --deepspeed ${deepspeed_config} \
@@ -81,6 +87,9 @@ args="
     --tune_mm_llm True \
     --bf16 \
     --lora_enable True \
+    --lora_r ${lora_r} \
+    --lora_alpha ${lora_alpha} \
+    --lora_dropout ${lora_dropout} \
     --output_dir ${output_dir} \
     --num_train_epochs ${epochs} \
     --per_device_train_batch_size ${batch_size} \
