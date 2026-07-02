@@ -1,4 +1,5 @@
 import json
+import os
 import random
 import logging
 import re
@@ -25,6 +26,40 @@ DEFAULT_IMAGE_TOKEN = "<image>"
 DEFAULT_VIDEO_TOKEN = "<video>"
 
 local_rank = None
+
+PROFILE_STEPS = os.environ.get("HAIXIN_PROFILE_STEPS", "0").lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
+
+
+def _profile_tensor_dict(profile: Dict[str, float]) -> Dict[str, torch.Tensor]:
+    return {
+        key: torch.tensor(float(value), dtype=torch.float64)
+        for key, value in profile.items()
+    }
+
+
+def _profile_float(value: Any) -> float:
+    if isinstance(value, torch.Tensor):
+        return float(value.detach().cpu().item())
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _sum_profiles(items: Sequence[Dict[str, Any]]) -> Dict[str, float]:
+    profile: Dict[str, float] = {}
+    for item in items:
+        item_profile = item.get("_haixin_profile")
+        if not isinstance(item_profile, dict):
+            continue
+        for key, value in item_profile.items():
+            profile[key] = profile.get(key, 0.0) + _profile_float(value)
+    return profile
 
 
 def rank0_print(*args):
@@ -208,12 +243,20 @@ def preprocess_qwen_visual(
 
     source = sources[0]
     base_path = Path(source.get("data_path", ""))
+    profile = {} if PROFILE_STEPS else None
+    start_time = time.perf_counter()
     messages = _build_messages(source, base_path)
+    if profile is not None:
+        profile["build_messages"] = time.perf_counter() - start_time
 
+    step_time = time.perf_counter()
     full_result = processor.apply_chat_template(
         messages, tokenize=True, return_dict=True, return_tensors="pt"
     )
+    if profile is not None:
+        profile["apply_chat_template"] = time.perf_counter() - step_time
 
+    step_time = time.perf_counter()
     input_ids = full_result["input_ids"]
     if isinstance(input_ids, list):
         input_ids = torch.tensor(input_ids).unsqueeze(0)
@@ -238,6 +281,11 @@ def preprocess_qwen_visual(
 
     full_result["labels"] = labels
     full_result["input_ids"] = input_ids
+    if profile is not None:
+        profile["build_labels"] = time.perf_counter() - step_time
+        profile["preprocess_total"] = time.perf_counter() - start_time
+        profile["seq_len_sum"] = float(input_ids.size(1))
+        full_result["_haixin_profile"] = profile
     return full_result
 
 
@@ -387,10 +435,12 @@ class LazySupervisedDataset(Dataset):
             raise e
 
     def _get_item(self, sources) -> Dict[str, torch.Tensor]:
+        item_start = time.perf_counter()
         data_dict = preprocess_qwen_visual(
             sources,
             self.processor,
         )
+        profile = data_dict.pop("_haixin_profile", {}) if PROFILE_STEPS else {}
 
         seq_len = data_dict["input_ids"][0].size(0)
 
@@ -413,6 +463,7 @@ class LazySupervisedDataset(Dataset):
             video_grid_thw = None
             second_per_grid_ts = None
 
+        step_time = time.perf_counter()
         position_ids, _ = self.get_rope_index(
             self.merge_size,
             data_dict["input_ids"],
@@ -422,10 +473,13 @@ class LazySupervisedDataset(Dataset):
             ),
             second_per_grid_ts=second_per_grid_ts if second_per_grid_ts else None,
         )
+        if PROFILE_STEPS:
+            profile["rope_index"] = time.perf_counter() - step_time
 
         data_dict["position_ids"] = position_ids
         data_dict["attention_mask"] = [seq_len]
 
+        step_time = time.perf_counter()
         text = self.processor.tokenizer.decode(
             data_dict["input_ids"][0], skip_special_tokens=False
         )
@@ -436,6 +490,22 @@ class LazySupervisedDataset(Dataset):
             for tid in labels
         ]
         label = self.processor.tokenizer.decode(labels, skip_special_tokens=False)
+        if PROFILE_STEPS:
+            profile["debug_decode"] = time.perf_counter() - step_time
+            if grid_thw:
+                image_grid = torch.cat(grid_thw, dim=0)
+                profile["image_tokens_sum"] = float(
+                    image_grid.prod(dim=1).sum().item() / (self.merge_size ** 2)
+                )
+                profile["images_sum"] = float(image_grid.size(0))
+            if video_grid_thw:
+                video_grid = torch.cat(video_grid_thw, dim=0)
+                profile["video_tokens_sum"] = float(
+                    video_grid.prod(dim=1).sum().item() / (self.merge_size ** 2)
+                )
+                profile["videos_sum"] = float(video_grid.size(0))
+            profile["getitem_total"] = time.perf_counter() - item_start
+            data_dict["_haixin_profile"] = _profile_tensor_dict(profile)
 
         return data_dict
 
@@ -448,6 +518,7 @@ class LazySupervisedDataset(Dataset):
             return self._get_item(sources)
 
         if isinstance(sources, list):
+            pack_start = time.perf_counter()
             data_list = []
             new_data_dict = {}
             for source in sources:
@@ -457,6 +528,7 @@ class LazySupervisedDataset(Dataset):
                     len(source) == 1
                 ), f"Don't know why it is wrapped to a list.\n {source}"  # FIXME
                 data_list.append(self._get_item(source))
+            profile = _sum_profiles(data_list) if PROFILE_STEPS else {}
 
             input_ids = torch.cat([d["input_ids"] for d in data_list], dim=1)
             labels = torch.cat([d["labels"] for d in data_list], dim=1)
@@ -514,6 +586,10 @@ class LazySupervisedDataset(Dataset):
                         ),
                     }
                 )
+            if PROFILE_STEPS:
+                profile["packed_items"] = float(len(data_list))
+                profile["pack_item_total"] = time.perf_counter() - pack_start
+                new_data_dict["_haixin_profile"] = _profile_tensor_dict(profile)
             return new_data_dict
 
 
@@ -538,6 +614,8 @@ class DataCollatorForSupervisedDataset(object):
     tokenizer: transformers.PreTrainedTokenizer
 
     def __call__(self, instances: Sequence[Dict]) -> Dict[str, torch.Tensor]:
+        collator_start = time.perf_counter()
+        profile = _sum_profiles(instances) if PROFILE_STEPS else {}
         input_ids, labels, position_ids = tuple(
             [instance[key] for instance in instances]
             for key in ("input_ids", "labels", "position_ids")
@@ -598,6 +676,13 @@ class DataCollatorForSupervisedDataset(object):
         batch["pixel_values_videos"] = concat_videos
         batch["video_grid_thw"] = video_grid_thw
         batch["position_ids"] = position_ids
+        if PROFILE_STEPS:
+            profile["collator_total"] = time.perf_counter() - collator_start
+            profile["batch_items"] = float(len(instances))
+            profile["batch_seq_len"] = float(input_ids.size(1))
+            if concat_images is not None:
+                profile["batch_pixel_rows"] = float(concat_images.size(0))
+            batch["_haixin_profile"] = _profile_tensor_dict(profile)
         return batch
 
 
@@ -608,6 +693,8 @@ class FlattenedDataCollatorForSupervisedDataset(DataCollatorForSupervisedDataset
     tokenizer: transformers.PreTrainedTokenizer
 
     def __call__(self, instances: Sequence[Dict]) -> Dict[str, torch.Tensor]:
+        collator_start = time.perf_counter()
+        profile = _sum_profiles(instances) if PROFILE_STEPS else {}
         input_ids, labels, position_ids, attention_mask = tuple(
             [instance[key] for instance in instances]
             for key in ("input_ids", "labels", "position_ids", "attention_mask")
@@ -671,6 +758,13 @@ class FlattenedDataCollatorForSupervisedDataset(DataCollatorForSupervisedDataset
         batch["image_grid_thw"] = grid_thw
         batch["pixel_values_videos"] = concat_videos
         batch["video_grid_thw"] = video_grid_thw
+        if PROFILE_STEPS:
+            profile["collator_total"] = time.perf_counter() - collator_start
+            profile["batch_items"] = float(len(instances))
+            profile["batch_seq_len"] = float(input_ids.size(1))
+            if concat_images is not None:
+                profile["batch_pixel_rows"] = float(concat_images.size(0))
+            batch["_haixin_profile"] = _profile_tensor_dict(profile)
 
         return batch
 

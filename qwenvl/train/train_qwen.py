@@ -17,6 +17,7 @@
 import os
 import logging
 import pathlib
+import time
 import torch
 import transformers
 import sys
@@ -42,11 +43,77 @@ from qwenvl.train.argument import (
 from transformers import AutoProcessor, Trainer
 
 local_rank = None
+PROFILE_STEPS = os.environ.get("HAIXIN_PROFILE_STEPS", "0").lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
+PROFILE_EVERY = max(1, int(os.environ.get("HAIXIN_PROFILE_EVERY", "1")))
 
 
 def rank0_print(*args):
     if local_rank == 0:
         print(*args)
+
+
+def _profile_value(value):
+    if isinstance(value, torch.Tensor):
+        return float(value.detach().cpu().item())
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _profile_to_floats(profile):
+    if not isinstance(profile, dict):
+        return {}
+    return {key: _profile_value(value) for key, value in profile.items()}
+
+
+class HaixinProfilingTrainer(Trainer):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._haixin_last_train_step_end = time.perf_counter()
+
+    def training_step(self, model, inputs, *args, **kwargs):
+        profile = inputs.pop("_haixin_profile", None)
+        before_train_step = time.perf_counter()
+        between_steps = before_train_step - self._haixin_last_train_step_end
+
+        if torch.cuda.is_available():
+            torch.cuda.synchronize()
+        train_step_start = time.perf_counter()
+        loss = super().training_step(model, inputs, *args, **kwargs)
+        if torch.cuda.is_available():
+            torch.cuda.synchronize()
+        train_step_time = time.perf_counter() - train_step_start
+        self._haixin_last_train_step_end = time.perf_counter()
+
+        step = self.state.global_step + 1
+        if self.is_world_process_zero() and step % PROFILE_EVERY == 0:
+            values = _profile_to_floats(profile)
+            print(
+                "[haixin-profile] "
+                f"step={step} "
+                f"between_steps={between_steps:.3f}s "
+                f"train_forward_backward={train_step_time:.3f}s "
+                f"getitem_total={values.get('getitem_total', 0.0):.3f}s "
+                f"apply_chat_template={values.get('apply_chat_template', 0.0):.3f}s "
+                f"build_messages={values.get('build_messages', 0.0):.3f}s "
+                f"build_labels={values.get('build_labels', 0.0):.3f}s "
+                f"rope_index={values.get('rope_index', 0.0):.3f}s "
+                f"debug_decode={values.get('debug_decode', 0.0):.3f}s "
+                f"collator_total={values.get('collator_total', 0.0):.3f}s "
+                f"batch_items={values.get('batch_items', 0.0):.0f} "
+                f"batch_seq_len={values.get('batch_seq_len', 0.0):.0f} "
+                f"image_tokens={values.get('image_tokens_sum', 0.0):.0f} "
+                f"images={values.get('images_sum', 0.0):.0f} "
+                f"batch_pixel_rows={values.get('batch_pixel_rows', 0.0):.0f}",
+                flush=True,
+            )
+        return loss
 
 
 def safe_save_model_for_hf_trainer(trainer: transformers.Trainer, output_dir: str):
@@ -184,7 +251,10 @@ def train(attn_implementation="flash_attention_2"):
             model.model.print_trainable_parameters()
     
     data_module = make_supervised_data_module(processor, data_args=data_args)
-    trainer = Trainer(
+    trainer_cls = HaixinProfilingTrainer if PROFILE_STEPS else Trainer
+    if PROFILE_STEPS and training_args.local_rank in (-1, 0):
+        print(f"HAIXIN_PROFILE_STEPS enabled; printing every {PROFILE_EVERY} step(s).")
+    trainer = trainer_cls(
         model=model, processing_class=tokenizer, args=training_args, **data_module
     )
 
