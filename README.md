@@ -5,7 +5,7 @@ This repository provides a training framework for Qwen VL models. The are two st
 1. Customize your dataset: downloading data, implement the config
 2. Modify training scripts: 
 
-## Repository Structure
+## Repository structure
 
 The `qwenvl` directory contains the following components:
 

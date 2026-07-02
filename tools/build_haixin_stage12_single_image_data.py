@@ -429,6 +429,9 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
     stage2_count = 0
     stage2_positive_count = 0
     stage2_negative_count = 0
+    stage1_null_candidate_count = 0
+    stage1_null_kept_count = 0
+    stage1_null_skipped_count = 0
     skipped_empty_jsonl = 0
     missing_tag_id = 0
     missing_description = 0
@@ -489,7 +492,21 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
                     )
 
         if args.include_stage1:
-            for chunk in random_chunks(records, rng, args.min_presence_tags, args.max_presence_tags):
+            stage1_records = []
+            for row in records:
+                if is_not_null(row.get("v")):
+                    stage1_records.append(row)
+                    continue
+                stage1_null_candidate_count += 1
+                if rng.random() < args.stage1_null_keep_probability:
+                    stage1_records.append(row)
+                    stage1_null_kept_count += 1
+                else:
+                    stage1_null_skipped_count += 1
+
+            for chunk in random_chunks(
+                stage1_records, rng, args.min_presence_tags, args.max_presence_tags
+            ):
                 tags = [normalized_tag(row) for row in chunk]
                 answer = {
                     "items": [
@@ -558,6 +575,10 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
         "stage2_positive_examples": stage2_positive_count,
         "stage2_negative_examples": stage2_negative_count,
         "stage2_negative_ratio": args.stage2_negative_ratio,
+        "stage1_null_keep_probability": args.stage1_null_keep_probability,
+        "stage1_null_candidate_records": stage1_null_candidate_count,
+        "stage1_null_kept_records": stage1_null_kept_count,
+        "stage1_null_skipped_records": stage1_null_skipped_count,
         "total_examples": len(examples),
         "tag_csv": str(tag_csv) if tag_csv else "",
         "add_jsonl": str(add_jsonl) if add_jsonl else "",
@@ -649,6 +670,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--min-presence-tags", type=int, default=1)
     parser.add_argument("--max-presence-tags", type=int, default=5)
     parser.add_argument(
+        "--stage1-null-keep-probability",
+        type=float,
+        default=0.05,
+        help="For stage1 presence data, keep this probability of records whose label value v is null.",
+    )
+    parser.add_argument(
         "--stage2-negative-ratio",
         type=float,
         default=0.5,
@@ -692,6 +719,8 @@ def parse_args() -> argparse.Namespace:
         raise ValueError("--min-presence-tags must be >= 1")
     if args.max_presence_tags < args.min_presence_tags:
         raise ValueError("--max-presence-tags must be >= --min-presence-tags")
+    if not 0 <= args.stage1_null_keep_probability <= 1:
+        raise ValueError("--stage1-null-keep-probability must be between 0 and 1")
     if args.stage2_negative_ratio < 0:
         raise ValueError("--stage2-negative-ratio must be >= 0")
     return args
