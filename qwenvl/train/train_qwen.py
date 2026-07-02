@@ -72,6 +72,51 @@ def _profile_to_floats(profile):
     return {key: _profile_value(value) for key, value in profile.items()}
 
 
+def _module_by_path(root, path):
+    module = root
+    for part in path.split("."):
+        if not hasattr(module, part):
+            return None
+        module = getattr(module, part)
+    return module
+
+
+def _find_profile_module(root, target):
+    candidate_paths = {
+        "visual": [
+            "module.base_model.model.model.visual",
+            "module.base_model.model.visual",
+            "module.model.visual",
+            "base_model.model.model.visual",
+            "base_model.model.visual",
+            "model.visual",
+            "visual",
+        ],
+        "language_model": [
+            "module.base_model.model.model.language_model",
+            "module.base_model.model.language_model",
+            "module.model.language_model",
+            "base_model.model.model.language_model",
+            "base_model.model.language_model",
+            "model.language_model",
+            "language_model",
+        ],
+    }[target]
+    for path in candidate_paths:
+        module = _module_by_path(root, path)
+        if module is not None and hasattr(module, "forward"):
+            return module, path
+    if hasattr(root, "named_modules"):
+        matches = []
+        for name, module in root.named_modules():
+            if name.endswith(target) and hasattr(module, "forward"):
+                matches.append((name.count("."), name, module))
+        if matches:
+            _, name, module = sorted(matches)[0]
+            return module, name
+    return None, ""
+
+
 class HaixinProfilingTrainer(Trainer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -92,6 +137,16 @@ class HaixinProfilingTrainer(Trainer):
         original_compute_loss = self.compute_loss
         original_backward = self.accelerator.backward
         original_forward = model.forward
+        visual_module, visual_module_name = _find_profile_module(model, "visual")
+        language_module, language_module_name = _find_profile_module(
+            model, "language_model"
+        )
+        original_visual_forward = (
+            visual_module.forward if visual_module is not None else None
+        )
+        original_language_forward = (
+            language_module.forward if language_module is not None else None
+        )
 
         def sync_cuda():
             if torch.cuda.is_available():
@@ -129,10 +184,38 @@ class HaixinProfilingTrainer(Trainer):
             step_profile["backward"] += time.perf_counter() - start
             return result
 
+        def wrapped_visual_forward(*visual_args, **visual_kwargs):
+            sync_cuda()
+            start = time.perf_counter()
+            result = original_visual_forward(*visual_args, **visual_kwargs)
+            sync_cuda()
+            step_profile["visual_forward"] = (
+                step_profile.get("visual_forward", 0.0)
+                + time.perf_counter()
+                - start
+            )
+            return result
+
+        def wrapped_language_forward(*language_args, **language_kwargs):
+            sync_cuda()
+            start = time.perf_counter()
+            result = original_language_forward(*language_args, **language_kwargs)
+            sync_cuda()
+            step_profile["language_forward"] = (
+                step_profile.get("language_forward", 0.0)
+                + time.perf_counter()
+                - start
+            )
+            return result
+
         self._prepare_inputs = wrapped_prepare_inputs
         self.compute_loss = wrapped_compute_loss
         self.accelerator.backward = wrapped_backward
         model.forward = wrapped_forward
+        if visual_module is not None:
+            visual_module.forward = wrapped_visual_forward
+        if language_module is not None:
+            language_module.forward = wrapped_language_forward
         sync_cuda()
         train_step_start = time.perf_counter()
         try:
@@ -144,6 +227,10 @@ class HaixinProfilingTrainer(Trainer):
             self.compute_loss = original_compute_loss
             self.accelerator.backward = original_backward
             model.forward = original_forward
+            if visual_module is not None:
+                visual_module.forward = original_visual_forward
+            if language_module is not None:
+                language_module.forward = original_language_forward
         self._haixin_last_train_step_end = time.perf_counter()
 
         step = self.state.global_step + 1
@@ -152,6 +239,12 @@ class HaixinProfilingTrainer(Trainer):
             compute_loss_overhead = max(
                 0.0,
                 step_profile["compute_loss_total"] - step_profile["model_forward"],
+            )
+            model_forward_other = max(
+                0.0,
+                step_profile["model_forward"]
+                - step_profile.get("visual_forward", 0.0)
+                - step_profile.get("language_forward", 0.0),
             )
             train_step_other = max(
                 0.0,
@@ -168,6 +261,9 @@ class HaixinProfilingTrainer(Trainer):
                 f"prepare_inputs={step_profile['prepare_inputs']:.3f}s "
                 f"compute_loss_total={step_profile['compute_loss_total']:.3f}s "
                 f"model_forward={step_profile['model_forward']:.3f}s "
+                f"visual_forward={step_profile.get('visual_forward', 0.0):.3f}s "
+                f"language_forward={step_profile.get('language_forward', 0.0):.3f}s "
+                f"model_forward_other={model_forward_other:.3f}s "
                 f"compute_loss_overhead={compute_loss_overhead:.3f}s "
                 f"backward={step_profile['backward']:.3f}s "
                 f"train_step_other={train_step_other:.3f}s "
@@ -182,7 +278,9 @@ class HaixinProfilingTrainer(Trainer):
                 f"batch_seq_len={values.get('batch_seq_len', 0.0):.0f} "
                 f"image_tokens={values.get('image_tokens_sum', 0.0):.0f} "
                 f"images={values.get('images_sum', 0.0):.0f} "
-                f"batch_pixel_rows={values.get('batch_pixel_rows', 0.0):.0f}",
+                f"batch_pixel_rows={values.get('batch_pixel_rows', 0.0):.0f} "
+                f"visual_module={visual_module_name or 'not_found'} "
+                f"language_module={language_module_name or 'not_found'}",
                 flush=True,
             )
         return loss
