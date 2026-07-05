@@ -1,7 +1,10 @@
 from typing import Dict, List, Optional, Sequence, Tuple, Callable
 
 import torch
-from flash_attn.flash_attn_interface import flash_attn_varlen_func
+try:
+    from flash_attn.flash_attn_interface import flash_attn_varlen_func
+except ModuleNotFoundError:
+    flash_attn_varlen_func = None
 from transformers.modeling_flash_attention_utils import FlashAttentionKwargs
 from transformers import Trainer
 from transformers.cache_utils import Cache
@@ -42,6 +45,13 @@ def flash_attention_forward(
     softcap: Optional[float] = None,
     **kwargs,
 ) -> tuple[torch.Tensor, None]:
+    if flash_attn_varlen_func is None:
+        raise ModuleNotFoundError(
+            "flash_attn is required for the custom data_flatten/data_packing "
+            "FlashAttention patch. Install flash_attn, or run with "
+            "ATTN_IMPLEMENTATION=sdpa DATA_FLATTEN=False."
+        )
+
     if kwargs.get("output_attentions", False) or kwargs.get("head_mask") is not None:
         logger.warning_once(
             "`flash_attention_2` does not support `output_attentions=True` or `head_mask`."

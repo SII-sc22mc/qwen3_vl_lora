@@ -192,7 +192,15 @@ def _build_messages(item: Dict[str, Any], base_path: Path) -> List[Dict[str, Any
 
     messages = []
     for turn in item["conversations"]:
-        role = "user" if turn["from"] == "human" else "assistant"
+        role_name = str(turn["from"]).lower()
+        if role_name in ("human", "user"):
+            role = "user"
+        elif role_name in ("gpt", "assistant"):
+            role = "assistant"
+        elif role_name == "system":
+            role = "system"
+        else:
+            raise ValueError(f"Unsupported conversation role: {turn['from']}")
         text: str = turn["value"]
 
         if role == "user":
@@ -218,7 +226,7 @@ def _build_messages(item: Dict[str, Any], base_path: Path) -> List[Dict[str, Any
 
             messages.append({"role": role, "content": content})
         else:
-            # Assistant messages contain only text
+            # Assistant and system messages contain only text.
             messages.append({"role": role, "content": [{"type": "text", "text": text}]})
 
     # Check for unused media files

@@ -12,6 +12,9 @@ deepspeed=${DEEPSPEED_CONFIG:-./scripts/zero2.json}
 # Model and dataset configuration
 llm=${MODEL_PATH:-/inspire/hdd/global_user/chaimingxu-240108540141/models/Qwen3-VL-8B-Instruct}
 datasets=${DATASET_USE:-haixin_stage12}
+attn_implementation=${ATTN_IMPLEMENTATION:-flash_attention_2}
+data_flatten=${DATA_FLATTEN:-True}
+data_packing=${DATA_PACKING:-False}
 
 # Training hyperparameters
 lr=${LR:-1e-5}
@@ -42,6 +45,9 @@ output_dir=${OUTPUT_DIR:-/inspire/hdd/global_user/chaimingxu-240108540141/haixin
 
 echo "model=${llm}"
 echo "dataset_use=${datasets}"
+echo "attn_implementation=${attn_implementation}"
+echo "data_flatten=${data_flatten}"
+echo "data_packing=${data_packing}"
 echo "annotation=/inspire/hdd/global_user/chaimingxu-240108540141/haixin/label/haixin_stage12_single_image.json"
 echo "output_dir=${output_dir}"
 echo "deepspeed_config=${deepspeed}"
@@ -59,8 +65,10 @@ echo "lora_dropout=${lora_dropout}"
 args="
     --deepspeed ${deepspeed} \
     --model_name_or_path ${llm} \
+    --attn_implementation ${attn_implementation} \
     --dataset_use ${datasets} \
-    --data_flatten True \
+    --data_flatten ${data_flatten} \
+    --data_packing ${data_packing} \
     --tune_mm_vision False \
     --tune_mm_mlp True \
     --tune_mm_llm True \

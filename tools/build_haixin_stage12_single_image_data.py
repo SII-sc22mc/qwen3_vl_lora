@@ -24,8 +24,8 @@ PRESENCE_PROMPT_TEMPLATE = """请判断这张图片中是否存在下面每个 t
 要求：
 1. 每个输入 tag 都必须在返回 JSON 的 items 中出现一次。
 2. 这里只判断有没有值，不要抽取具体值。
-3. 只有图片中能看到与该 tag 明确对应的信息时，has_value 才能为 true。
-4. 如果图片与某个 tag 无关，或没有明确证据，has_value 必须为 false。
+3. 只有图片中能看到与该 tag 对应的信息时，has_value 需要为 true。
+4. 如果图片与某个 tag 无关，或没有明确证据，has_value 应该为 false。
 5. 不要补充输入列表以外的 tag。
 6. 每个 tag 的 table_name_cn 和 description 只用于理解字段含义，不能当作图片证据。
 
@@ -33,7 +33,6 @@ PRESENCE_PROMPT_TEMPLATE = """请判断这张图片中是否存在下面每个 t
 {{
   "items": [
     {{
-      "tag_id": "原始tag_id",
       "tag_name": "原始tag_name",
       "has_value": false
     }}
@@ -64,12 +63,12 @@ EXTRACTION_PROMPT_TEMPLATE = """请从这张图片中判断并抽取下面单个
 8. 如果 value 是数组/列表，必须按照图片中的出现顺序排列：从上到下、从左到右；表格按行顺序；多栏内容按人类正常阅读顺序。
 9. 对日期、分期、TNM、ER/PR/HER2/Ki-67、检验指标等结构化内容，优先保留图片中的原始写法，不要自行标准化。
 10. 当前 tag 的 table_name_cn 和 description 只用于理解字段含义，不能当作图片证据。
+11. 对药物、医嘱、治疗方案等明细字段，最小对象粒度应由“名称/药品/方案”和“日期/时间/周期”等共同决定。如果图片写明多个具体日期且同一段同时列出多个药品/方案，如“2024-3-15、2025-4-15、2026-5-16（药品A+药品B+药品C+药品D）”，原则上要按“日期 × 药品/方案”拆成多条对象；这个例子应返回 12 条，而不是 4 条。
 
 返回 JSON 格式：
 {{
   "items": [
     {{
-      "tag_id": "原始tag_id",
       "tag_name": "原始tag_name",
       "has_value": false,
       "value": null
@@ -82,7 +81,8 @@ EXTRACTION_PROMPT_TEMPLATE = """请从这张图片中判断并抽取下面单个
 """
 
 
-PROMPT_TAG_FIELDS = ("tag_id", "tag_name", "table_name_cn", "description")
+PROMPT_TAG_FIELDS = ("tag_name", "table_name_cn", "description")
+ANSWER_TAG_FIELDS = ("tag_name",)
 
 
 def strict_json(obj: Any) -> str:
@@ -125,6 +125,12 @@ TAG_META_FIELDS = (
 
 def clean_str(value: Any) -> str:
     return str(value or "").strip()
+
+
+def label_value(row: dict[str, Any]) -> Any:
+    if "v" in row:
+        return row.get("v")
+    return row.get("value")
 
 
 def normalize_tag_row(row: dict[str, Any]) -> dict[str, Any]:
@@ -245,6 +251,23 @@ def infer_remove_json(train_dir: Path) -> Path | None:
     return None
 
 
+def infer_extraction_bundle_dir() -> Path | None:
+    for parent in Path(__file__).resolve().parents:
+        candidate = parent / "extraction_bundle"
+        if candidate.is_dir():
+            return candidate
+    return None
+
+
+def file_from_extraction_bundle(bundle_dir: Path | None, name: str) -> Path | None:
+    if bundle_dir is None:
+        return None
+    candidate = bundle_dir / name
+    if candidate.exists():
+        return candidate
+    return None
+
+
 def merge_add_tags(base_tags: list[dict[str, Any]], add_tags: list[dict[str, Any]]) -> list[dict[str, Any]]:
     seen = {
         (clean_str(tag.get("table_name_cn")), clean_str(tag.get("tag_name")))
@@ -268,9 +291,13 @@ def merge_preserving_metadata(base: dict[str, Any], row: dict[str, Any]) -> dict
     merged = dict(base) if base else {}
     if not merged:
         merged.update({key: value for key, value in row.items() if value not in (None, "")})
+    if "v" in row or "value" in row:
+        merged["v"] = label_value(row)
     for key, value in row.items():
         if key == "v":
             merged[key] = value
+        elif key == "value":
+            continue
         elif key not in TAG_META_FIELDS and value not in (None, ""):
             merged[key] = value
     return merged
@@ -337,33 +364,54 @@ def normalized_tag(row: dict[str, Any]) -> dict[str, Any]:
 
 
 def stage_answer_item(row: dict[str, Any], has_value: bool, include_value: bool = False) -> dict[str, Any]:
-    item = {
-        "tag_id": row.get("tag_id", ""),
-        "tag_name": row.get("tag_name", ""),
-        "has_value": has_value,
-    }
+    item = {}
+    for field in ANSWER_TAG_FIELDS:
+        item[field] = row.get(field, "")
+    item["has_value"] = has_value
     if include_value:
-        item["value"] = row.get("v")
+        item["value"] = label_value(row)
     return item
 
 
 def build_user_text(tags: list[dict[str, Any]], mode: str) -> str:
     tags_json = pretty_json(tags)
     if mode == "presence":
-        return SYSTEM_PROMPT.strip() + "\n\n" + PRESENCE_PROMPT_TEMPLATE.format(tags_json=tags_json)
+        return PRESENCE_PROMPT_TEMPLATE.format(tags_json=tags_json)
     if mode == "extract":
-        return SYSTEM_PROMPT.strip() + "\n\n" + EXTRACTION_PROMPT_TEMPLATE.format(tags_json=tags_json)
+        return EXTRACTION_PROMPT_TEMPLATE.format(tags_json=tags_json)
     raise ValueError(f"unsupported mode: {mode}")
 
 
-def build_example(image: str, user_text: str, answer: dict[str, Any], task: str | None) -> dict[str, Any]:
-    example = {
-        "image": image,
-        "conversations": [
+def build_example(
+    image: str,
+    user_text: str,
+    answer: dict[str, Any],
+    task: str | None,
+    inline_system_prompt: bool = False,
+) -> dict[str, Any]:
+    conversations: list[dict[str, str]]
+    if inline_system_prompt:
+        conversations = [
+            {
+                "from": "human",
+                "value": "<image>\n" + SYSTEM_PROMPT.strip() + "\n\n" + user_text,
+            }
+        ]
+    else:
+        conversations = [
+            {
+                "from": "system",
+                "value": SYSTEM_PROMPT.strip(),
+            },
             {
                 "from": "human",
                 "value": "<image>\n" + user_text,
             },
+        ]
+    example = {
+        "image": image,
+        "conversations": conversations
+        + [
             {
                 "from": "gpt",
                 "value": strict_json(answer),
@@ -405,15 +453,34 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
     if not train_dir.exists():
         raise FileNotFoundError(f"train_dir does not exist: {train_dir}")
 
+    extraction_bundle_dir = args.extraction_bundle_dir
+    if extraction_bundle_dir is None and not args.no_auto_extraction_bundle:
+        extraction_bundle_dir = infer_extraction_bundle_dir()
+    if extraction_bundle_dir is not None:
+        extraction_bundle_dir = extraction_bundle_dir.expanduser().resolve()
+        if not extraction_bundle_dir.exists():
+            raise FileNotFoundError(
+                f"extraction_bundle_dir does not exist: {extraction_bundle_dir}"
+            )
+
     tag_csv = args.tag_csv
     if tag_csv is None and not args.no_auto_tag_csv:
-        tag_csv = infer_tag_csv(train_dir)
+        tag_csv = (
+            file_from_extraction_bundle(
+                extraction_bundle_dir, "tag-pool_乳腺癌_20260610.csv"
+            )
+            or infer_tag_csv(train_dir)
+        )
     add_jsonl = args.add_jsonl
     if add_jsonl is None and not args.no_auto_add_jsonl:
-        add_jsonl = infer_add_jsonl(train_dir)
+        add_jsonl = file_from_extraction_bundle(
+            extraction_bundle_dir, "add.jsonl"
+        ) or infer_add_jsonl(train_dir)
     remove_json = args.remove_json
     if remove_json is None and not args.no_auto_remove_json:
-        remove_json = infer_remove_json(train_dir)
+        remove_json = file_from_extraction_bundle(
+            extraction_bundle_dir, "remove.json"
+        ) or infer_remove_json(train_dir)
     remove_tag_names = load_remove_tag_names(remove_json)
     tag_library = merge_add_tags(
         load_tag_csv(tag_csv, remove_tag_names=remove_tag_names),
@@ -494,7 +561,7 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
         if args.include_stage1:
             stage1_records = []
             for row in records:
-                if is_not_null(row.get("v")):
+                if is_not_null(label_value(row)):
                     stage1_records.append(row)
                     continue
                 stage1_null_candidate_count += 1
@@ -510,7 +577,7 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
                 tags = [normalized_tag(row) for row in chunk]
                 answer = {
                     "items": [
-                        stage_answer_item(row, is_not_null(row.get("v")))
+                        stage_answer_item(row, is_not_null(label_value(row)))
                         for row in chunk
                     ]
                 }
@@ -520,13 +587,14 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
                         build_user_text(tags, "presence"),
                         answer,
                         "stage1_presence" if args.include_task_field else None,
+                        inline_system_prompt=args.inline_system_prompt,
                     )
                 )
                 stage1_count += 1
 
         if args.include_stage2:
-            positive_rows = [row for row in records if is_not_null(row.get("v"))]
-            negative_rows = [row for row in records if not is_not_null(row.get("v"))]
+            positive_rows = [row for row in records if is_not_null(label_value(row))]
+            negative_rows = [row for row in records if not is_not_null(label_value(row))]
             for row in positive_rows:
                 tags = [normalized_tag(row)]
                 answer = {"items": [stage_answer_item(row, True, include_value=True)]}
@@ -536,6 +604,7 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
                         build_user_text(tags, "extract"),
                         answer,
                         "stage2_extract" if args.include_task_field else None,
+                        inline_system_prompt=args.inline_system_prompt,
                     )
                 )
                 stage2_count += 1
@@ -558,6 +627,7 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
                             build_user_text(tags, "extract"),
                             answer,
                             "stage2_extract_negative" if args.include_task_field else None,
+                            inline_system_prompt=args.inline_system_prompt,
                         )
                     )
                     stage2_count += 1
@@ -580,6 +650,7 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
         "stage1_null_kept_records": stage1_null_kept_count,
         "stage1_null_skipped_records": stage1_null_skipped_count,
         "total_examples": len(examples),
+        "extraction_bundle_dir": str(extraction_bundle_dir) if extraction_bundle_dir else "",
         "tag_csv": str(tag_csv) if tag_csv else "",
         "add_jsonl": str(add_jsonl) if add_jsonl else "",
         "remove_json": str(remove_json) if remove_json else "",
@@ -639,6 +710,20 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=None,
         help="Optional remove.json used exactly like API extraction: remove CSV tags by tag_name before adding add.jsonl.",
+    )
+    parser.add_argument(
+        "--extraction-bundle-dir",
+        type=Path,
+        default=None,
+        help=(
+            "Optional extraction_bundle directory. When present, tag-pool/add/remove "
+            "from this bundle are preferred over parent-directory auto-discovery."
+        ),
+    )
+    parser.add_argument(
+        "--no-auto-extraction-bundle",
+        action="store_true",
+        help="Do not auto-detect a sibling extraction_bundle directory.",
     )
     parser.add_argument(
         "--no-auto-tag-csv",
@@ -710,6 +795,14 @@ def parse_args() -> argparse.Namespace:
         "--include-task-field",
         action="store_true",
         help="Add a non-official helper field task=stage1_presence/stage2_extract.",
+    )
+    parser.add_argument(
+        "--inline-system-prompt",
+        action="store_true",
+        help=(
+            "Use the legacy two-turn format by putting SYSTEM_PROMPT inside the "
+            "human message. By default, examples use separate system/human/gpt turns."
+        ),
     )
     parser.set_defaults(shuffle_examples=True)
     args = parser.parse_args()

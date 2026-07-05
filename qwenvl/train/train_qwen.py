@@ -117,6 +117,107 @@ def _find_profile_module(root, target):
     return None, ""
 
 
+def _add_profile_time(step_profile, key, elapsed):
+    step_profile[key] = step_profile.get(key, 0.0) + elapsed
+    step_profile[f"{key}_calls"] = step_profile.get(f"{key}_calls", 0.0) + 1.0
+
+
+def _timed_forward(original_forward, sync_cuda, step_profile, key, max_key=None, index=None):
+    def wrapped_forward(*args, **kwargs):
+        sync_cuda()
+        start = time.perf_counter()
+        result = original_forward(*args, **kwargs)
+        sync_cuda()
+        elapsed = time.perf_counter() - start
+        _add_profile_time(step_profile, key, elapsed)
+        if max_key is not None and elapsed > step_profile.get(max_key, 0.0):
+            step_profile[max_key] = elapsed
+            if index is not None:
+                step_profile[f"{max_key}_index"] = float(index)
+        return result
+
+    return wrapped_forward
+
+
+def _profile_module_forward(module, step_profile, key, sync_cuda, wrappers, max_key=None, index=None):
+    if module is None or not hasattr(module, "forward"):
+        return
+    if any(module is wrapped_module for wrapped_module, _ in wrappers):
+        return
+    original_forward = module.forward
+    module.forward = _timed_forward(
+        original_forward,
+        sync_cuda,
+        step_profile,
+        key,
+        max_key=max_key,
+        index=index,
+    )
+    wrappers.append((module, original_forward))
+
+
+def _profile_visual_children(visual_module, step_profile, sync_cuda):
+    wrappers = []
+    if visual_module is None:
+        return wrappers
+
+    for child_name, key in [
+        ("patch_embed", "visual_patch_embed"),
+        ("rotary_pos_emb", "visual_rotary_pos_emb"),
+        ("merger", "visual_merger"),
+        ("patch_merger", "visual_merger"),
+    ]:
+        child = getattr(visual_module, child_name, None)
+        _profile_module_forward(child, step_profile, key, sync_cuda, wrappers)
+
+    blocks = None
+    for blocks_name in ("blocks", "layers"):
+        maybe_blocks = getattr(visual_module, blocks_name, None)
+        if maybe_blocks is not None:
+            blocks = maybe_blocks
+            break
+
+    if blocks is None:
+        return wrappers
+
+    for idx, block in enumerate(blocks):
+        _profile_module_forward(
+            block,
+            step_profile,
+            "visual_blocks",
+            sync_cuda,
+            wrappers,
+            max_key="visual_block_max",
+            index=idx,
+        )
+        for attn_name in ("attn", "attention", "self_attn"):
+            _profile_module_forward(
+                getattr(block, attn_name, None),
+                step_profile,
+                "visual_block_attn",
+                sync_cuda,
+                wrappers,
+            )
+        for mlp_name in ("mlp", "feed_forward", "ffn"):
+            _profile_module_forward(
+                getattr(block, mlp_name, None),
+                step_profile,
+                "visual_block_mlp",
+                sync_cuda,
+                wrappers,
+            )
+        for norm_name in ("norm1", "norm2", "ln1", "ln2", "input_layernorm", "post_attention_layernorm"):
+            _profile_module_forward(
+                getattr(block, norm_name, None),
+                step_profile,
+                "visual_block_norm",
+                sync_cuda,
+                wrappers,
+            )
+
+    return wrappers
+
+
 class HaixinProfilingTrainer(Trainer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -208,6 +309,9 @@ class HaixinProfilingTrainer(Trainer):
             )
             return result
 
+        visual_child_wrappers = _profile_visual_children(
+            visual_module, step_profile, sync_cuda
+        )
         self._prepare_inputs = wrapped_prepare_inputs
         self.compute_loss = wrapped_compute_loss
         self.accelerator.backward = wrapped_backward
@@ -231,6 +335,8 @@ class HaixinProfilingTrainer(Trainer):
                 visual_module.forward = original_visual_forward
             if language_module is not None:
                 language_module.forward = original_language_forward
+            for wrapped_module, original_module_forward in reversed(visual_child_wrappers):
+                wrapped_module.forward = original_module_forward
         self._haixin_last_train_step_end = time.perf_counter()
 
         step = self.state.global_step + 1
@@ -245,6 +351,21 @@ class HaixinProfilingTrainer(Trainer):
                 step_profile["model_forward"]
                 - step_profile.get("visual_forward", 0.0)
                 - step_profile.get("language_forward", 0.0),
+            )
+            visual_other = max(
+                0.0,
+                step_profile.get("visual_forward", 0.0)
+                - step_profile.get("visual_patch_embed", 0.0)
+                - step_profile.get("visual_rotary_pos_emb", 0.0)
+                - step_profile.get("visual_blocks", 0.0)
+                - step_profile.get("visual_merger", 0.0),
+            )
+            visual_blocks_other = max(
+                0.0,
+                step_profile.get("visual_blocks", 0.0)
+                - step_profile.get("visual_block_attn", 0.0)
+                - step_profile.get("visual_block_mlp", 0.0)
+                - step_profile.get("visual_block_norm", 0.0),
             )
             train_step_other = max(
                 0.0,
@@ -262,6 +383,18 @@ class HaixinProfilingTrainer(Trainer):
                 f"compute_loss_total={step_profile['compute_loss_total']:.3f}s "
                 f"model_forward={step_profile['model_forward']:.3f}s "
                 f"visual_forward={step_profile.get('visual_forward', 0.0):.3f}s "
+                f"visual_patch_embed={step_profile.get('visual_patch_embed', 0.0):.3f}s "
+                f"visual_rotary_pos_emb={step_profile.get('visual_rotary_pos_emb', 0.0):.3f}s "
+                f"visual_blocks={step_profile.get('visual_blocks', 0.0):.3f}s "
+                f"visual_block_attn={step_profile.get('visual_block_attn', 0.0):.3f}s "
+                f"visual_block_mlp={step_profile.get('visual_block_mlp', 0.0):.3f}s "
+                f"visual_block_norm={step_profile.get('visual_block_norm', 0.0):.3f}s "
+                f"visual_blocks_other={visual_blocks_other:.3f}s "
+                f"visual_merger={step_profile.get('visual_merger', 0.0):.3f}s "
+                f"visual_other={visual_other:.3f}s "
+                f"visual_block_calls={step_profile.get('visual_blocks_calls', 0.0):.0f} "
+                f"visual_block_max={step_profile.get('visual_block_max', 0.0):.3f}s "
+                f"visual_block_max_index={step_profile.get('visual_block_max_index', -1.0):.0f} "
                 f"language_forward={step_profile.get('language_forward', 0.0):.3f}s "
                 f"model_forward_other={model_forward_other:.3f}s "
                 f"compute_loss_overhead={compute_loss_overhead:.3f}s "
@@ -333,6 +466,8 @@ def train(attn_implementation="flash_attention_2"):
         (ModelArguments, DataArguments, TrainingArguments)
     )
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
+    if model_args.attn_implementation:
+        attn_implementation = model_args.attn_implementation
 
     local_rank = training_args.local_rank
     os.makedirs(training_args.output_dir, exist_ok=True)
@@ -376,6 +511,12 @@ def train(attn_implementation="flash_attention_2"):
     )
 
     if data_args.data_flatten or data_args.data_packing:
+        if attn_implementation != "flash_attention_2":
+            raise ValueError(
+                "data_flatten/data_packing currently depends on the custom "
+                "FlashAttention patch in this training script. For SDPA, run "
+                "with DATA_FLATTEN=False DATA_PACKING=False."
+            )
         replace_qwen2_vl_attention_class()
     model.config.use_cache = False
 
