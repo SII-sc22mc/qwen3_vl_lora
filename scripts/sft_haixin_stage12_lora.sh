@@ -17,18 +17,18 @@ data_flatten=${DATA_FLATTEN:-True}
 data_packing=${DATA_PACKING:-False}
 
 # Training hyperparameters
-lr=${LR:-1e-5}
-batch_size=${BATCH_SIZE:-1}
+lr=${LR:-5e-5}
+batch_size=${BATCH_SIZE:-2}
 eval_batch_size=${EVAL_BATCH_SIZE:-${batch_size}}
-grad_accum_steps=${GRAD_ACCUM_STEPS:-4}
+grad_accum_steps=${GRAD_ACCUM_STEPS:-3}
 epochs=${EPOCHS:-2}
 save_steps=${SAVE_STEPS:-500}
 save_total_limit=${SAVE_TOTAL_LIMIT:-3}
-logging_steps=${LOGGING_STEPS:-2}
-model_max_length=${MODEL_MAX_LENGTH:-8192}
-dataloader_num_workers=${DATALOADER_NUM_WORKERS:-4}
+logging_steps=${LOGGING_STEPS:-1}
+model_max_length=${MODEL_MAX_LENGTH:-24000}
+dataloader_num_workers=${DATALOADER_NUM_WORKERS:-12}
 min_pixels=${MIN_PIXELS:-784}
-max_pixels=${MAX_PIXELS:-50176}
+max_pixels=${MAX_PIXELS:-1048576}
 report_to=${REPORT_TO:-none}
 run_name=${RUN_NAME:-haixin_stage12_lora}
 
@@ -95,7 +95,7 @@ args="
     --lr_scheduler_type cosine \
     --logging_steps ${logging_steps} \
     --model_max_length ${model_max_length} \
-    --gradient_checkpointing True \
+    --gradient_checkpointing False \
     --dataloader_num_workers ${dataloader_num_workers} \
     --run_name ${run_name} \
     --report_to ${report_to}"

@@ -1,0 +1,931 @@
+﻿cancer_type,table_key,table_name_cn,tag_id,tag_name,field_key,annotation_scope,created_at,description,description_source
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,634,关节痛分级,ae_arthralgia_grade,structured,2026-05-08,记录关节痛/关节疼痛作为不良反应时的严重程度分级,original
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,610,呕吐分级,ae_vomiting_grade,structured,2026-05-08,呕吐分级,original
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,653,失眠分级,ae_insomnia_grade,structured,2026-05-08,失眠分级,original
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,609,恶心分级,ae_nausea_grade,structured,2026-05-08,恶心分级,original
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,2564,既往恶性肿瘤史,f_1c0c4f54,structured,2026-06-09,患者既往恶性肿瘤病史,generated
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,752,甲状腺功能减退判定,ae_hypothyroid_flag,structured,2026-05-08,是否判定为甲状腺功能减退,generated
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,604,白细胞减少分级,ae_leukopenia_grade,structured,2026-05-08,记录白细胞减少/白细胞计数降低对应的不良反应严重程度分级,original
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,628,皮疹分级,ae_rash_grade,structured,2026-05-08,皮疹分级,original
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,2554,精神病史,f_6ee9e496,structured,2026-06-09,患者既往精神疾病病史,generated
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,611,腹泻分级,ae_diarrhea_grade,structured,2026-05-08,腹泻分级,original
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,608,血小板减少分级,ae_thrombo_grade,structured,2026-05-08,"记录血小板减少/血小板计数降低对应的不良反应严重程度分级，优先保留原文等级表述。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,658,补充说明,ae_notes,structured,2026-05-08,不良反应补充说明；文本描述,original
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,607,贫血分级 (Hb),ae_anemia_grade,structured,2026-05-08,"记录贫血或血红蛋白降低对应的不良反应严重程度分级，优先保留原文等级表述。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,2553,间质性肺病,f_cdded201,structured,2026-06-09,是否发生间质性肺病情况,generated
+乳腺癌,ods_br_cancer_adverse_events,并发症与不良反应明细表,637,骨质疏松判定,ae_osteo_flag,structured,2026-05-08,是否判定存在骨质疏松,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2559,CDK4/6 抑制剂暴露,cdk4_6,structured,2026-06-09,是否使用过CDK4/6抑制剂,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2549,免疫治疗史,f_c44a8040,structured,2026-06-09,患者既往免疫治疗使用情况,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,742,化疗线数,chemo_line_num,structured,2026-05-08,记录患者接受化疗方案所属的治疗线数，如一线、二线、三线等；不要将化疗周期数、疗程数或用药次数误作化疗线数,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,743,司琼类/福沙匹坦止吐,drug_antiemetic_use,structured,2026-05-08,是否使用司琼类或福沙匹坦止吐,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2434,地塞米松片用药天数,地塞米松片用药天数,structured,2026-06-02,地塞米松片的用药持续天数,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2555,新辅助治疗史,f_d8a9f89b,structured,2026-06-09,患者术前新辅助治疗经历,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2547,新辅助治疗日期,f_46224b50,structured,2026-06-09,新辅助治疗的实施日期,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2563,既往治疗线数,f_443cb9b8,structured,2026-06-09,记录患者当前治疗前已接受的系统抗肿瘤治疗线数；不要与化疗周期数或疗程数混淆。,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2558,紫杉类药物暴露,f_d538d6c0,structured,2026-06-09,是否使用过紫杉类药物,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,589,累计化疗周期数,chemo_cycle_total,structured,2026-05-08,累计化疗周期数,original
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2557,蒽环类药物暴露,f_4fa35a65,structured,2026-06-09,是否曾使用蒽环类化疗药物,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2562,解救治疗方案,f_f0e222e1,structured,2026-06-09,记录原文明确称为解救治疗、挽救治疗或 salvage therapy 的抗肿瘤治疗方案。,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,600,起始化疗日期,chemo_start_date,structured,2026-05-08,起始化疗日期,original
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,593,长效升白针使用标志,drug_peg_gcsf_use,structured,2026-05-08,是否使用长效升白针(PEG-G-CSF),original
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,2548,靶向治疗方案,f_6d062dae,structured,2026-06-09,记录患者使用的靶向治疗方案,generated
+乳腺癌,ods_br_cancer_drug_chemo_endo,化疗与内分泌药物使用表,597,骨保护药给药频率,bone_prot_freq,structured,2026-05-08,骨保护药物的给药频率,generated
+乳腺癌,ods_br_cancer_drug_target_adc,靶向与ADC药物使用表,544,是否参加临床试验,clinical_trial_flag,structured,2026-05-08,是否参加临床试验,original
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2331,DXA结果汇总.区域,DXA结果汇总.区域,structured,2026-06-02,DXA检查结果对应的测量区域,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,723,MRI BI-RADS 分类,mri_birads_class,structured,2026-05-08,MRI乳腺影像BI-RADS分级,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,724,MRI 增强曲线类型,mri_enh_curve,structured,2026-05-08,MRI增强信号变化曲线类型,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,730,PET-CT SUVmax 值,pet_suv_max,structured,2026-05-08,"记录 PET-CT/PET 检查中病灶或关注部位的 SUVmax 数值，保留原文数值",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2282,T波,T波,structured,2026-06-02,心电图T波表现,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,465,主要影像检查时间,imaging_exam_date,structured,2026-05-08,主要影像学检查时间,original
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2384,双肾,双肾,structured,2026-06-02,双侧肾脏的影像学表现,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2431,右心室内径,右心室内径,structured,2026-06-02,"右心室腔内径测量值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2449,右心房内径,右心房内径,structured,2026-06-02,"右心房内径测量值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2242,合并征象,manual:8a2b77441db7,structured,2026-06-02,指影像学检查中除主要病变外同时观察到的相关伴随表现或继发改变，用于补充判断病变性质、范围及可能并发情况,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2295,头颅五官,头颅五官,structured,2026-06-02,记录头颅及五官相关影像所见,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2485,子宫大小,子宫大小,structured,2026-06-02,"影像检查记录的子宫大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2430,室间隔厚度,室间隔厚度,structured,2026-06-02,"室间隔的测量厚度值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2520,左乳结节垂直径,左乳结节垂直径,structured,2026-06-02,"左乳结节的垂直方向直径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2504,左侧腋窝淋巴结大小,左侧腋窝淋巴结大小,structured,2026-06-02,"左侧腋窝淋巴结的大小记录。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2456,左侧锁骨上淋巴结大小,左侧锁骨上淋巴结大小,structured,2026-06-02,"左侧锁骨上淋巴结的大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,454,左室射血分数(LVEF),lvef_percent_val,structured,2026-05-08,"记录超声心动图等检查中的左室射血分数 LVEF，通常为百分比；保留原文数值和 %，不要将左心室内径、心功能分级或其他心脏指标误作 LVEF",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2429,左心室内径,左心室内径,structured,2026-06-02,"左心室腔内直径测量值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2428,左心房内径,左心房内径,structured,2026-06-02,"表示左心房内径测量值；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2280,影像所见 Image Findings,影像所见 Image Findings,structured,2026-06-02,记录影像报告“所见/Findings”部分的原文观察结果,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,726,影像提示多灶性,multifocal_img_flag,structured,2026-05-08,影像检查提示病灶呈多灶性,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,733,影像提示皮肤增厚,skin_thick_img_flag,structured,2026-05-08,影像检查提示皮肤增厚情况,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,725,影像测量肿瘤最大径,tumor_max_dia_img,structured,2026-05-08,"影像测得的肿瘤最大直径；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,455,校正 QT 间期(QTc),ecg_qtc_interval,structured,2026-05-08,"心电图校正QT间期(QTc)；单位：ms；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2305,检查部位及技术,检查部位及技术,structured,2026-06-02,影像检查的部位及所用技术,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2490,淋巴结短径,淋巴结短径,structured,2026-06-02,"淋巴结短轴直径大小；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2249,特殊检查,特殊检查,structured,2026-06-02,记录原文明确提到的特殊影像检查或特殊技术名称,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,732,综合影像 BI-RADS,img_birads_final,structured,2026-05-08,综合影像的BI-RADS评估分级,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2524,肿瘤前后径,肿瘤前后径,structured,2026-06-02,"肿瘤前后方向的测量直径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2414,肿瘤垂直径,肿瘤垂直径,structured,2026-06-02,"肿瘤上下方向的直径大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2271,胸部,胸部,structured,2026-06-02,记录胸部影像相关所见，如肺、胸膜、纵隔等表现,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,727,胸部 CT 肺结节情况,chest_ct_nodule,structured,2026-05-08,胸部CT显示的肺结节情况,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2245,腋窝淋巴结最大径,manual:16d636fc62fe,structured,2026-06-02,"腋窝淋巴结的最大测量直径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2385,膀胱,膀胱,structured,2026-06-02,影像检查中膀胱相关表现,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,721,超声 BI-RADS 分类,us_birads_class,structured,2026-05-08,超声检查中的乳腺BI-RADS分级,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,445,超声回声类型,us_echo_pattern,structured,2026-05-08,超声回声类型,original
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,446,超声方位/生长方向,us_orient_flag,structured,2026-05-08,超声所示病灶方位或生长方向,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,722,超声血流信号分级,us_bf_signal,structured,2026-05-08,超声检查中血流信号的分级,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,718,钼靶 BI-RADS 分类,mammo_birads_class,structured,2026-05-08,钼靶检查的BI-RADS评估分类,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,719,钼靶：微小钙化描述,mammo_calc_type,structured,2026-05-08,钼靶检查中微小钙化的描述,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,720,钼靶：结构扭曲,mammo_arch_distort,structured,2026-05-08,钼靶检查中乳腺结构扭曲情况,generated
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2481,门静脉主干内径,门静脉主干内径,structured,2026-06-02,"门静脉主干的内径大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_imaging_exam,影像学检查明细表,2250,项目所见,项目所见,structured,2026-06-02,仅当原文明确存在“项目所见”字段时，记录该字段对应的原文所见内容；不要抽取影像所见、检查所见、诊断意见或其他无“项目所见”字段名对应的正文内容,generated
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,417,乳头/乳晕受累,nipple_involve_flag,structured,2026-05-08,乳头或乳晕是否受累，不要把其它不相关的乳头或乳晕信息放在这里,generated
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,421,内乳淋巴结状态,int_mammary_ln,structured,2026-05-08,内乳淋巴结受累情况,generated
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,2319,肛门生殖器,肛门生殖器,structured,2026-06-02,记录原文明确提示肛门或生殖器部位受侵、受累或转移的情况,generated
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,427,肝转移判定,liver_met_presence,structured,2026-05-08,肝转移判定,original
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,434,肾上腺转移判定,adrenal_met_pres,structured,2026-05-08,是否存在肾上腺转移判定,generated
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,2261,腹部,腹部,structured,2026-06-02,记录原文明确提示腹部、腹腔或腹部脏器受侵、受累或转移的情况,generated
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,422,锁骨上淋巴结状态,supraclavicular_ln,structured,2026-05-08,表示锁骨上淋巴结受累情况,generated
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,423,锁骨下淋巴结状态,subclavian_ln,structured,2026-05-08,锁骨下淋巴结受累情况,generated
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,2265,颈部,颈部,structured,2026-06-02,记录原文明确提示颈部或颈部淋巴结受侵、受累或转移的情况,generated
+乳腺癌,ods_br_cancer_metastasis_atomic,肿瘤侵犯与转移部位表,424,骨转移判定,bone_met_presence,structured,2026-05-08,骨转移判定；包括全身骨骼任何部位的转移,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2561,BRCA基因检测,brca,structured,2026-06-09,"BRCA基因检测结果或状态；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2508,CD117,CD117,structured,2026-06-02,"CD117免疫组化表达结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2332,CEP17染色体信号数,CEP17染色体信号数,structured,2026-06-02,"CEP17染色体信号的检测数量；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,379,CK5/6状态,ck5_6_status,structured,2026-05-08,"CK5/6状态；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2406,CK7,CK7,structured,2026-06-02,"细胞角蛋白7的表达情况；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,382,E-Cadherin状态,e_cadherin_status,structured,2026-05-08,E-Cadherin状态,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,381,EGFR状态,egfr_status,structured,2026-05-08,EGFR状态,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,351,ER(雌激素受体)判定,er_status,structured,2026-05-08,ER(雌激素受体)判定；标准：≥1%为阳性,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,352,ER表达百分比,er_percent,structured,2026-05-08,"ER表达百分比数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,357,HER2 IHC评分,her2_ihc_score,structured,2026-05-08,"HER2免疫组化评分。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,358,HER2 ISH/FISH状态,her2_ish_status,structured,2026-05-08,HER2 ISH/FISH状态,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,359,HER2/CEP17比值,her2_ratio,structured,2026-05-08,"HER2/CEP17比值数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,361,HER2低表达判定,her2_low_exp_flag,structured,2026-05-08,HER2低表达判定；判定：IHC 1+或IHC 2+/ISH-为是,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,706,HER2平均拷贝数,her2_copy_number,structured,2026-05-08,"HER2基因平均拷贝数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,363,Ki-67增殖指数,ki67_index,structured,2026-05-08,"Ki-67增殖指数百分比。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,383,p120染色定位,p120_localization,structured,2026-05-08,p120染色定位,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,385,p53蛋白表达状态,p53_status,structured,2026-05-08,p53蛋白表达状态,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,380,p63染色状态,p63_status,structured,2026-05-08,p63染色(鉴别肌上皮用),original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2543,PD-L1 CPS 评分,pd_l1_cps,structured,2026-06-09,"PD-L1综合阳性评分结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,354,PR(孕激素受体)判定,pr_status,structured,2026-05-08,PR(孕激素受体)判定；标准：≥1%为阳性,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,355,PR表达百分比,pr_percent,structured,2026-05-08,"PR表达百分比数值；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2459,SOX10状态,SOX10状态,structured,2026-06-02,SOX10蛋白表达状态,generated
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2407,Syn,Syn,structured,2026-06-02,突触素免疫组化表达情况,generated
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,367,TILs比例,tils_percent,structured,2026-05-08,"TILs(肿瘤浸润淋巴细胞)比例百分比；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2397,WHO分级,WHO分级,structured,2026-06-02,病理诊断中的WHO分级结果,generated
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2403,α-SMA,α-SMA,structured,2026-06-02,"α-SMA的表达情况。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2330,下切缘,下切缘,structured,2026-06-02,标本下切缘受累情况,generated
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2283,光镜所见,光镜所见,structured,2026-06-02,光镜下观察到的病理形态特征,generated
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2299,基底,基底,structured,2026-06-02,病变或组织的基底部位信息,generated
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,377,多灶性判定,multifocal_flag,structured,2026-05-08,多灶性判定,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,347,活检/手术部位,biopsy_site,structured,2026-05-08,活检/手术部位,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2433,浸润灶镜下最大径,浸润灶镜下最大径,structured,2026-06-02,"浸润病灶镜下最大直径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2505,淋巴结检及数,淋巴结检及数,structured,2026-06-02,"淋巴结检查及数量情况。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,387,病理报告日期,pathology_report_date,structured,2026-05-08,病理报告出具日期,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,350,组织学分级,histological_grade,structured,2026-05-08,组织学分级,original
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2241,肿瘤坏死,manual:bb4d831bc049,structured,2026-06-02,肿瘤组织是否存在坏死,generated
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,707,肿瘤最大径(病理),tumor_max_dia_mm,structured,2026-05-08,"病理测量的肿瘤最大直径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2390,肿瘤最小径,肿瘤最小径,structured,2026-06-02,"肿瘤病灶测量的最小直径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+乳腺癌,ods_br_cancer_pathology_detail,病理诊断与分子指标表,2301,送检标本类型,送检标本类型,structured,2026-06-02,送检病理检查的标本类型,generated
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,338,乳腺密度分级,breast_density_acr,structured,2026-05-08,乳腺密度分级,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,327,初次生育年龄,first_birth_age,structured,2026-05-08,初次生育年龄,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,330,吸烟史判定,smoking_history,structured,2026-05-08,吸烟史判定,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,2336,妊娠状态,妊娠状态,structured,2026-06-02,患者是否处于妊娠状态,generated
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,343,居住地类型,residence_type,structured,2026-05-08,居住地类型,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,2357,性别/年龄,性别/年龄,structured,2026-06-02,患者的性别及年龄信息,generated
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,328,月经初潮年龄,menarche_age,structured,2026-05-08,月经初潮年龄；单位：岁,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,311,确诊年龄,patient_age,structured,2026-05-08,患者确诊年龄；单位：岁，注意不一定是患者当前的年龄,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,333,糖尿病史,diabetes_history,structured,2026-05-08,糖尿病史,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,329,累计哺乳总月数,breast_feeding_months,structured,2026-05-08,累计哺乳总月数；单位：月,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,312,绝经状态,menopause_status,structured,2026-05-08,绝经状态,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,332,饮酒史判定,alcohol_history,structured,2026-05-08,饮酒史判定,original
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,336,高脂血症史,hyperlipidemia_h,structured,2026-05-08,患者既往高脂血症情况,generated
+乳腺癌,ods_br_cancer_patient_profile,患者基础特征与筛查表,334,高血压史,hypertension_history,structured,2026-05-08,高血压史,original
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,393,AJCC解剖分期,ajcc_stage_group,structured,2026-05-08,AJCC第8版解剖分期结论,original
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,2396,cM分期,cM分期,structured,2026-06-02,临床评估的远处转移分期,generated
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,2402,cN分期,cN分期,structured,2026-06-02,临床评估的区域淋巴结分期,generated
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,2395,cT分期,cT分期,structured,2026-06-02,临床评估的原发肿瘤T分期,generated
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,400,Miller & Payne分级,mp_grade_system,structured,2026-05-08,Miller & Payne 新辅助治疗后病理反应分级,original
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,397,pCR(病理完全缓解),pcr_status_bp,structured,2026-05-08,病理学完全缓解(pCR)判定；标准：ypT0/is ypN0为是,original
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,2389,pM分期,pM分期,structured,2026-06-02,病理远处转移分期结果,generated
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,399,RCB分级,rcb_class_grade,structured,2026-05-08,RCB分级,original
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,396,新辅助后病理N分期,ypn_stage,structured,2026-05-08,新辅助治疗后病理N分期,original
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,395,新辅助后病理T分期,ypt_stage,structured,2026-05-08,新辅助治疗后病理T分期,original
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,2542,是否双侧乳腺癌,f_8ef2aeed,structured,2026-06-09,表示是否为双侧乳腺癌,generated
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,392,病理N分期,pathological_n_stage,structured,2026-05-08,病理N分期,original
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,391,病理T分期,pathological_t_stage,structured,2026-05-08,病理T分期(手术切除标本),original
+乳腺癌,ods_br_cancer_staging_prognosis,分期与预后评估表,2546,脑转移,f_840bd215,structured,2026-06-09,是否存在脑部转移病灶,generated
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,472,SLNB 阳性枚数,slnb_pos_count,structured,2026-05-08,记录前哨淋巴结活检阳性枚数，保留原文数值和单位,config2_table_value_rule
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,2321,上切缘,上切缘,structured,2026-06-02,手术标本上方切缘情况,generated
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,478,上切缘状态,op_margin_superior,structured,2026-05-08,上切缘状态,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,479,下切缘状态,op_margin_inferior,structured,2026-05-08,下切缘状态,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,2232,乳房切除史,manual:4c81c7176fdc,structured,2026-06-02,患者既往乳房切除情况,generated
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,467,乳腺手术主术式,op_type_breast,structured,2026-05-08,乳腺手术主术式,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,2322,内切缘,内切缘,structured,2026-06-02,手术切除标本的内侧切缘情况,generated
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,480,内切缘状态,op_margin_medial,structured,2026-05-08,内切缘状态,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,482,前(浅)切缘状态,op_margin_anterior,structured,2026-05-08,前(浅)切缘状态,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,2470,前哨淋巴结活检总数,前哨淋巴结活检总数,structured,2026-06-02,记录前哨淋巴结活检检出或送检的总枚数，保留原文数值和单位,config2_table_value_rule
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,2469,前哨淋巴结活检阳性数,前哨淋巴结活检阳性数,structured,2026-06-02,记录前哨淋巴结活检阳性枚数，保留原文数值和单位,config2_table_value_rule
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,2387,前哨淋巴结清扫总数,前哨淋巴结清扫总数,structured,2026-06-02,记录原文明确为前哨淋巴结清扫/检出/送检的总数量，保留原文数值和单位,config2_table_value_rule
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,483,后(深)切缘状态,op_margin_posterior,structured,2026-05-08,后(深)切缘状态,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,2326,外切缘,外切缘,structured,2026-06-02,手术切除标本的外侧切缘情况,generated
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,481,外切缘状态,op_margin_lateral,structured,2026-05-08,外切缘状态,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,738,大体标本肉眼评价,pcr_visual_eval,structured,2026-05-08,大体标本的肉眼观察评价,generated
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,466,手术日期,op_date,structured,2026-05-08,手术日期,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,495,手术时长,op_duration,structured,2026-05-08,手术时长；单位：min,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,469,是否保留皮肤(SSM),op_skin_sparing,structured,2026-05-08,是否保留皮肤(SSM),original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,486,是否行乳房重建,recon_flag,structured,2026-05-08,是否行乳房重建,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,484,最小切缘距离,margin_dist_min,structured,2026-05-08,病灶至切缘的最短距离,generated
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,494,术中出血量,op_blood_loss,structured,2026-05-08,术中出血量；单位：ml,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,2394,淋巴结清扫总数,淋巴结清扫总数,structured,2026-06-02,记录手术清扫淋巴结的总数量；如原文明确为腋窝清扫，优先对应腋窝清扫字段,generated
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,2444,腋清淋巴结总数,腋清淋巴结总数,structured,2026-06-02,记录腋窝淋巴结清扫检出或送检的总枚数,generated
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,470,腋窝手术主术式,op_type_axilla,structured,2026-05-08,腋窝手术主术式,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,474,腋窝清扫总枚数,alnd_total_count,structured,2026-05-08,腋窝清扫总枚数,original
+乳腺癌,ods_br_cancer_surgical_atomic,手术操作原子化表,475,腋窝清扫阳性枚数,alnd_pos_count,structured,2026-05-08,记录腋窝淋巴结清扫的总枚数,original
+乳腺癌,ods_onc_drug,乳腺癌·ods_onc_drug,2227,内分泌治疗史,ts_treat_endocrine_therapy,structured,2026-06-01,患者既往内分泌治疗记录,generated
+乳腺癌,ods_onc_molecular_test_detail,乳腺癌·ods_onc_molecular_test_detail,2224,HER2基因状态,ts_gene_her2_status,structured,2026-06-01,表示HER2基因扩增状态,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,1808,Sv1振幅,atom_2d1b00b0249f,structured,2026-06-01,"心电图V1导联S波振幅。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_admission_record,门诊/入院记录表,2290,专科情况,专科情况,structured,2026-06-02,记录专科相关检查及病情情况,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,2316,专科查体,专科查体,structured,2026-06-02,记录专科相关体格检查结果,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,21,个人史,personal_history,structured,2026-05-08,个人史,original
+(跨癌种),ods_admission_record,门诊/入院记录表,17,主诉,chief_complaint,structured,2026-05-08,主诉,original
+(跨癌种),ods_admission_record,门诊/入院记录表,36,住院天数,los_days,structured,2026-05-08,住院天数,original
+(跨癌种),ods_admission_record,门诊/入院记录表,38,体格检查,physical_examination,structured,2026-05-08,体格检查,original
+(跨癌种),ods_admission_record,门诊/入院记录表,2253,体检检查,体检检查,structured,2026-06-02,记录体检或体格检查相关内容,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,1286,体温,atom_1f2208aa5e9c,structured,2026-05-30,"记录患者测量的体温数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_admission_record,门诊/入院记录表,27,入院情况,admission_status,structured,2026-05-08,入院情况,original
+(跨癌种),ods_admission_record,门诊/入院记录表,1429,入院方式,atom_c50c2ab8e87d,structured,2026-05-30,患者入院途径或方式,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,870,入院日期,atom_115a85dc30bc,structured,2026-05-30,患者入院就诊的日期,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,2345,入院时主要症状及体征,入院时主要症状及体征,structured,2026-06-02,记录入院时主要症状和体征,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,755,入院时间,admission_time,structured,2026-05-12,入院时间,original
+(跨癌种),ods_admission_record,门诊/入院记录表,28,入院诊断,admission_diagnosis,structured,2026-05-08,入院诊断,original
+(跨癌种),ods_admission_record,门诊/入院记录表,807,冠心病,ts_cad,structured,2026-05-29,是否记录冠心病诊断,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,35,出院医嘱,discharge_instructions,structured,2026-05-08,出院医嘱,original
+(跨癌种),ods_admission_record,门诊/入院记录表,32,出院情况,discharge_status,structured,2026-05-08,出院情况,original
+(跨癌种),ods_admission_record,门诊/入院记录表,33,出院诊断,discharge_diagnosis,structured,2026-05-08,出院诊断,original
+(跨癌种),ods_admission_record,门诊/入院记录表,2349,初步诊断及建议,初步诊断及建议,structured,2026-06-02,记录初步诊断结果及处理建议,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,1513,呼吸频率,atom_c3b43449bde8,structured,2026-05-30,"患者每分钟呼吸次数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_admission_record,门诊/入院记录表,1794,基础心血管病史,ts_basic_cardio_history,structured,2026-06-01,患者既往心血管疾病情况,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,918,复诊/随访形式,pm_followup_modality,structured,2026-05-30,记录复诊或随访的具体方式,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,941,复诊科室,pm_followup_department,structured,2026-05-30,患者复诊时就诊的科室,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,24,婚育史,obstetric_history,structured,2026-05-08,婚育史,original
+(跨癌种),ods_admission_record,门诊/入院记录表,25,家族史,family_history,structured,2026-05-08,家族史,original
+(跨癌种),ods_admission_record,门诊/入院记录表,16,就诊/入院科室,department_name,structured,2026-05-08,就诊/入院科室名称,original
+(跨癌种),ods_admission_record,门诊/入院记录表,1679,就诊医生,atom_10a1f45c87fa,structured,2026-06-01,患者本次就诊的接诊医生（注意和其他类型的医生进行区分）,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,1903,就诊形式,atom_244881fce5d0,structured,2026-06-01,患者本次就诊的方式或类型,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,974,就诊日期,atom_16802eb2b720,structured,2026-05-30,患者本次就诊的日期,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,1603,就诊时间,atom_3ef867db4c63,structured,2026-06-01,患者门诊或入院就诊的时间,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,1425,就诊状态,atom_b23b5fc5a625,structured,2026-05-30,表示患者本次就诊的当前状态（注意是“初诊”，“复诊”这种，不是“住院”以及“门诊”这种）,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,1307,就诊类型,atom_7024c87e7ee1,structured,2026-05-30,患者本次就诊的类别或方式（注意是“住院”，“门诊”这种，不是“初诊”以及“复诊”这种）,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,808,心律失常,ts_arrhythmia,structured,2026-05-29,记录是否存在心律异常情况,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,22,既往史,past_history,structured,2026-05-08,既往史,original
+(跨癌种),ods_admission_record,门诊/入院记录表,2247,流行病学史,流行病学史,structured,2026-06-02,患者相关传染病接触及旅行史,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,19,现病史,present_illness_history,structured,2026-05-08,现病史,original
+(跨癌种),ods_admission_record,门诊/入院记录表,37,生命体征,vital_signs,structured,2026-05-08,"生命体征。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_admission_record,门诊/入院记录表,785,甲状腺疾病,ts_thyroid_disorder_status,structured,2026-05-29,记录甲状腺疾病情况,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,2277,病史,病史,structured,2026-06-02,患者既往及本次疾病情况记录,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,2285,皮肤黏膜,皮肤黏膜,structured,2026-06-02,记录皮肤及黏膜检查情况,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,2258,神经系统,神经系统,structured,2026-06-02,记录神经系统检查情况,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,993,科室,atom_503e8905de0f,structured,2026-05-30,患者就诊或入院所属科室,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,2448,肠鸣音,肠鸣音,structured,2026-06-02,记录腹部肠鸣音情况,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,804,肾功能-透析,ts_organ_renal_dialysis,structured,2026-05-29,记录患者是否接受透析治疗,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,1170,脉搏,atom_41f674c2e520,structured,2026-05-30,"记录患者每分钟脉搏次数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_admission_record,门诊/入院记录表,2281,脊柱四肢,脊柱四肢,structured,2026-06-02,记录脊柱及四肢检查情况,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,792,药物过敏史,ts_other_drug_allergy,structured,2026-05-29,患者既往药物过敏情况,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,1169,血压,atom_ec8b41059c21,structured,2026-05-30,"记录患者血压测量值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_admission_record,门诊/入院记录表,1901,血压收缩压,atom_7ecd398e3a7f,structured,2026-06-01,"记录患者血压的收缩压数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_admission_record,门诊/入院记录表,1902,血压舒张压,atom_3348cdf2ab79,structured,2026-06-01,"记录患者血压的舒张压数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_admission_record,门诊/入院记录表,30,诊疗经过,treatment_process,structured,2026-05-08,诊疗经过,original
+(跨癌种),ods_admission_record,门诊/入院记录表,698,诊疗计划,treatment_plan,structured,2026-05-08,记录拟定的诊断与治疗安排,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,812,起搏器植入史,ts_pacemaker,structured,2026-05-29,是否有起搏器植入经历,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,23,过敏史,allergy_history,structured,2026-05-08,对哪些东西过敏,original
+(跨癌种),ods_admission_record,门诊/入院记录表,790,食物过敏史,ts_other_food_allergy,structured,2026-05-29,患者食物过敏情况记录,generated
+(跨癌种),ods_admission_record,门诊/入院记录表,18,首发症状时间,first_symptom_date,structured,2026-05-08,首发症状时间,original
+(跨癌种),ods_admission_record,门诊/入院记录表,805,高血压,ts_hypertension,structured,2026-05-29,记录患者是否患有高血压,generated
+(跨癌种),ods_br_cancer_adverse_events,通用·ods_br_cancer_adverse_events,1077,心律失常类型,expert_curated:乳腺癌:ods_br_cancer_adverse_events:ae_arrhythmia_type,structured,2026-05-30,记录发生的心律失常具体类型,generated
+(跨癌种),ods_br_cancer_adverse_events,通用·ods_br_cancer_adverse_events,1316,心肌缺血/梗死判定,expert_curated:乳腺癌:ods_br_cancer_adverse_events:ae_myocardial_ischemia_flag,structured,2026-05-30,是否判定发生心肌缺血或梗死,generated
+(跨癌种),ods_br_cancer_adverse_events,通用·ods_br_cancer_adverse_events,1010,抑郁状态判定,expert_curated:乳腺癌:ods_br_cancer_adverse_events:ae_depression_flag,structured,2026-05-30,患者是否存在抑郁状态的判定结果,generated
+(跨癌种),ods_br_cancer_adverse_events,通用·ods_br_cancer_adverse_events,969,焦虑状态判定,expert_curated:乳腺癌:ods_br_cancer_adverse_events:ae_anxiety_flag,structured,2026-05-30,判定患者是否存在焦虑状态,generated
+(跨癌种),ods_br_cancer_adverse_events,通用·ods_br_cancer_adverse_events,1228,皮下积液,expert_curated:乳腺癌:ods_br_cancer_adverse_events:ae_seroma_flag,structured,2026-05-30,记录是否出现皮下积液,generated
+(跨癌种),ods_br_cancer_adverse_events,通用·ods_br_cancer_adverse_events,1313,皮瓣坏死,expert_curated:乳腺癌:ods_br_cancer_adverse_events:ae_skin_necrosis_flag,structured,2026-05-30,记录是否发生皮瓣坏死不良事件,generated
+(跨癌种),ods_br_cancer_adverse_events,通用·ods_br_cancer_adverse_events,914,碱性磷酸酶升高,expert_curated:乳腺癌:ods_br_cancer_adverse_events:ae_alkaline_phos_elevation,structured,2026-05-30,记录碱性磷酸酶升高情况,generated
+(跨癌种),ods_br_cancer_adverse_events,通用·ods_br_cancer_adverse_events,1973,诊断-化疗后骨髓抑制,atom_b4dcc67b45e3,structured,2026-06-01,表示化疗后骨髓抑制的诊断情况,generated
+(跨癌种),ods_br_cancer_adverse_events,通用·ods_br_cancer_adverse_events,1974,诊断-贫血,atom_6d7e913875b2,structured,2026-06-01,记录是否存在贫血诊断,generated
+(跨癌种),ods_br_cancer_drug_chemo_endo,通用·ods_br_cancer_drug_chemo_endo,1719,内分泌治疗,atom_cb3479cd8b6b,structured,2026-06-01,记录患者是否接受抗肿瘤内分泌治疗,generated
+(跨癌种),ods_br_cancer_drug_chemo_endo,通用·ods_br_cancer_drug_chemo_endo,2027,内分泌治疗时长,atom_accb7f498c87,structured,2026-06-01,患者内分泌治疗持续时间,generated
+(跨癌种),ods_br_cancer_drug_chemo_endo,通用·ods_br_cancer_drug_chemo_endo,1970,内分泌治疗药物,atom_02833defb539,structured,2026-06-01,记录使用的内分泌治疗药物,generated
+(跨癌种),ods_br_cancer_drug_chemo_endo,通用·ods_br_cancer_drug_chemo_endo,1298,化疗结束日期,atom_440e2eb5d84c,structured,2026-05-30,记录化疗治疗结束的日期,generated
+(跨癌种),ods_br_cancer_drug_chemo_endo,通用·ods_br_cancer_drug_chemo_endo,1517,化疗药物剂量,atom_c86808a6a851,structured,2026-05-30,化疗药物的给药剂量,generated
+(跨癌种),ods_br_cancer_drug_chemo_endo,通用·ods_br_cancer_drug_chemo_endo,1338,化疗药物名称,atom_54d958fe0329,structured,2026-05-30,化疗用药的药物名称,generated
+(跨癌种),ods_br_cancer_drug_chemo_endo,通用·ods_br_cancer_drug_chemo_endo,2143,化疗药物组合,atom_073115ceec10,structured,2026-06-01,患者使用的化疗药物组合,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1358,ADC值,atom_d4933e002187,structured,2026-05-30,"影像检查中的表观扩散系数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,979,BI-RADS分类,atom_f0a631756b9f,structured,2026-05-30,乳腺影像检查BI-RADS分级,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1437,CDFI血流信号,atom_fb6a865c57d0,structured,2026-05-30,彩色多普勒血流信号情况,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1359,MRI检查日期,atom_fd5ae85d60d5,structured,2026-05-30,MRI检查的日期信息,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1982,PET-CT检查日期,atom_d9abcc27f614,structured,2026-06-01,PET-CT检查的日期,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1963,三尖瓣返流,atom_d677296b3424,structured,2026-06-01,三尖瓣返流情况及程度,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1561,乳腺分型,atom_61ef21393c47,structured,2026-05-30,乳腺影像检查中的分型结果,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2026,乳腺增生症BI-RADS,atom_3ad7170d9439,structured,2026-06-01,乳腺增生症的BI-RADS评估分类,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1716,内部回声,atom_281174308bb0,structured,2026-06-01,病灶内部回声表现,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1715,双侧乳腺增生,atom_cdc9f4144654,structured,2026-06-01,是否存在双侧乳腺增生,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1999,右乳囊肿大小,atom_f6f7a501c0d2,structured,2026-06-01,"右侧乳腺囊肿的大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1938,右乳病灶位置,atom_80e2b239bac2,structured,2026-06-01,右侧乳房病灶所在部位,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1839,右乳病灶大小,atom_60d0c1ae62cf,structured,2026-06-01,"右乳病灶的测量大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1554,右乳结节位置,atom_96b44d4e1aff,structured,2026-05-30,右乳结节所在部位或方位,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1248,右乳结节大小,atom_1ea0f1819b74,structured,2026-05-30,"右侧乳腺结节的大小记录。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1934,右乳结节血流信号,atom_2e4e71ce597b,structured,2026-06-01,右乳结节内血流信号情况,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1933,右乳结节边界,atom_ebdfbc23cdb6,structured,2026-06-01,右乳结节边界特征描述,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1335,右乳肿块大小,atom_b718707ff036,structured,2026-05-30,"右侧乳房肿块的测量大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2000,右侧腋窝淋巴结,atom_f62c40d575d0,structured,2026-06-01,右侧腋窝淋巴结影像情况,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1568,右侧腋窝淋巴结大小,atom_9ff6b6fae5a3,structured,2026-05-30,"右侧腋窝淋巴结的大小记录。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1330,子宫内膜厚度,atom_d19f9904518a,structured,2026-05-30,"子宫内膜的测量厚度。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1717,左乳结节,atom_beb67c75a71c,structured,2026-06-01,表示左侧乳房结节情况,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1543,左乳结节位置,atom_b9fd5229f7df,structured,2026-05-30,左乳结节所在部位,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1515,左乳结节大小,atom_159d233bed4c,structured,2026-05-30,"左侧乳房结节的测量大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1949,左乳结节形态,atom_a6fa534a19c4,structured,2026-06-01,左乳结节的形状特征,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2207,左乳结节最大径,atom_e4db3ec0fdff,structured,2026-06-01,"左乳结节的最大直径大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1534,左乳结节血流信号,atom_0dbc716cc898,structured,2026-05-30,左乳结节内血流信号情况,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1821,左乳肿块大小,atom_f24a6f51628f,structured,2026-06-01,"左侧乳腺肿块的大小记录。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1932,左乳肿块血流信号,atom_5e175014dbb7,structured,2026-06-01,左乳肿块的血流信号情况,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2234,影像学描述,manual:ae5d72038558,structured,2026-06-02,记录影像检查所见描述,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2230,影像学评估,manual:173729faddac,structured,2026-06-02,影像检查结果的综合评估,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2180,无胸水征,atom_d2696654f152,structured,2026-06-01,是否显示无胸水征象,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1465,每搏输出量SV,atom_23a0ebf11a96,structured,2026-05-30,"心脏每次搏动泵出的血量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1555,淋巴结位置,atom_3399fb75fc3c,structured,2026-05-30,淋巴结所在的解剖部位,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1285,淋巴结大小,atom_d5bafc125a5d,structured,2026-05-30,"影像检查中淋巴结的大小记录。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1419,淋巴结状态,atom_10ac2f984a99,structured,2026-05-30,影像检查显示的淋巴结情况,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2240,点状强回声,manual:b282952ecdae,structured,2026-06-02,超声中点状强回声表现,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1847,病灶位置,atom_694c4d539002,structured,2026-06-01,影像检查中病灶所在部位,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1326,结节位置,atom_fff0591ce6e3,structured,2026-05-30,影像检查中结节所在部位,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2188,结节回声类型,atom_d5a0415866c3,structured,2026-06-01,结节在超声下的回声类型,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1209,结节形态,atom_af36b568d1a4,structured,2026-05-30,影像检查中结节的形状特征,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2117,结节性质,atom_b50f0d2ccb04,structured,2026-06-01,表示影像检查中结节性质。,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2229,肿块,manual:465531002019,structured,2026-06-02,影像检查中是否发现肿块,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1512,胆总管内径,atom_7858f2d848ce,structured,2026-05-30,"胆总管腔内直径测量值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1549,背景实质强化程度,atom_40927effa7b2,structured,2026-05-30,乳腺背景实质强化的程度,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2237,胸片/胸部影像异常,ts_baseline_chest_imaging,structured,2026-06-02,表示胸部影像检查是否异常,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1516,脂肪肝,atom_336f612f0b97,structured,2026-05-30,表示影像检查是否提示脂肪肝,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1677,腋窝淋巴结,atom_1884188086fc,structured,2026-06-01,腋窝淋巴结影像学情况,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1955,腋窝淋巴结状态,atom_56fd73d0cca2,structured,2026-06-01,腋窝淋巴结是否异常或转移,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2111,腋窝淋巴结肿大,atom_49d986714fb6,structured,2026-06-01,表示腋窝淋巴结是否肿大,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1802,诊断结论,atom_3ecae2849f30,structured,2026-06-01,影像检查得出的诊断结论,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1337,超声检查日期,atom_aa8d17388a45,structured,2026-05-30,记录超声检查的日期,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,2198,超声检查项目,atom_e549137c5eae,structured,2026-06-01,超声检查的具体项目名称,generated
+(跨癌种),ods_br_cancer_imaging_exam,通用·ods_br_cancer_imaging_exam,1987,钼靶结果,atom_5fbb1ae0bb2e,structured,2026-06-01,乳腺钼靶检查结果记录,generated
+(跨癌种),ods_br_cancer_metastasis_atomic,通用·ods_br_cancer_metastasis_atomic,1165,内脏转移,manual:566315172436,structured,2026-05-30,是否存在内脏器官转移,generated
+(跨癌种),ods_br_cancer_metastasis_atomic,通用·ods_br_cancer_metastasis_atomic,2081,浸润转移部位,atom_45457774b03d,structured,2026-06-01,肿瘤浸润或转移的部位,generated
+(跨癌种),ods_br_cancer_metastasis_atomic,通用·ods_br_cancer_metastasis_atomic,1967,淋巴结转移部位,atom_e1ea06cc2fb7,structured,2026-06-01,记录淋巴结转移发生的部位,generated
+(跨癌种),ods_br_cancer_metastasis_atomic,通用·ods_br_cancer_metastasis_atomic,1864,转移部位,atom_306fce995b8f,structured,2026-06-01,记录肿瘤发生转移的具体部位,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1883,AR状态,atom_ce1f76863007,structured,2026-06-01,"雄激素受体检测状态；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,986,AR表达百分比,atom_ab83f8549772,structured,2026-05-30,"雄激素受体表达细胞占比；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1198,Calponin表达,atom_1419743232a0,structured,2026-05-30,"Calponin蛋白免疫组化表达情况；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1499,CD31表达,atom_4b8beec48270,structured,2026-05-30,"表示病理检测中CD31的表达情况；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1855,CerbB2状态,atom_30a12e8083b8,structured,2026-06-01,"表示肿瘤CerbB2表达状态；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2017,CerbB2表达百分比,atom_ec22584589c5,structured,2026-06-01,"表示CerbB2阳性表达细胞比例；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1743,CKpan,atom_a394b5098706,structured,2026-06-01,"泛细胞角蛋白检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1711,D2-40,atom_aa9145306a50,structured,2026-06-01,"D2-40免疫组化检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1278,GATA3表达,atom_3ee09d39e014,structured,2026-05-30,"GATA3免疫组化表达情况。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1578,GCDFP-15,atom_072a6a871185,structured,2026-05-30,"GCDFP-15免疫组化检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1571,Nottingham分级评分,atom_e65028e85452,structured,2026-05-30,"乳腺癌病理Nottingham分级评分。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1520,P53百分比,atom_53b53ecafae5,structured,2026-05-30,"P53蛋白阳性表达细胞比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1452,TRPS1状态,atom_b2e5ff1d9680,structured,2026-05-30,"TRPS1免疫标志物检测状态。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2071,免疫组化结果列表,atom_cbd9ba5b4962,structured,2026-06-01,记录病理免疫组化检测结果列表,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1157,分子分型,atom_6a74f9b3f137,structured,2026-05-30,乳腺癌病理分子分型结果,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2156,前哨淋巴结总数,atom_26d09a9e9d7f,structured,2026-06-01,"前哨淋巴结检查的总枚数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1196,前哨淋巴结状态,atom_4bf01b25bab8,structured,2026-05-30,前哨淋巴结受累情况,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1238,原位癌分级,atom_a0cd1c1d06e9,structured,2026-05-30,原位癌的病理分级结果,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1300,原位癌成分,atom_5862d60700b3,structured,2026-05-30,是否存在原位癌成分,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1149,原位癌比例,atom_2e694f15c8b5,structured,2026-05-30,"病理中原位癌成分所占比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1835,原位癌类型,atom_b6ddd724851f,structured,2026-06-01,原位癌的病理类型分类,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1984,右乳ER表达百分比,atom_ddf1f668b929,structured,2026-06-01,"右乳雌激素受体表达比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1619,周围乳腺病变,atom_6431ed888103,structured,2026-06-01,记录肿瘤周围乳腺病变情况,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1618,坏死/钙化,atom_8f67bc329c8e,structured,2026-06-01,记录病理中坏死或钙化情况，保留原文有无及描述,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2197,导管原位癌占比,atom_05f5dde5b427,structured,2026-06-01,"导管原位癌成分所占比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2043,导管原位癌成分,atom_9bbe31a6745e,structured,2026-06-01,表示是否存在导管原位癌成分,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1558,左乳PR表达百分比,atom_d598abaaebf4,structured,2026-05-30,"左乳孕激素受体表达比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1983,左乳病理诊断,atom_a98c6f1874e9,structured,2026-06-01,左侧乳腺病理诊断结果,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1992,术中冰冻结果,atom_8b926ba9ef1f,structured,2026-06-01,术中冰冻病理检查结果,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1566,标本来源,atom_4195ca0a6f71,structured,2026-05-30,病理标本的取材来源部位,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1956,标本部位,atom_5a99c5cf8532,structured,2026-06-01,病理标本取材的身体部位,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2125,淋巴结总数,atom_3457b3cd8c66,structured,2026-06-01,"病理检查的淋巴结总数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1960,淋巴结情况,atom_8453fb17991b,structured,2026-06-01,记录淋巴结转移及受累情况,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1921,淋巴结最大径,atom_468efaf9b494,structured,2026-06-01,"淋巴结的最大测量直径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1495,淋巴结转移情况,atom_762baf34f26d,structured,2026-05-30,记录淋巴结是否发生转移,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2138,淋巴结转移癌最大径,atom_9eed21fbe1fc,structured,2026-06-01,"淋巴结转移癌灶的最大直径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2171,淋巴结转移诊断,atom_da8209f4a27d,structured,2026-06-01,淋巴结是否存在转移的诊断结果,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2098,淋巴结阳性数,atom_55add218d7f3,structured,2026-06-01,"病理检查中阳性淋巴结数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2056,淋巴结阳性数/总数,atom_84c8541358fa,structured,2026-06-01,"阳性淋巴结数及检查总数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,968,病变部位,atom_fc0a0e2d0b81,structured,2026-05-30,病变发生的解剖部位,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1289,病灶大小,atom_b7136ad160e3,structured,2026-05-30,"病灶的测量大小或范围。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1484,病理M分期,atom_4f5d2267adb6,structured,2026-05-30,病理评估的远处转移分期,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2169,病理分级评分,atom_79334254682f,structured,2026-06-01,"肿瘤病理分级的评分结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1899,病理组织学类型,atom_2330c8987aa4,structured,2026-06-01,肿瘤的病理组织学分类,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2154,病理缓解状态,atom_5842c49c1c67,structured,2026-06-01,表示病理评估的缓解状态,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2065,病理诊断描述,atom_60d1fd083471,structured,2026-06-01,病理诊断结果的文字描述,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1959,皮肤,atom_348913c0a8a8,structured,2026-06-01,病理中皮肤受累情况,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1182,穿刺活检日期,atom_1c003dac8b78,structured,2026-05-30,记录进行穿刺活检的日期,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1919,穿刺病理结果,atom_3f198688de22,structured,2026-06-01,穿刺活检获得的病理诊断结果,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1617,组织病理学,atom_71bf2e3c5cfc,structured,2026-06-01,记录病理组织学检查结果,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2059,结节数量,atom_cc02c633e50e,structured,2026-06-01,"记录病理中结节的数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1968,肿瘤位置,atom_d27738be3e35,structured,2026-06-01,肿瘤所在的具体部位,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,880,肿瘤大小,atom_b39f2c4fe060,structured,2026-05-30,"肿瘤病灶的测量大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,999,肿瘤间质淋巴细胞浸润,atom_b6db92abb934,structured,2026-05-30,肿瘤间质中淋巴细胞浸润情况,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1102,脉管侵犯,manual:3bca3fa75457,structured,2026-05-30,肿瘤是否侵犯血管或淋巴管,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1253,腋窝淋巴结转移,atom_002228fd39b9,structured,2026-05-30,腋窝淋巴结是否发生转移,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1651,送检标本,atom_7306ac135e92,structured,2026-06-01,送检进行病理检查的标本名称,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,2042,送检组织大小,atom_5ed9013ef79f,structured,2026-06-01,"送检组织标本的大小记录。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1322,送检部位,atom_cf9f00ea29b5,structured,2026-05-30,病理送检标本的部位,generated
+(跨癌种),ods_br_cancer_pathology_detail,通用·ods_br_cancer_pathology_detail,1616,镜下最大径,atom_ae74b76537cf,structured,2026-06-01,"镜下测量的病灶最大直径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_patient_profile,通用·ods_br_cancer_patient_profile,1962,合并疾病,atom_1f3561113536,structured,2026-06-01,患者同时患有的其他疾病,generated
+(跨癌种),ods_br_cancer_patient_profile,通用·ods_br_cancer_patient_profile,1051,哺乳状态,atom_f52b666d9f39,structured,2026-05-30,患者当前是否处于哺乳期,generated
+(跨癌种),ods_br_cancer_patient_profile,通用·ods_br_cancer_patient_profile,1602,月经史,atom_84f553e1f2e2,structured,2026-06-01,患者既往月经情况记录,generated
+(跨癌种),ods_br_cancer_patient_profile,通用·ods_br_cancer_patient_profile,2238,皮肤外观,manual:bfae9ff59005,structured,2026-06-02,患者皮肤外观情况。,generated
+(跨癌种),ods_br_cancer_patient_profile,通用·ods_br_cancer_patient_profile,834,肿瘤侧别,manual:0b07b8385862,structured,2026-05-30,表示肿瘤发生的左右侧别,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1792,偏侧,TU.TULAT,structured,2026-06-01,表示病变或手术所在侧别。,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2135,前哨淋巴结冰冻结果,atom_e441a431992e,structured,2026-06-01,前哨淋巴结冰冻病理检查结果,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1233,前哨淋巴结活检结果,atom_2a2ce2a95a81,structured,2026-05-30,前哨淋巴结活检的结果情况,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1562,前哨淋巴结转移,atom_ea2210c4b431,structured,2026-05-30,前哨淋巴结是否发生转移,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2179,右乳癌术后状态,atom_b4c611ecf660,structured,2026-06-01,右乳癌手术后的状态记录,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1977,左侧乳腺切除术后,atom_7ae38b291bd5,structured,2026-06-01,患者左侧乳腺已切除状态,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1827,手术侧别,atom_78d26350b312,structured,2026-06-01,表示手术实施的身体侧别,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1936,手术切缘状态,atom_3ff47474d5ab,structured,2026-06-01,记录手术切缘是否有肿瘤残留,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,802,手术切除完整性,pm_surgery_completeness,structured,2026-05-29,手术病灶切除是否完整,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2069,手术史描述,atom_da50eeb4b312,structured,2026-06-01,患者既往手术情况的描述,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1373,手术名称1,atom_249a4a40409f,structured,2026-05-30,记录的第一项手术名称,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,847,手术方式,manual:d552358482e6,structured,2026-05-30,患者接受的手术类型或方式,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2061,手术方式描述,atom_d618b38ddf6e,structured,2026-06-01,记录乳腺癌手术方式的描述,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1747,手术日期（左乳肿块区段切除）,atom_98eb3203ef3b,structured,2026-06-01,左乳肿块区段切除的手术日期,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1194,手术日期1,atom_ab55afd14dd2,structured,2026-05-30,第一次手术的日期,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1193,手术标本名称及类型,atom_632e880a544a,structured,2026-05-30,记录手术标本的名称及类型,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1243,手术疤痕长度,atom_812b6a2b810c,structured,2026-05-30,"手术后遗留疤痕的长度。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,845,既往手术史,manual:e96254628455,structured,2026-05-30,患者既往接受手术的情况,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2057,既往手术史描述,atom_e8dafd8eec78,structured,2026-06-01,患者既往手术情况的描述,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,1533,检查淋巴结总数,atom_01c8d9f3e339,structured,2026-05-30,"手术检查的淋巴结总数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2161,淋巴结最大径范围,atom_b30cbb922c3c,structured,2026-06-01,"淋巴结最大直径的范围。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2112,淋巴结送检枚数,atom_b791915f2620,structured,2026-06-01,"手术送检淋巴结的枚数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2006,穿刺部位,atom_72f9862c011d,structured,2026-06-01,实施穿刺操作的解剖部位,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2166,肿瘤质地,atom_53d767c7e60f,structured,2026-06-01,记录肿瘤组织的质地特征,generated
+(跨癌种),ods_br_cancer_surgical_atomic,通用·ods_br_cancer_surgical_atomic,2139,腋窝淋巴结检查总数,atom_ceed31b77edd,structured,2026-06-01,"腋窝淋巴结检查的总数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_discharge_records,出院记录表,2354,出院医嘱及注意事项,出院医嘱及注意事项,structured,2026-06-02,仅当原文明确出现该字段名时，记录其对应内容；不要抽取字段名不一致的相近内容,generated
+(跨癌种),ods_discharge_records,出院记录表,2348,出院后建议,出院后建议,structured,2026-06-02,仅当原文明确出现该字段名时，记录其对应内容；不要抽取字段名不一致的相近内容,generated
+(跨癌种),ods_discharge_records,出院记录表,862,出院日期,atom_2422c9cfdd0e,structured,2026-05-30,记录患者出院的具体日期,generated
+(跨癌种),ods_discharge_records,出院记录表,2344,出院时情况,出院时情况,structured,2026-06-02,仅当原文明确出现该字段名时，记录其对应内容；不要抽取字段名不一致的相近内容,generated
+(跨癌种),ods_discharge_records,出院记录表,2350,出院时诊断,出院时诊断,structured,2026-06-02,仅当原文明确出现该字段名时，记录其对应内容；不要抽取字段名不一致的相近内容,generated
+(跨癌种),ods_discharge_records,出院记录表,250,出院时间,discharge_time,structured,2026-05-08,出院时间,original
+(跨癌种),ods_discharge_records,出院记录表,2140,出院注意事项,atom_0d84453daf9d,structured,2026-06-01,仅当原文明确出现该字段名时，记录其对应内容；不要抽取字段名不一致的相近内容,generated
+(跨癌种),ods_discharge_records,出院记录表,2320,复诊安排,复诊安排,structured,2026-06-02,仅当原文明确出现该字段名时，记录其对应内容；不要抽取字段名不一致的相近内容,generated
+(跨癌种),ods_discharge_records,出院记录表,252,离院去向,discharge_disposition,structured,2026-05-08,仅当原文明确出现该字段名时，记录其对应内容；不要抽取字段名不一致的相近内容,original
+(跨癌种),ods_imaging_reports,检查报告表,1415,CT检查日期,atom_316712782469,structured,2026-05-30,CT检查的日期记录,generated
+(跨癌种),ods_imaging_reports,检查报告表,1988,CT检查结果,atom_9fbd4492b7c6,structured,2026-06-01,CT检查的影像结果描述,generated
+(跨癌种),ods_imaging_reports,检查报告表,1296,E/A比值,atom_e39f33f5e3e2,structured,2026-05-30,"心脏舒张功能相关的E/A比值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_imaging_reports,检查报告表,2199,QTe间期,atom_dcf9e2a1b37d,structured,2026-06-01,"心电图Q波至T波终点间期。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_imaging_reports,检查报告表,2306,ST段,ST段,structured,2026-06-02,心电图ST段的表现情况,generated
+(跨癌种),ods_imaging_reports,检查报告表,1564,TI-RADS分级,atom_d8d9b9bcf97e,structured,2026-05-30,甲状腺影像报告风险分级,generated
+(跨癌种),ods_imaging_reports,检查报告表,1295,主动脉内径,atom_8b9c1f9668be,structured,2026-05-30,"主动脉管腔的内径测量值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_imaging_reports,检查报告表,1702,主动脉硬化,atom_120492f4f852,structured,2026-06-01,表示检查中主动脉硬化情况,generated
+(跨癌种),ods_imaging_reports,检查报告表,2004,印象,atom_236b4ca6c3cc,structured,2026-06-01,"检查报告中对检查结果的综合判断意见，通常位于报告“印象”“结论”“诊断意见”等部分，用于概括主要异常发现、可能诊断、术后/治疗后改变、病灶变化及进一步建议等内容。如“右乳癌术后改变”“双肺多发结节”“未见明显异常”“建议随访复查”等。",generated
+(跨癌种),ods_imaging_reports,检查报告表,1948,右室内径,atom_ad7be1bf8a0c,structured,2026-06-01,"右心室腔内径大小记录。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_imaging_reports,检查报告表,1314,基线心电图异常,ts_baseline_ecg_abnormality,structured,2026-05-30,表示基线心电图是否异常,generated
+(跨癌种),ods_imaging_reports,检查报告表,1178,左室后壁厚度,atom_cacc4af840ad,structured,2026-05-30,"左心室后壁的厚度数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_imaging_reports,检查报告表,1544,左室短轴缩短率,atom_f86a797a0d03,structured,2026-05-30,"左心室短轴收缩缩短比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_imaging_reports,检查报告表,1920,彩超检查日期,atom_5cb1549d06ea,structured,2026-06-01,进行彩超检查的具体日期,generated
+(跨癌种),ods_imaging_reports,检查报告表,1888,影像学意见,atom_02969c68be10,structured,2026-06-01,影像检查形成的诊断意见,generated
+(跨癌种),ods_imaging_reports,检查报告表,1667,影像学表现,atom_1ac2bfc7becb,structured,2026-06-01,影像检查所见异常或特征描述,generated
+(跨癌种),ods_imaging_reports,检查报告表,1177,影像所见,atom_d16f46c358b0,structured,2026-05-30,影像检查观察到的异常或表现,generated
+(跨癌种),ods_imaging_reports,检查报告表,1957,影像检查时间,atom_6daaf5d5ea87,structured,2026-06-01,影像检查的具体时间,generated
+(跨癌种),ods_imaging_reports,检查报告表,1444,影像诊断,atom_49c775b5755d,structured,2026-05-30,影像检查得出的诊断结论,generated
+(跨癌种),ods_imaging_reports,检查报告表,1297,心电图结论,atom_8a4807fd298d,structured,2026-05-30,心电图检查结果结论,generated
+(跨癌种),ods_imaging_reports,检查报告表,1986,扫描时间,atom_feba64246d37,structured,2026-06-01,检查扫描完成的时间,generated
+(跨癌种),ods_imaging_reports,检查报告表,1981,既往检查日期,atom_3aa905358699,structured,2026-06-01,既往相关检查的日期,generated
+(跨癌种),ods_imaging_reports,检查报告表,2308,检查意见,检查意见,structured,2026-06-02,检查报告中的意见结论,generated
+(跨癌种),ods_imaging_reports,检查报告表,1260,检查所见,atom_022f54a911d4,structured,2026-05-30,检查过程中观察到的结果,generated
+(跨癌种),ods_imaging_reports,检查报告表,1250,检查方法,atom_f11434d0083d,structured,2026-05-30,进行检查所采用的方法,generated
+(跨癌种),ods_imaging_reports,检查报告表,162,检查项目,exam_method,structured,2026-05-08,检查报告中的具体检查项目，通常指通过影像学、内镜、功能检测或体格评估等方式进行的检查，如 CT、MRI、超声、X线、心电图、胃镜、肠镜、病理检查等。需与“检验项目”区分：检验项目通常指基于血液、尿液、粪便、分泌物、组织等标本进行的实验室检测，如血常规、尿常规、肝功能、肿瘤标志物等。,original
+(跨癌种),ods_imaging_reports,检查报告表,163,检查时间,exam_time,structured,2026-05-08,检查时间,original
+(跨癌种),ods_imaging_reports,检查报告表,161,检查类别,exam_category,structured,2026-05-08,检查类别,original
+(跨癌种),ods_imaging_reports,检查报告表,2334,检查结果描述,检查结果描述,structured,2026-06-02,描述检查结果的具体内容,generated
+(跨癌种),ods_imaging_reports,检查报告表,1020,检查结论,atom_806126f34f13,structured,2026-05-30,检查报告中的最终结论描述,generated
+(跨癌种),ods_imaging_reports,检查报告表,160,检查部位,body_part,structured,2026-05-08,检查部位,original
+(跨癌种),ods_imaging_reports,检查报告表,1965,注射剂量,atom_6b7051f0729d,structured,2026-06-01,"检查中注射药物的剂量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_imaging_reports,检查报告表,1261,甲状腺结节大小,atom_199e63427d4d,structured,2026-05-30,"表示甲状腺结节的测量大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_imaging_reports,检查报告表,1440,肝囊肿,atom_e9147a7d8998,structured,2026-05-30,表示检查报告中提示肝囊肿,generated
+(跨癌种),ods_imaging_reports,检查报告表,2144,肝脏状态,atom_ce3da8410552,structured,2026-06-01,描述检查中肝脏的状态,generated
+(跨癌种),ods_imaging_reports,检查报告表,1536,肺结节位置,atom_cad1209120ed,structured,2026-05-30,肺结节所在的肺部位置,generated
+(跨癌种),ods_imaging_reports,检查报告表,1418,胆囊大小,atom_0b4ba52c78e9,structured,2026-05-30,"表示检查中记录的胆囊大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_imaging_reports,检查报告表,1926,胸部CT结果,atom_1fa97164eda2,structured,2026-06-01,胸部CT检查的结果描述,generated
+(跨癌种),ods_imaging_reports,检查报告表,1003,诊断意见,atom_fad4782c3735,structured,2026-05-30,检查结果的诊断结论或意见,generated
+(跨癌种),ods_imaging_reports,检查报告表,1927,超声心动图结果,atom_c5cc827d6cbf,structured,2026-06-01,超声心动图检查结果描述,generated
+(跨癌种),ods_imaging_reports,检查报告表,1541,超声所见,atom_74643975875e,structured,2026-05-30,超声检查观察到的异常或表现,generated
+(跨癌种),ods_imaging_reports,检查报告表,2262,超声描述,超声描述,structured,2026-06-02,超声检查所见的文字描述,generated
+(跨癌种),ods_imaging_reports,检查报告表,1644,超声提示,atom_964bfb09f185,structured,2026-06-01,超声检查给出的提示性结论,generated
+(跨癌种),ods_imaging_reports,检查报告表,1259,超声诊断,atom_215c504bcff2,structured,2026-05-30,超声检查的诊断结论,generated
+(跨癌种),ods_imaging_reports,检查报告表,1793,部位,TU.TULOC,structured,2026-06-01,检查所涉及的身体部位,generated
+(跨癌种),ods_lab_test,检验报告表,793,HBV感染状态,ts_hbv_status,structured,2026-05-29,表示乙肝病毒感染状态。,generated
+(跨癌种),ods_lab_test,检验报告表,795,HCV感染状态,ts_hcv_status,structured,2026-05-29,表示丙型肝炎病毒感染状态,generated
+(跨癌种),ods_lab_test,检验报告表,796,HIV感染状态,ts_hiv_status,structured,2026-05-29,患者HIV感染状态结果,generated
+(跨癌种),ods_lab_test,检验报告表,2560,丙肝病毒 HCV-RNA,hcv_rna,structured,2026-06-09,"丙肝病毒RNA检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test,检验报告表,2346,主要化验结果,主要化验结果,structured,2026-06-02,"检验报告中的主要化验结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test,检验报告表,2551,促甲状腺素,f_c32903c9,structured,2026-06-09,"促甲状腺素检测结果值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test,检验报告表,1779,开始日期/时间,MH.MHSTDTC,structured,2026-06-01,检验项目开始的日期和时间,generated
+(跨癌种),ods_lab_test,检验报告表,144,标本类别,specimen_type,structured,2026-05-08,标本类别,original
+(跨癌种),ods_lab_test,检验报告表,2210,标本采集日期,atom_adf63067618d,structured,2026-06-01,标本采集的具体日期,generated
+(跨癌种),ods_lab_test,检验报告表,1810,标本采集时间,atom_0f1a8cfdd0dc,structured,2026-06-01,标本采集的具体时间,generated
+(跨癌种),ods_lab_test,检验报告表,997,样本类型,atom_20d314fa646f,structured,2026-05-30,检验样本的来源或类别,generated
+(跨癌种),ods_lab_test,检验报告表,798,梅毒感染状态,ts_syphilis_status,structured,2026-05-29,表示是否存在梅毒感染状态。,generated
+(跨癌种),ods_lab_test,检验报告表,1709,检查医院,atom_48ff1541caeb,structured,2026-06-01,进行检验检查的医院名称,generated
+(跨癌种),ods_lab_test,检验报告表,2203,检验报告时间,atom_824960330a19,structured,2026-06-01,检验报告出具的时间,generated
+(跨癌种),ods_lab_test,检验报告表,147,检验类别,test_category,structured,2026-05-08,检验类别,original
+(跨癌种),ods_lab_test,检验报告表,1686,检验项目,atom_222c0f1a6341,structured,2026-06-01,检验报告中的具体检测项目，通常指基于血液、尿液、粪便、分泌物、组织等标本进行的实验室检测，如血常规、尿常规、肝功能、肿瘤标志物等。需与影像学或功能性“检查项目”区分，如 CT、MRI、超声、心电图等。（这些项目通常罗列在表格里）,generated
+(跨癌种),ods_lab_test,检验报告表,2552,游离甲状腺素,f_c9c08438,structured,2026-06-09,"血清游离甲状腺素检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test,检验报告表,2545,结核病史,f_ff7c633c,structured,2026-06-09,患者既往结核病史记录,generated
+(跨癌种),ods_lab_test,检验报告表,2338,血常规,血常规,structured,2026-06-02,"血常规检验项目及结果信息。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test,检验报告表,1775,采集日期/时间,MH.MHDTC,structured,2026-06-01,标本采集的日期和时间,generated
+(跨癌种),ods_lab_test,检验报告表,145,采集时间,collect_time,structured,2026-05-08,采集时间,original
+(跨癌种),ods_lab_test_detail,检验报告明细表,1201,a-L-岩藻糖苷酶,atom_f3fd3cac6e2d,structured,2026-05-30,"α-L-岩藻糖苷酶检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1336,a-羟丁酸脱氢酶,atom_0dff0b4cb477,structured,2026-05-30,"表示α-羟丁酸脱氢酶检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1212,ALT/AST,atom_13888e93106a,structured,2026-05-30,"谷丙与谷草转氨酶比值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2381,A群轮状病毒,A群轮状病毒,structured,2026-06-02,A群轮状病毒检测结果,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,1707,CA125,atom_ffe51833628f,structured,2026-06-01,"癌抗原125检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1574,CA15-3,atom_fa08c33413c5,structured,2026-05-30,"癌抗原15-3检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,776,D二聚体,ts_d_dimer_category,structured,2026-05-29,"D二聚体检测结果数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1559,EMAT/LVST,atom_32929409d3c1,structured,2026-05-30,"心电机械激活时间与左室收缩时间比值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1446,EMAT%,atom_ed1d123bce75,structured,2026-05-30,"EMAT检测结果的百分比。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2011,LVEF,atom_a3081f902ce8,structured,2026-06-01,"左心室射血分数数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1447,LVST%,atom_4c6371494634,structured,2026-05-30,"LVST细胞所占百分比。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1055,PR间期,atom_1ef98586accb,structured,2026-05-30,"心电图P波至QRS波起始时间。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2288,P波,P波,structured,2026-06-02,"心电图P波检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1496,P波时限,atom_e233590a0ac5,structured,2026-05-30,"心电图P波的持续时间。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1929,P波电轴,atom_4914b678654b,structured,2026-06-01,"表示心电图P波电轴方向。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,955,QRS时限,atom_af39fe174b16,structured,2026-05-30,"心电图QRS波群持续时间。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1229,QRS电轴,atom_bad78605d943,structured,2026-05-30,"表示心电图QRS波群电轴方向。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2015,QT/QTcBz,atom_41f7bf3aea4b,structured,2026-06-01,"QT间期及Bazett校正QT值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1087,QT/QTc间期,atom_16b976ef87a9,structured,2026-05-30,"心电图QT及校正QT间期。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1639,RDW变异系数,atom_5103bc618b98,structured,2026-06-01,"红细胞体积分布宽度变异系数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1638,RDW标准差,atom_bfb646e30207,structured,2026-06-01,"红细胞体积分布宽度的标准差。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1449,RV1+SV5,atom_fc513169bf9f,structured,2026-05-30,"RV1与SV5电压之和。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1476,RV5,atom_dabe30ca0217,structured,2026-05-30,"第5个参考值或参考范围。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1931,RV5/SV1电压,atom_ea3692a9aee3,structured,2026-06-01,"心电图RV5与SV1导联电压值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1478,RV5+SV1,atom_19012bca0078,structured,2026-05-30,"V5导联R波与V1导联S波电压之和。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2356,RV5振幅,RV5振幅,structured,2026-06-02,"心电图V5导联R波振幅。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1689,T波电轴,atom_4e57c8d4c9b7,structured,2026-06-01,"心电图T波电轴角度。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1694,Y-谷氨酰转肽酶(GGT),atom_ff519665b7d6,structured,2026-06-01,"γ-谷氨酰转肽酶检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1377,β2微球蛋白,atom_29af5b33225c,structured,2026-05-30,"β2微球蛋白检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,922,中性粒细胞百分数,atom_51a83c08dd31,structured,2026-05-30,"中性粒细胞占白细胞的比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,951,中性粒细胞计数,atom_47994e279908,structured,2026-05-30,"中性粒细胞的数量检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1411,中间值细胞百分比,atom_fd892722e06c,structured,2026-05-30,"中间值细胞占白细胞的比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1412,中间值细胞绝对值,atom_309b91d8a05a,structured,2026-05-30,"中间值细胞的绝对计数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2487,乙肝核心抗体,乙肝核心抗体,structured,2026-06-02,"乙肝核心抗体检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1548,乙肝表面抗体定量,atom_f9469a4aa426,structured,2026-05-30,"乙肝表面抗体的定量检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1547,乙肝表面抗原定量,atom_f012c2e5f5a8,structured,2026-05-30,"表示乙肝表面抗原的定量结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,945,乳酸脱氢酶,atom_12036181222c,structured,2026-05-30,"血液中乳酸脱氢酶的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1386,二氧化碳,atom_0f6811298a79,structured,2026-05-30,"血液中二氧化碳含量指标。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1391,亮氨酸氨肽酶,atom_f3cc689f5374,structured,2026-05-30,"检测样本中亮氨酸氨肽酶水平。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2489,人绒毛膜促性腺激素(HCG),人绒毛膜促性腺激素(HCG),structured,2026-06-02,"人绒毛膜促性腺激素检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,938,低密度脂蛋白胆固醇,atom_1c1182488de3,structured,2026-05-30,"低密度脂蛋白胆固醇检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2244,低血钾,manual:42eb6858912b,structured,2026-06-02,表示血钾水平低于正常范围,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,2492,凝血象检查,凝血象检查,structured,2026-06-02,凝血功能相关检验结果信息,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,1604,凝血酶原时间,atom_60a1c8e1a73f,structured,2026-06-01,"血浆凝血酶原时间检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1172,分布宽度标准差,atom_bace7414dfc2,structured,2026-05-30,"红细胞体积分布宽度的标准差。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2257,分析细胞数,分析细胞数,structured,2026-06-02,"本次检验分析的细胞数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,980,前白蛋白,atom_896b3fe1dafa,structured,2026-05-30,"表示血清前白蛋白检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,903,单核细胞数,atom_a05540c72f32,structured,2026-05-30,"表示血液中单核细胞的数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1174,单核细胞百分数,atom_0fb8459bda2f,structured,2026-05-30,"表示单核细胞占白细胞的比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1761,同型半胱氨酸,atom_df5610ba70b0,structured,2026-06-01,"血液同型半胱氨酸检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1629,唾液酸,atom_f12636c5cbb6,structured,2026-06-01,"样本中唾液酸的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,844,嗜碱性粒细胞百分比,atom_be5ac417cbc7,structured,2026-05-30,"嗜碱性粒细胞占白细胞的比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,859,嗜碱性粒细胞绝对值,atom_4fc9a47a46ae,structured,2026-05-30,"嗜碱性粒细胞的绝对计数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1626,嗜酸性粒细胞%,atom_a7c6b2607794,structured,2026-06-01,"嗜酸性粒细胞占白细胞的百分比。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,965,嗜酸性粒细胞计数,atom_1de18b50adce,structured,2026-05-30,"嗜酸性粒细胞数量结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1976,大便性状,atom_8a7f11f3cebb,structured,2026-06-01,记录大便外观性状,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,2378,大便隐血,大便隐血,structured,2026-06-02,"粪便中隐匿血液检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1975,大便颜色,atom_f414cfa28115,structured,2026-06-01,记录大便样本的颜色特征,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,906,大血小板比率,atom_757dc463e7b6,structured,2026-05-30,"大血小板在血小板中的占比。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1067,大血小板细胞数,atom_4c8e4f5fa5e5,structured,2026-05-30,"大血小板的数量计数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1290,大血小板计数,atom_cdcc9628f6da,structured,2026-05-30,"大血小板数量的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1633,天冬氨酸氨基转移酶(AST),atom_5bbdb3d9588a,structured,2026-06-01,"天冬氨酸氨基转移酶检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1479,天门冬氨酸/丙氨酸,atom_79b70462dc96,structured,2026-05-30,"天门冬氨酸与丙氨酸比值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2379,寄生虫卵,寄生虫卵,structured,2026-06-02,表示检验中发现的寄生虫卵情况,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,863,尿素,atom_c045f736cd74,structured,2026-05-30,"尿素项目的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1889,尿素/肌酐比值,atom_738219ab290a,structured,2026-06-01,"尿素与肌酐的比值结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,831,尿酸,atom_70aa252aa212,structured,2026-05-30,"尿酸检测结果数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1096,巨大未成熟细胞数目,atom_31f6b07fe4b0,structured,2026-05-30,"巨大未成熟细胞的计数结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1097,巨大未成熟细胞百分比,atom_e056b2863921,structured,2026-05-30,"巨大未成熟细胞所占比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,835,平均红细胞体积,atom_a5dd3e0c8b1d,structured,2026-05-30,"红细胞平均体积的检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1206,平均红细胞血红蛋白含量,atom_572f8f60e120,structured,2026-05-30,"单个红细胞平均血红蛋白量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,836,平均血红蛋白浓度,atom_d61ceccb4a24,structured,2026-05-30,"红细胞内血红蛋白平均浓度。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1245,幼稚粒细胞百分比,atom_d5b5291f3bce,structured,2026-05-30,"幼稚粒细胞占白细胞比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1244,幼稚粒细胞计数,atom_e8dbb81c2e5d,structured,2026-05-30,"血液中幼稚粒细胞的数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2478,异型淋巴细胞百分比,异型淋巴细胞百分比,structured,2026-06-02,"异型淋巴细胞占白细胞的比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2477,异型淋巴细胞绝对值,异型淋巴细胞绝对值,structured,2026-06-02,"异型淋巴细胞的绝对计数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,775,心功能QTc,ts_organ_cardiac_qtc_category,structured,2026-05-29,"校正后的心电QT间期值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,927,心率,atom_9f0964e638ac,structured,2026-05-30,"记录心脏每分钟搏动次数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,878,总胆汁酸,atom_61f3e5ddb69c,structured,2026-05-30,"血清总胆汁酸检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1739,总胆红素测定,atom_5b355d8eaf32,structured,2026-06-01,"血液中总胆红素的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1699,总蛋白(TP),atom_4bf0cafc276b,structured,2026-06-01,"血清总蛋白检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2526,抗链球菌溶血素“0”,抗链球菌溶血素“0”,structured,2026-06-02,"抗链球菌溶血素O检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,152,数值结果,value_numeric,structured,2026-05-08,"数值结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1344,无机磷,atom_07c1a376681c,structured,2026-05-30,"血液中无机磷的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2362,有效渗透压,有效渗透压,structured,2026-06-02,"表示血清有效渗透压水平。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1450,有核红细胞比率,atom_6724315795a1,structured,2026-05-30,"有核红细胞所占比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1640,有核红细胞计数,atom_9e219f3ea172,structured,2026-06-01,"有核红细胞的检测计数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1665,有核红细胞计数百分,atom_9e02b7a876ef,structured,2026-06-01,"有核红细胞占红细胞比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2500,极低密度脂蛋白胆固醇,极低密度脂蛋白胆固醇,structured,2026-06-02,"表示极低密度脂蛋白胆固醇检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1773,检查日期/时间,VS.VSDTC,structured,2026-06-01,检验项目的检查日期和时间,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,1153,氯离子,atom_dba577246940,structured,2026-05-30,"氯离子检验结果记录；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1487,活化部分凝血活酶时间,atom_b19592502824,structured,2026-05-30,"活化部分凝血活酶时间检测值；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1624,淋巴细胞%,atom_b48b4b7e57ce,structured,2026-06-01,"淋巴细胞占白细胞的百分比；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1611,淋巴细胞数目,atom_ec0b0da7d19e,structured,2026-06-01,"血液中淋巴细胞的数量；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1637,渗透压,atom_984700289b51,structured,2026-06-01,"表示样本的渗透压测定结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1125,游离脂肪酸,atom_d4c00929595b,structured,2026-05-30,"血液中游离脂肪酸的检测值；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1673,溶血指数,atom_cad0d4fc6b97,structured,2026-06-01,"标本溶血程度的指数；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1722,球蛋白(GLB),atom_773c6c6672d0,structured,2026-06-01,"血清球蛋白的检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,901,甘油三酯,atom_e0e2bbf151d7,structured,2026-05-30,"血液中甘油三酯的检测值；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2486,甘胆酸,甘胆酸,structured,2026-06-02,"血清甘胆酸项目检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1396,甲胎蛋白(AFP),atom_57ba68b2821c,structured,2026-05-30,"甲胎蛋白AFP检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2358,电解质四项,电解质四项,structured,2026-06-02,"电解质四项检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1159,癌胚抗原(CEA),atom_f536ea3ae4d5,structured,2026-05-30,"癌胚抗原CEA检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1594,白球比[A/G],atom_6cc324305834,structured,2026-06-01,"白蛋白与球蛋白的比值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,772,白细胞计数,ts_organ_cbc_wbc,structured,2026-05-29,"白细胞计数的检测结果数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2376,白细胞计数范围,白细胞计数范围,structured,2026-06-02,"白细胞计数的数值范围。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,771,白蛋白,ts_organ_liver_albumin,structured,2026-05-29,"检验报告中的白蛋白测定值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,957,直接胆红素,ts_organ_liver_dbil,structured,2026-05-30,"直接胆红素的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1695,碱性磷酸酶(ALP),atom_622e84ba9764,structured,2026-06-01,"血清碱性磷酸酶检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1303,碳酸氢根,atom_26fbdb3bab84,structured,2026-05-30,"血液中碳酸氢根离子浓度。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1132,空腹血糖,atom_f291bcdb34f9,structured,2026-05-30,"空腹状态下的血糖检测值；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2440,类风湿因子,类风湿因子,structured,2026-06-02,"类风湿因子的检测结果信息；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1647,糖类抗原15-3(CA15-3),atom_e80e110dbf36,structured,2026-06-01,"糖类抗原15-3的检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1397,糖类抗原72-4(CA72-4),atom_28edfc4a6c3f,structured,2026-05-30,"糖类抗原72-4的检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1845,糖链抗原199,atom_eb5ad4616a53,structured,2026-06-01,"糖链抗原199的检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,920,红细胞分布宽度,atom_9d75292507c6,structured,2026-05-30,"红细胞体积分布差异指标；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2367,红细胞分布宽度标准偏差,红细胞分布宽度标准偏差,structured,2026-06-02,"红细胞体积分布差异的标准差；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2087,红细胞压积HCT,atom_298029bb5fa0,structured,2026-06-01,"血液中红细胞所占容积比例；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,828,红细胞计数,atom_98c57e0c2845,structured,2026-05-30,"血液中红细胞的数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1511,纤维结合蛋白,atom_2f8282caca50,structured,2026-05-30,"纤维结合蛋白的检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1659,纤维蛋白原,atom_a87782057b2e,structured,2026-06-01,"血浆纤维蛋白原检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1448,网织红细胞百分比,atom_c5f3baad5d6a,structured,2026-05-30,"表示网织红细胞所占比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1560,网织红细胞绝对数,atom_a959445cd90e,structured,2026-05-30,"网织红细胞的绝对计数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,783,肌酐,ts_organ_renal_creatinine,structured,2026-05-29,"肌酐检验结果数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,956,肌酸激酶,atom_f23e10212040,structured,2026-05-30,"血清肌酸激酶检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1090,肌酸激酶同工酶,atom_59030af77199,structured,2026-05-30,"肌酸激酶同工酶检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2351,肝功能全套,肝功能全套,structured,2026-06-02,表示肝功能全套检验结果,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,2361,肝脏疾病试验,肝脏疾病试验,structured,2026-06-02,肝脏疾病相关试验结果,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,773,肾小球滤过率(eGFR),ts_renal_egfr_category,structured,2026-05-29,"估算肾小球滤过功能的指标。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1399,胃蛋白酶原I(PGI),atom_d673922ba07b,structured,2026-05-30,"胃蛋白酶原I的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1400,胃蛋白酶原II(PGII),atom_f7131eb026d7,structured,2026-05-30,"胃蛋白酶原II检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1693,胆碱酯酶(CHE),atom_d494d161b3d8,structured,2026-06-01,"胆碱酯酶活性检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1501,胱抑素C,atom_2c04206b2163,structured,2026-05-30,"血清胱抑素C检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2377,脂肪滴,脂肪滴,structured,2026-06-02,"脂肪滴的检出情况或含量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1384,脂蛋白(a),atom_45d9fb8f77dc,structured,2026-05-30,"血液中脂蛋白(a)的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1671,脂血指数,atom_38129207a487,structured,2026-06-01,"样本脂血程度的指数标识。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1387,腺苷脱氨酶,atom_53a81d2bd847,structured,2026-05-30,"腺苷脱氨酶的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,837,血小板分布宽度,atom_5cb2eacc90bc,structured,2026-05-30,"表示血小板体积分布差异。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,829,血小板压积,atom_d4820ca00f86,structured,2026-05-30,"表示血小板所占体积分数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,850,血小板平均体积,atom_b3b86664c033,structured,2026-05-30,"血小板平均体积检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,833,血小板计数,atom_d75fe719325e,structured,2026-05-30,"血液中血小板的数量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,762,血小板计数分类,ts_organ_cbc_platelets,structured,2026-05-28,血小板计数结果的分类标识,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,768,血尿素氮水平,ts_organ_renal_bun,structured,2026-05-28,"血液中尿素氮的检测水平。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1895,血淀粉酶,atom_22deae6e269e,structured,2026-06-01,"血液中淀粉酶的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1859,血清总胆固醇测定,atom_701735f6144a,structured,2026-06-01,"血清中总胆固醇的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1318,血清淀粉样蛋白A,atom_5c0e4dd3e1e2,structured,2026-05-30,"血清淀粉样蛋白A检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2172,血清钾,atom_fa95726c16bd,structured,2026-06-01,"血清中钾离子浓度检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2439,血管紧张素转换酶,血管紧张素转换酶,structured,2026-06-02,"血管紧张素转换酶检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,761,血红蛋白,ts_organ_cbc_hemoglobin,structured,2026-05-28,"血液中血红蛋白的检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1660,血细胞分析（五分类）,atom_d3bbf7c5b3c9,structured,2026-06-01,表示五分类血细胞分析结果。,generated
+(跨癌种),ods_lab_test_detail,检验报告明细表,2386,补体C1q,补体C1q,structured,2026-06-02,"补体C1q的检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1154,视黄醇结合蛋白,atom_19776e3f386f,structured,2026-05-30,"表示检验中的视黄醇结合蛋白水平；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2382,诺如病毒抗原(GI),诺如病毒抗原(GI),structured,2026-06-02,"诺如病毒GI型抗原检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1720,谷丙转氨酶(ALT),atom_1e5893340eee,structured,2026-06-01,"血清谷丙转氨酶检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1628,谷氨酸脱氢酶,atom_62b7df4ac89f,structured,2026-06-01,"谷氨酸脱氢酶检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1160,谷胱甘肽还原酶,atom_610bb1651c76,structured,2026-05-30,"谷胱甘肽还原酶检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1408,谷草/谷丙转氨酶比值,atom_b1eaeef66104,structured,2026-05-30,"谷草与谷丙转氨酶的比值；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,976,超敏C反应蛋白,atom_23ef83d3857f,structured,2026-05-30,"超敏C反应蛋白检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1078,载脂蛋白A1,atom_adb5ebc3ce01,structured,2026-05-30,"载脂蛋白A1的检测结果；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1056,载脂蛋白B,atom_443448e1df47,structured,2026-05-30,"血液中载脂蛋白B的检测值；若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2412,载脂蛋白比值A/B,载脂蛋白比值A/B,structured,2026-06-02,"载脂蛋白A与B的比值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,911,钙,atom_9d003a8cc558,structured,2026-05-30,"血液中钙离子的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1758,钙磷乘积,atom_c1fe98eef341,structured,2026-06-01,"表示血钙与血磷浓度的乘积。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1378,钙离子,atom_7d5f048acab8,structured,2026-05-30,"血液中钙离子的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1445,铁蛋白,atom_e31466d1f553,structured,2026-05-30,"表示血清铁蛋白检测水平。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,2380,镜检霉菌,镜检霉菌,structured,2026-06-02,"镜检发现霉菌的结果记录。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,832,间接胆红素,atom_6a13cd79e763,structured,2026-05-30,"间接胆红素检测结果值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1284,阴离子间隙,atom_65e9fc199535,structured,2026-05-30,"血清阴离子间隙检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1550,雌二醇,atom_7d5fe0259630,structured,2026-05-30,"雌二醇项目的检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,150,项目名称,item_name,structured,2026-05-08,项目名称(这里如果要被抽取为列表类型的话，仅仅抽取项目的名称作为元素放入列表即可忽略其它信息),original
+(跨癌种),ods_lab_test_detail,检验报告明细表,892,高密度脂蛋白胆固醇,atom_ef89bc3f0f46,structured,2026-05-30,"高密度脂蛋白胆固醇的检测值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_lab_test_detail,检验报告明细表,1672,黄疸指数,atom_f070140dbf29,structured,2026-06-01,"表示样本黄疸程度的指数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,1466,免疫抑制用药,ts_immunosuppressive_medication,structured,2026-05-30,记录是否使用免疫抑制药物,generated
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,1086,出院带药,atom_33100cf7e53a,structured,2026-05-30,患者出院时带回的药品信息,generated
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,2157,出院带药剂量,atom_37424dcf75d8,structured,2026-06-01,出院带药的单次或每日剂量,generated
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,62,剂量单位,dosage_unit,structured,2026-05-08,剂量单位,original
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,60,医嘱/药品名称,order_name,structured,2026-05-08,医嘱/药品名称,original
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,61,单次剂量,dosage,structured,2026-05-08,单次剂量,original
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,2352,嘱托,嘱托,structured,2026-06-02,医嘱或处方中的注意事项,generated
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,1485,地塞米松剂量,atom_9e6a485ed62f,structured,2026-05-30,地塞米松的用药剂量,generated
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,2275,处方药品,处方药品,structured,2026-06-02,处方中开具的药品名称,generated
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,2544,有无吸毒史,f_475d45e1,structured,2026-06-09,患者是否有吸毒史,generated
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,2495,注射用泮托拉唑钠剂量,注射用泮托拉唑钠剂量,structured,2026-06-02,注射用泮托拉唑钠的用药剂量,generated
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,1470,系统性激素使用,ts_corticosteroid_status,structured,2026-05-30,是否使用系统性激素药物,generated
+(跨癌种),ods_oders_prescriptions,住院医嘱/门诊处方表,1572,胸腺法新剂量,atom_6530046b8784,structured,2026-05-30,胸腺法新的用药剂量,generated
+(跨癌种),ods_onc_adverse_events,不良反应记录表,294,AE 分级,ae_grade,structured,2026-05-08,AE 分级,original
+(跨癌种),ods_onc_adverse_events,不良反应记录表,293,不良反应名称,ae_name,structured,2026-05-08,不良反应名称,original
+(跨癌种),ods_onc_adverse_events,不良反应记录表,2314,化疗不良反应,化疗不良反应,structured,2026-06-02,记录化疗相关不良反应情况,generated
+(跨癌种),ods_onc_adverse_events,不良反应记录表,1783,治疗相关并发症,cd_treatment_complication,structured,2026-06-01,记录治疗相关并发症信息,generated
+(跨癌种),ods_onc_adverse_events,不良反应记录表,1013,骨髓抑制分级,cd_bone_marrow_suppression,structured,2026-05-30,记录骨髓抑制的严重程度分级,generated
+(跨癌种),ods_onc_assessments,量表记录表,777,ECOG评分,ts_ecog_score,structured,2026-05-29,"患者体能状态ECOG评分。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_assessments,量表记录表,2264,HR,HR,structured,2026-06-02,"心率测量结果记录。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_assessments,量表记录表,2254,QRS,QRS,structured,2026-06-02,"心电图QRS波群指标。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_assessments,量表记录表,2278,QTc,QTc,structured,2026-06-02,"校正后的QT间期数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_assessments,量表记录表,2311,T值,T值,structured,2026-06-02,"量表评分的标准化T分数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_assessments,量表记录表,2343,专项评估,专项评估,structured,2026-06-02,记录所进行的专项评估名称,generated
+(跨癌种),ods_onc_assessments,量表记录表,1033,出血风险,atom_75f7df8954e4,structured,2026-05-30,评估对象的出血风险水平,generated
+(跨癌种),ods_onc_assessments,量表记录表,2514,复诊随访问诊条目,复诊随访问诊条目,structured,2026-06-02,复诊随访时的问诊项目,generated
+(跨癌种),ods_onc_assessments,量表记录表,2236,心理状态,manual:7e2411a1b44b,structured,2026-06-02,记录受评者的心理状态。,generated
+(跨癌种),ods_onc_assessments,量表记录表,1006,心理痛苦温度计评分,pm_distress_thermometer_score,structured,2026-05-30,"评估患者心理痛苦程度的分值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_assessments,量表记录表,915,心理评估,atom_97b8c729ee26,structured,2026-05-30,记录心理状态评估结果,generated
+(跨癌种),ods_onc_assessments,量表记录表,1595,患者意愿,atom_0195450f9f35,structured,2026-06-01,患者对评估或处理的意愿,generated
+(跨癌种),ods_onc_assessments,量表记录表,910,疼痛严重程度（PRO）,pm_pro_pain_severity,structured,2026-05-30,"患者自评的疼痛严重程度。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_assessments,量表记录表,896,疼痛评分,atom_1b65bc788a56,structured,2026-05-30,"记录患者疼痛程度的评分。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_assessments,量表记录表,781,精神状态,ts_other_mental_status,structured,2026-05-29,记录受评者的精神状态评估结果,generated
+(跨癌种),ods_onc_assessments,量表记录表,1047,血栓物理治疗禁忌评估,atom_cc39828321c4,structured,2026-05-30,血栓物理治疗禁忌情况评估,generated
+(跨癌种),ods_onc_assessments,量表记录表,242,评估时间,eval_time,structured,2026-05-08,评估时间,original
+(跨癌种),ods_onc_assessments,量表记录表,240,评估结论,eval_result,structured,2026-05-08,量表记录表的评估结论,original
+(跨癌种),ods_onc_assessments,量表记录表,238,量表名称,scale_name,structured,2026-05-08,量表名称,original
+(跨癌种),ods_onc_biobank,生物样本库,2291,标本,标本,structured,2026-06-02,仅当原文明确出现该字段名时，记录其对应内容；不要抽取字段名不一致的相近内容,generated
+(跨癌种),ods_onc_biobank,生物样本库,303,样本大类,sample_type,structured,2026-05-08,仅当原文明确出现该字段名时，记录其对应内容；不要抽取字段名不一致的相近内容,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,973,cTNM分期,atom_04f6a83e7c6e,structured,2026-05-30,临床TNM分期结果,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,51,M 分期,m_stage,structured,2026-05-08,M 分期,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,50,N 分期,n_stage,structured,2026-05-08,N 分期,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1814,pN分期,atom_962406559864,structured,2026-06-01,病理区域淋巴结受累分期,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,905,pTNM分期,atom_8061b7e12c94,structured,2026-05-30,病理TNM分期结果,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,2531,pTNM分期pM,pTNM分期pM,structured,2026-06-02,病理TNM远处转移分期,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1813,pT分期,atom_ec7011041be1,structured,2026-06-01,病理评估的原发肿瘤分期,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,49,T 分期,t_stage,structured,2026-05-08,T 分期,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1072,TNM分期,atom_4b4983469b23,structured,2026-05-30,肿瘤的TNM分期结果,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1171,临床分期,atom_396ef547cc45,structured,2026-05-30,患者疾病的临床分期信息,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,2225,临床总分期,ts_stage_summary,structured,2026-06-01,患者临床综合分期结果,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1958,主要诊断,atom_648fe64a9bff,structured,2026-06-01,患者最主要的疾病诊断,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,48,分化程度,differentiation,structured,2026-05-08,分化程度,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,53,分期类型,stage_type,structured,2026-05-08,分期类型,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1301,初步诊断,atom_f08551ed0dda,structured,2026-05-30,患者首次判断的疾病诊断,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,2220,患者诊断,ts_patient_diagnoses,structured,2026-06-01,患者的疾病诊断结果,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1865,手术前诊断,atom_516418bc163c,structured,2026-06-01,患者手术前的临床诊断信息,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1866,手术后诊断,atom_995434868047,structured,2026-06-01,手术后确认的疾病诊断信息,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1803,次诊断,atom_1ff613614404,structured,2026-06-01,患者除主诊断外的其他诊断,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,1014,疾病状态评估,pm_disease_status,structured,2026-05-30,用于记录疾病当前状态评估,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,47,组织学类型,histology_type,structured,2026-05-08,组织学类型,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,52,综合分期,overall_stage,structured,2026-05-08,综合分期,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,2292,肿瘤分期,肿瘤分期,structured,2026-06-02,肿瘤的临床或病理分期,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,788,肿瘤类型,ts_disease_histological_type,structured,2026-05-29,记录肿瘤的病理或临床类型,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,2159,诊断(ICD-10编码),atom_3a2c4067dd21,structured,2026-06-01,疾病诊断对应的ICD-10编码,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,46,诊断依据,diagnosis_basis,structured,2026-05-08,诊断依据,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,43,诊断名称,diagnosis_name,structured,2026-05-08,诊断名称,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,45,诊断时间,diagnosis_time,structured,2026-05-08,诊断时间,original
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,2294,诊断结果 Diagnosis,诊断结果 Diagnosis,structured,2026-06-02,记录患者的诊断结论,generated
+(跨癌种),ods_onc_diagnosis_staging,诊断与分期表,2355,辅助诊断,辅助诊断,structured,2026-06-02,辅助诊断结果或补充诊断信息,generated
+(跨癌种),ods_onc_drug,药物治疗表,2518,化疗后复查频率,化疗后复查频率,structured,2026-06-02,化疗后复查的时间间隔或频次,generated
+(跨癌种),ods_onc_drug,药物治疗表,1152,化疗周期数,atom_e57c055b011f,structured,2026-05-30,化疗已完成或计划的周期数量,generated
+(跨癌种),ods_onc_drug,药物治疗表,1876,化疗开始日期,atom_1e6707eddc39,structured,2026-06-01,化疗开始的具体日期,generated
+(跨癌种),ods_onc_drug,药物治疗表,909,化疗方案,atom_a4b2f8d698a6,structured,2026-05-30,记录使用的化疗药物方案,generated
+(跨癌种),ods_onc_drug,药物治疗表,992,化疗日期,atom_f3c2db98276d,structured,2026-05-30,患者接受化疗的日期,generated
+(跨癌种),ods_onc_drug,药物治疗表,2223,化疗治疗史,ts_treat_chemotherapy,structured,2026-06-01,患者既往接受化疗的情况,generated
+(跨癌种),ods_onc_drug,药物治疗表,2175,化疗疗程数（术后）,atom_3dacacc0f480,structured,2026-06-01,术后接受化疗的疗程数量,generated
+(跨癌种),ods_onc_drug,药物治疗表,76,当前周期,cycle_number,structured,2026-05-08,当前周期,original
+(跨癌种),ods_onc_drug,药物治疗表,871,当前治疗方案,pm_current_treatment_regimen,structured,2026-05-30,患者当前正在使用的治疗方案,generated
+(跨癌种),ods_onc_drug,药物治疗表,2152,当前用药,atom_07665842a981,structured,2026-06-01,患者目前正在使用的药物,generated
+(跨癌种),ods_onc_drug,药物治疗表,754,化疗总周期,total_cycle,structured,2026-05-11,化疗的总疗程周期,generated
+(跨癌种),ods_onc_drug,药物治疗表,72,方案名称,regimen_name,structured,2026-05-08,方案名称,original
+(跨癌种),ods_onc_drug,药物治疗表,75,方案结束日期,end_date,structured,2026-05-08,方案结束日期,original
+(跨癌种),ods_onc_drug,药物治疗表,78,是否减量,dose_reduction,structured,2026-05-08,是否减量,original
+(跨癌种),ods_onc_drug,药物治疗表,1321,末次化疗日期,atom_81c649480c8d,structured,2026-05-30,患者最后一次化疗的日期,generated
+(跨癌种),ods_onc_drug,药物治疗表,774,末次化疗时间,ts_treat_chemotherapy_last,structured,2026-05-29,患者最后一次化疗的时间,generated
+(跨癌种),ods_onc_drug,药物治疗表,846,治疗方案,EC.ECTRT,structured,2026-05-30,药物治疗的具体方案安排,generated
+(跨癌种),ods_onc_drug,药物治疗表,886,治疗状态,pm_treatment_status,structured,2026-05-30,药物治疗的当前进行状态,generated
+(跨癌种),ods_onc_drug,药物治疗表,70,治疗目的,treatment_intent,structured,2026-05-08,治疗目的,original
+(跨癌种),ods_onc_drug,药物治疗表,1776,治疗类别,EC.ECCAT,structured,2026-06-01,药物治疗所属类别,generated
+(跨癌种),ods_onc_drug,药物治疗表,69,治疗线级,line_of_therapy,structured,2026-05-08,治疗线级,original
+(跨癌种),ods_onc_drug,药物治疗表,2137,治疗经过,tag:699,structured,2026-06-01,药物治疗的过程及变化情况,generated
+(跨癌种),ods_onc_drug,药物治疗表,1725,治疗计划,atom_dedd8939763e,structured,2026-06-01,记录药物治疗的具体计划,generated
+(跨癌种),ods_onc_drug,药物治疗表,73,药品组成,drug_name_list,structured,2026-05-08,药品组成,original
+(跨癌种),ods_onc_drug,药物治疗表,71,药物类别,therapy_type,structured,2026-05-08,药物类别,original
+(跨癌种),ods_onc_drug,药物治疗表,77,计划下个周期日期,next_cycle_date,structured,2026-05-08,计划下个周期日期,original
+(跨癌种),ods_onc_drug,药物治疗表,1777,计划给药方案,EC.ECDOSRGM,structured,2026-06-01,计划使用的药物给药方案,generated
+(跨癌种),ods_onc_drug,药物治疗表,2072,首次化疗日期,atom_6b9b3c2aa8e5,structured,2026-06-01,患者首次接受化疗的日期,generated
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,88,剂型,dosage_form,structured,2026-05-08,剂型,original
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,87,剂量计算基准,dosage_calculation_basis,structured,2026-05-08,剂量计算基准,original
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,91,周期内天数,cycle_day,structured,2026-05-08,周期内天数,original
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,85,实际使用剂量,actual_dosage,structured,2026-05-08,实际使用剂量,original
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,92,是否为预处理药物,is_premedication,structured,2026-05-08,是否为预处理药物,original
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,2266,用法,用法,structured,2026-06-02,药物的使用方法或给药方式,generated
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,1607,给药方式,atom_d7e932942a54,structured,2026-06-01,药物给入患者体内的方式,generated
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,2519,给药方式频次,给药方式频次,structured,2026-06-02,药物给药途径及使用频次,generated
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,84,给药日期,administration_date,structured,2026-05-08,给药日期,original
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,1528,给药频次,atom_fda2ff2a7d25,structured,2026-05-30,药物给药的次数或频率,generated
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,82,药品通用名,drug_name,structured,2026-05-08,药品通用名,original
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,1001,药物剂量,atom_77c1efba90ec,structured,2026-05-30,药物使用的剂量信息,generated
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,83,药物细分类别,drug_category,structured,2026-05-08,药物细分类别,original
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,1858,药物规格,atom_6e93ac11847e,structured,2026-06-01,药品的剂型、含量及包装规格,generated
+(跨癌种),ods_onc_drug_detail,药物治疗明细表,90,输注时长,infusion_duration,structured,2026-05-08,输注时长,original
+(跨癌种),ods_onc_interventional_records,介入记录表,138,是否发生不良反应,has_adverse_event,structured,2026-05-08,是否发生不良反应,original
+(跨癌种),ods_onc_interventional_records,介入记录表,130,治疗开始时间,start_time,structured,2026-05-08,医嘱开始/执行时间,original
+(跨癌种),ods_onc_interventional_records,介入记录表,129,治疗病灶数量,lesion_count,structured,2026-05-08,治疗病灶数量,original
+(跨癌种),ods_onc_interventional_records,介入记录表,131,治疗结束时间,end_time,structured,2026-05-08,治疗结束时间,original
+(跨癌种),ods_onc_interventional_records,介入记录表,128,治疗部位,target_site,structured,2026-05-08,治疗部位,original
+(跨癌种),ods_onc_lesion_detail,病灶明细表,181,BI- RADS分级,bi_rads_class,structured,2026-05-08,BI- RADS分级,original
+(跨癌种),ods_onc_lesion_detail,病灶明细表,174,是否为新发病灶,is_new_lesion,structured,2026-05-08,是否为新发病灶,original
+(跨癌种),ods_onc_lesion_detail,病灶明细表,179,是否可测量,is_measurable,structured,2026-05-08,是否可测量,original
+(跨癌种),ods_onc_lesion_detail,病灶明细表,176,检查方式,imaging_method,structured,2026-05-08,检查方式,original
+(跨癌种),ods_onc_lesion_detail,病灶明细表,2533,淋巴结长径,淋巴结长径,structured,2026-06-02,"表示淋巴结最长径大小。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_lesion_detail,病灶明细表,173,病灶分类,lesion_type,structured,2026-05-08,记录单个病灶对应的影像学分类、分级或风险分层结果，优先保留原文标准编码及等级/亚型；避免抽象为疾病诊断或病理结论,original
+(跨癌种),ods_onc_lesion_detail,病灶明细表,180,病灶状态描述,lesion_status,structured,2026-05-08,病灶状态描述,original
+(跨癌种),ods_onc_lesion_detail,病灶明细表,172,病灶编号,lesion_number,structured,2026-05-08,病灶编号,original
+(跨癌种),ods_onc_lesion_detail,病灶明细表,175,病灶部位,body_site,structured,2026-05-08,病灶部位,original
+(跨癌种),ods_onc_lesion_detail,病灶明细表,178,短径 (mm),short_axis,structured,2026-05-08,"短径 (mm)。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_lesion_detail,病灶明细表,177,长径 (mm),longest_diameter,structured,2026-05-08,"长径 (mm)。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,904,下一节点时间（下次随访 / 下次给药 / 下次复查）,198fe1e3f006b5cf,structured,2026-05-30,下一次随访或治疗复查时间,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,1098,下次住院日期,atom_073ed844e08f,structured,2026-05-30,下一次住院的日期信息,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,1649,下次住院时间,atom_a11e06053d84,structured,2026-06-01,患者下次住院的时间记录,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,1375,下次化疗日期,atom_2cbfed66f7a7,structured,2026-05-30,患者计划下次化疗的日期,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,1270,下次治疗日期,atom_0af91976ae25,structured,2026-05-30,记录下一次治疗的日期,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,1600,下次治疗时间,atom_d7c79eb2628b,structured,2026-06-01,下一次治疗的计划时间,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,282,事件发生日期,event_date,structured,2026-05-08,事件发生日期,original
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,281,事件类型,event_type,structured,2026-05-08,事件类型代码,original
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,283,事件详细描述,event_description,structured,2026-05-08,事件详细描述,original
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,2341,入组评估,入组评估,structured,2026-06-02,患者入组时的评估情况,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,1407,复诊日期,atom_be114cc1a4c2,structured,2026-05-30,患者复诊就医的日期,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,1733,复诊时间,atom_e0a75d27a169,structured,2026-06-01,患者复诊就诊的时间记录,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,287,是否原发病灶事件,is_primary_tumor,structured,2026-05-08,是否原发病灶事件,original
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,766,病程阶段,ts_stage_course,structured,2026-05-28,表示肿瘤病程所处阶段,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,857,诊疗阶段状态（初诊 / 治疗中 / 随访 / 失访 / 死亡）,304d375736089ceb,structured,2026-05-30,患者所处的诊疗阶段状态,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,2007,随访医嘱,atom_a9f0cea83c79,structured,2026-06-01,记录随访相关医嘱内容,generated
+(跨癌种),ods_onc_milestones,肿瘤里程碑事件表,1687,随访计划,atom_3d3f703f737c,structured,2026-06-01,记录患者后续随访安排,generated
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2208,ER 表达,atom_30724af8297c,structured,2026-06-01,"雌激素受体表达检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,1498,HER2 FISH结果,atom_8e0be363c615,structured,2026-05-30,"HER2基因FISH检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,1670,HER2平均值,atom_89f9855fd576,structured,2026-06-01,"HER2检测结果的平均数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2219,免疫组化标记物列表,atom_7d5c5ced5354,structured,2026-06-01,记录免疫组化检测的标记物,generated
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2267,分子检测,分子检测,structured,2026-06-02,记录分子检测项目或结果信息,generated
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2177,右乳Ki-67百分比,atom_73d0be8d78d6,structured,2026-06-01,"右乳Ki-67表达百分比。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2300,实验结果,实验结果,structured,2026-06-02,"分子检测实验的结果信息。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2176,左乳Ki-67百分比,atom_342697f71774,structured,2026-06-01,"左乳Ki-67检测百分比。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,220,拷贝数,copy_number,structured,2026-05-08,"拷贝数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2287,检测位点,检测位点,structured,2026-06-02,分子检测的具体基因或突变位点,generated
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2297,检测内容,检测内容,structured,2026-06-02,本次分子检测的项目内容,generated
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2309,检测平台,检测平台,structured,2026-06-02,分子检测所使用的平台名称,generated
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,2333,检测指标,检测指标,structured,2026-06-02,分子检测的具体指标名称,generated
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,216,检测方法,test_method,structured,2026-05-08,检测方法,original
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,1734,检测结果,atom_77b9b1d17209,structured,2026-06-01,"分子检测项目的结果信息。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,214,检测靶点/基因名,target_name,structured,2026-05-08,检测靶点/基因名,original
+(跨癌种),ods_onc_molecular_test_detail,分子检测明细表,221,表达评分/比例,expression_score,structured,2026-05-08,"表达评分/比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_outcomes,结局评估表,272,复发/转移类型,recurrence_type,structured,2026-05-08,复发/转移类型,original
+(跨癌种),ods_onc_outcomes,结局评估表,273,复发/转移部位,recurrence_site,structured,2026-05-08,复发/转移部位,original
+(跨癌种),ods_onc_outcomes,结局评估表,271,复发日期,recurrence_date,structured,2026-05-08,复发日期,original
+(跨癌种),ods_onc_outcomes,结局评估表,270,是否复发,recurrence_flag,structured,2026-05-08,是否复发,original
+(跨癌种),ods_onc_outcomes,结局评估表,269,最佳总疗效 (BOR),best_response,structured,2026-05-08,最佳总疗效 (BOR),original
+(跨癌种),ods_onc_outcomes,结局评估表,277,最后随访时间,last_follow_up,structured,2026-05-08,最后随访时间,original
+(跨癌种),ods_onc_outcomes,结局评估表,276,死亡日期,death_date,structured,2026-05-08,死亡日期,original
+(跨癌种),ods_onc_outcomes,结局评估表,275,生存状态,survival_status,structured,2026-05-08,生存状态,original
+(跨癌种),ods_onc_outcomes,结局评估表,274,疾病进展日期,progression_date,structured,2026-05-08,疾病进展日期,original
+(跨癌种),ods_onc_outcomes,结局评估表,264,评估日期,eval_date,structured,2026-05-08,评估日期,original
+(跨癌种),ods_onc_outcomes,结局评估表,265,评估标准,eval_standard,structured,2026-05-08,评估标准,original
+(跨癌种),ods_onc_outcomes,结局评估表,268,阶段性疗效评估,overall_response,structured,2026-05-08,阶段性疗效评估,original
+(跨癌种),ods_onc_outcomes,结局评估表,267,非靶病灶状态,non_target_status,structured,2026-05-08,非靶病灶状态,original
+(跨癌种),ods_onc_outcomes,结局评估表,266,靶病灶长径总和,target_lesion_sum,structured,2026-05-08,"靶病灶长径总和。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2537,AE1/AE3,AE1/AE3,structured,2026-06-02,"AE1/AE3免疫组化检测结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2329,会诊切片,会诊切片,structured,2026-06-02,用于会诊的病理切片信息,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,208,切缘情况,margin_status,structured,2026-05-08,切缘情况,original
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2310,取材部位,取材部位,structured,2026-06-02,病理标本取材的具体部位,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2170,右乳病理诊断,atom_1c6ece210b53,structured,2026-06-01,右侧乳腺的病理诊断结果,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,1897,术中冰冻病理结果,atom_e7b9ba644d5b,structured,2026-06-01,术中冰冻切片病理诊断结果,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,205,浸润深度描述,invasion_depth,structured,2026-05-08,"浸润深度描述。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,207,清扫淋巴结总数,ln_total,structured,2026-05-08,"清扫淋巴结总数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2324,病理会诊咨询意见,病理会诊咨询意见,structured,2026-06-02,病理会诊形成的咨询意见,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2327,病理检测类型,病理检测类型,structured,2026-06-02,病理检查的具体检测类别,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2187,病理诊断-左乳,atom_4595d387d3cd,structured,2026-06-01,左乳病理诊断结果描述,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,202,神经侵犯,is_pni,structured,2026-05-08,神经侵犯,original
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2130,第二次ER表达百分比,atom_9e1718319a3a,structured,2026-06-01,"第二次检测的ER表达比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2131,第二次PR表达百分比,atom_5a50b600dabf,structured,2026-06-01,"第二次检测的PR表达比例。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2527,肿瘤分级,肿瘤分级,structured,2026-06-02,表示肿瘤的分化或恶性程度,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,204,肿瘤最大径,tumor_size_mm,structured,2026-05-08,"肿瘤最大径。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,203,脉管内癌栓,is_lvi,structured,2026-05-08,脉管内癌栓,original
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2260,补充病理诊断,补充病理诊断,structured,2026-06-02,补充说明的病理诊断结果,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,2206,送检标本部位,atom_9851460ec666,structured,2026-06-01,送检病理标本的来源部位,generated
+(跨癌种),ods_onc_pathology_detail,病理报告明细表,206,阳性淋巴结数,ln_positive,structured,2026-05-08,"阳性淋巴结数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_radiotherapy,放射治疗表,2418,放疗分割次数,放疗分割次数,structured,2026-06-02,"放疗总共分割治疗的次数。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_radiotherapy,放射治疗表,1581,放疗剂量,atom_a8034d159624,structured,2026-05-30,"放射治疗所给予的剂量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_onc_radiotherapy,放射治疗表,101,放疗开始日期,rt_start_date,structured,2026-05-08,放疗开始日期,original
+(跨癌种),ods_onc_radiotherapy,放射治疗表,2405,放疗总剂量,放疗总剂量,structured,2026-06-02,放射治疗的累计总剂量,generated
+(跨癌种),ods_onc_radiotherapy,放射治疗表,1324,放疗方案,atom_df4f9c011fb3,structured,2026-05-30,患者接受的放射治疗方案,generated
+(跨癌种),ods_onc_radiotherapy,放射治疗表,1898,放疗状态,atom_2f1f955a0b3a,structured,2026-06-01,患者放疗实施状态信息,generated
+(跨癌种),ods_onc_radiotherapy,放射治疗表,102,放疗结束日期,rt_end_date,structured,2026-05-08,放疗结束日期,original
+(跨癌种),ods_onc_radiotherapy,放射治疗表,96,放疗部位,rt_site,structured,2026-05-08,放疗部位,original
+(跨癌种),ods_onc_radiotherapy,放射治疗表,1186,既往放疗史,ts_radiotherapy_history,structured,2026-05-30,患者既往接受放疗的情况,generated
+(跨癌种),ods_onc_radiotherapy,放射治疗表,779,末次放疗时间,ts_treat_radiotherapy_last,structured,2026-05-29,患者最后一次放疗的时间,generated
+(跨癌种),ods_pathology_reports,病理报告表,190,临床诊断,clinical_diagnosis,structured,2026-05-08,临床诊断,original
+(跨癌种),ods_pathology_reports,病理报告表,194,免疫组化结果,ihc_results,structured,2026-05-08,"免疫组化结果。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_pathology_reports,病理报告表,195,分子检测/基因检测,molecular_testing,structured,2026-05-08,分子检测/基因检测,original
+(跨癌种),ods_pathology_reports,病理报告表,191,大体所见,gross_description,structured,2026-05-08,大体所见,original
+(跨癌种),ods_pathology_reports,病理报告表,756,报告时间,report_date,structured,2026-05-13,报告时间,original
+(跨癌种),ods_pathology_reports,病理报告表,189,收到时间,received_date,structured,2026-05-08,收到时间,original
+(跨癌种),ods_pathology_reports,病理报告表,1433,标本名称,atom_7474a974919a,structured,2026-05-30,病理检查标本的名称,generated
+(跨癌种),ods_pathology_reports,病理报告表,2086,标本大小,atom_ab6cb81f7b8f,structured,2026-06-01,病理标本的尺寸大小,generated
+(跨癌种),ods_pathology_reports,病理报告表,187,标本类型,sample_type,structured,2026-05-08,标本类型,original
+(跨癌种),ods_pathology_reports,病理报告表,2303,病理所见,病理所见,structured,2026-06-02,记录病理检查观察到的异常表现,generated
+(跨癌种),ods_pathology_reports,病理报告表,1918,病理检查时间,atom_e39dd9453f6e,structured,2026-06-01,病理检查的具体时间,generated
+(跨癌种),ods_pathology_reports,病理报告表,193,病理诊断,pathology_diagnosis,structured,2026-05-08,病理诊断,original
+(跨癌种),ods_pathology_reports,病理报告表,1917,穿刺时间,atom_c3fc3c46439a,structured,2026-06-01,进行穿刺操作的时间,generated
+(跨癌种),ods_pathology_reports,病理报告表,1612,蜡块数,atom_dd5e2881b67a,structured,2026-06-01,病理取材蜡块的数量。,generated
+(跨癌种),ods_pathology_reports,病理报告表,700,诊断时间,diagnosis_date,structured,2026-05-08,病理诊断作出的时间。,generated
+(跨癌种),ods_pathology_reports,病理报告表,188,送检时间,sent_date,structured,2026-05-08,送检时间,original
+(跨癌种),ods_pathology_reports,病理报告表,1565,镜下所见,atom_82644e644668,structured,2026-05-30,病理显微镜下观察结果,generated
+(跨癌种),ods_patient_info,患者基本信息表,1430,ABO血型,atom_0e8c0565bb93,structured,2026-05-30,患者的ABO血型类别,generated
+(跨癌种),ods_patient_info,患者基本信息表,867,体重,atom_440093495417,structured,2026-05-30,"记录患者当前体重数值。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_patient_info,患者基本信息表,6,出生地,birth_place,structured,2026-05-08,出生地,original
+(跨癌种),ods_patient_info,患者基本信息表,1838,医院名称,atom_95fdd3e0e090,structured,2026-06-01,患者就诊医院的名称,generated
+(跨癌种),ods_patient_info,患者基本信息表,1601,外伤史,atom_427f707b2a66,structured,2026-06-01,患者既往或近期外伤经历,generated
+(跨癌种),ods_patient_info,患者基本信息表,784,妊娠与哺乳状态,ts_patient_preg_lact_pregnancy,structured,2026-05-29,患者是否处于妊娠或哺乳期,generated
+(跨癌种),ods_patient_info,患者基本信息表,817,姓名,atom_60d0458ac6eb,structured,2026-05-30,患者的姓名是什么,generated
+(跨癌种),ods_patient_info,患者基本信息表,11,婚姻状况,marital_status,structured,2026-05-08,婚姻状况,original
+(跨癌种),ods_patient_info,患者基本信息表,770,居住地址,ts_other_residence_local,structured,2026-05-29,患者当前居住的详细地址,generated
+(跨癌种),ods_patient_info,患者基本信息表,2226,居住地址-外地,ts_other_residence_nonlocal,structured,2026-06-01,患者外地居住地址信息,generated
+(跨癌种),ods_patient_info,患者基本信息表,760,年龄,new_28c02ea684,both,2026-05-27,年龄信息,generated
+(跨癌种),ods_patient_info,患者基本信息表,3,性别,gender,structured,2026-05-08,性别代码,original
+(跨癌种),ods_patient_info,患者基本信息表,2151,既往病史,atom_044dcd4d5701,structured,2026-06-01,患者既往患病情况记录,generated
+(跨癌种),ods_patient_info,患者基本信息表,2323,月经及婚育史,月经及婚育史,structured,2026-06-02,记录患者月经、婚姻及生育情况,generated
+(跨癌种),ods_patient_info,患者基本信息表,7,民族,ethnic_group,structured,2026-05-08,民族,original
+(跨癌种),ods_patient_info,患者基本信息表,12,现住址,current_address,structured,2026-05-08,现住址,original
+(跨癌种),ods_patient_info,患者基本信息表,1768,糖尿病既往史,atom_8f9866e469aa,structured,2026-06-01,患者既往是否患有糖尿病,generated
+(跨癌种),ods_patient_info,患者基本信息表,8,职业,occupation,structured,2026-05-08,职业,original
+(跨癌种),ods_patient_info,患者基本信息表,854,联系信息（脱敏后）,b0c3543efef94094,structured,2026-05-30,患者脱敏后的联系方式信息,generated
+(跨癌种),ods_patient_info,患者基本信息表,1675,联系地址,atom_0d043dec4cf3,structured,2026-06-01,患者的通讯或居住地址,generated
+(跨癌种),ods_patient_info,患者基本信息表,5,联系电话,phone_number,structured,2026-05-08,联系电话,original
+(跨癌种),ods_patient_info,患者基本信息表,10,血型-Rh,blood_type_Rh,structured,2026-05-08,血型-Rh,original
+(跨癌种),ods_patient_info,患者基本信息表,872,身高,atom_19a854115fe8,structured,2026-05-30,"记录患者当前身高信息。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_patient_info,患者基本信息表,2191,过敏史药物,atom_55a4aad001c2,structured,2026-06-01,患者既往过敏的药物记录,generated
+(跨癌种),ods_patient_info,患者基本信息表,1147,送检医院,atom_aed322da05a8,structured,2026-05-30,患者样本送检的医院名称,generated
+(跨癌种),ods_progress_records,病程记录表,1409,R-R间期,atom_11bfa743f4a9,structured,2026-05-30,"相邻两次心搏R波的时间间隔。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_progress_records,病程记录表,2256,会诊意见,会诊意见,structured,2026-06-02,会诊医生提出的诊疗建议。,generated
+(跨癌种),ods_progress_records,病程记录表,2189,会诊科室,atom_1480c5dac187,structured,2026-06-01,会诊请求或参与的科室名称,generated
+(跨癌种),ods_progress_records,病程记录表,2353,住院诊疗经过,住院诊疗经过,structured,2026-06-02,患者住院期间的诊疗过程,generated
+(跨癌种),ods_progress_records,病程记录表,2273,处理意见,处理意见,structured,2026-06-02,记录对患者诊疗处理的意见,generated
+(跨癌种),ods_progress_records,病程记录表,1366,感染,ts_basic_infection_active_infection,structured,2026-05-30,记录患者是否存在感染情况,generated
+(跨癌种),ods_progress_records,病程记录表,2347,特殊检查及重要会诊,特殊检查及重要会诊,structured,2026-06-02,记录特殊检查及重要会诊情况,generated
+(跨癌种),ods_progress_records,病程记录表,701,记录类型,note_type,structured,2026-05-08,用于标识病程记录类型。,generated
+(跨癌种),ods_surgical_records,手术记录表,1586,出血量,atom_e081129251cd,structured,2026-05-30,"手术过程中出血的总量。若该值出现在原图表格中，value 按该行所在表格的列名原文返回对象，key 顺序按表头从左到右；不要改写成固定字段名。若该值出现在文本段落中，value 返回 {""数值"": null, ""单位"": null}，只填写原文明确出现的信息，缺失写 null。",config2_table_value_rule
+(跨癌种),ods_surgical_records,手术记录表,117,切口等级,incision_class,structured,2026-05-08,切口等级,original
+(跨癌种),ods_surgical_records,手术记录表,118,切除状态,resection_status,structured,2026-05-08,切除状态,original
+(跨癌种),ods_surgical_records,手术记录表,2374,手术中用药,手术中用药,structured,2026-06-02,记录手术过程中使用的药物,generated
+(跨癌种),ods_surgical_records,手术记录表,107,手术代码 (ICD-9-CM-3),op_code,structured,2026-05-08,手术代码 (ICD-9-CM-3),original
+(跨癌种),ods_surgical_records,手术记录表,1268,手术史,atom_44426eb9b15e,structured,2026-05-30,患者既往手术情况记录,generated
+(跨癌种),ods_surgical_records,手术记录表,2062,手术史列表,atom_63d82d888dbd,structured,2026-06-01,"记录患者既往手术经历列表(格式为{""手术名"": ""手术日期"":}两个字段，如果缺少日期写为null)",generated
+(跨癌种),ods_surgical_records,手术记录表,106,手术名称,op_name,structured,2026-05-08,手术名称,original
+(跨癌种),ods_surgical_records,手术记录表,113,手术开始时间,op_start_time,structured,2026-05-08,手术开始时间,original
+(跨癌种),ods_surgical_records,手术记录表,1680,手术日期（左乳癌根治术）,atom_15ef41bbb0e7,structured,2026-06-01,左乳癌根治术的手术日期,generated
+(跨癌种),ods_surgical_records,手术记录表,1736,手术日期（左乳肿块区段切除术）,atom_449271da2990,structured,2026-06-01,左乳肿块区段切除的手术日期,generated
+(跨癌种),ods_surgical_records,手术记录表,2222,手术治疗状态,ts_treat_surgery_status,structured,2026-06-01,表示手术治疗的当前状态,generated
+(跨癌种),ods_surgical_records,手术记录表,115,手术经过/手术步骤,op_process_note,structured,2026-05-08,手术经过,original
+(跨癌种),ods_surgical_records,手术记录表,114,手术结束时间,op_end_time,structured,2026-05-08,手术结束时间,original
+(跨癌种),ods_surgical_records,手术记录表,108,手术部位,op_site,structured,2026-05-08,手术部位,original
+(跨癌种),ods_surgical_records,手术记录表,2077,既往手术列表,atom_1d17db9faad8,structured,2026-06-01,记录患者既往接受的手术,generated
+(跨癌种),ods_surgical_records,手术记录表,1829,既往手术名称,atom_ddeb5e3c9224,structured,2026-06-01,患者既往接受过的手术名称,generated
+(跨癌种),ods_surgical_records,手术记录表,110,术中诊断,intra_op_diag,structured,2026-05-08,术中诊断,original
+(跨癌种),ods_surgical_records,手术记录表,109,术前诊断,pre_op_diag,structured,2026-05-08,术前诊断,original
+(跨癌种),ods_surgical_records,手术记录表,111,术后诊断,post_op_diag,structured,2026-05-08,术后诊断,original
+(跨癌种),ods_surgical_records,手术记录表,119,淋巴结清扫范围,ln_dissection,structured,2026-05-08,淋巴结清扫范围,original
+(跨癌种),ods_surgical_records,手术记录表,1646,输液港置入,atom_13a75c785266,structured,2026-06-01,记录输液港置入情况,generated
+(跨癌种),ods_surgical_records,手术记录表,2373,麻醉剂,麻醉剂,structured,2026-06-02,手术中使用的麻醉药物,generated
+(跨癌种),ods_surgical_records,手术记录表,112,麻醉方式,anesthesia_method,structured,2026-05-08,麻醉方式,original
