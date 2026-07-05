@@ -13,6 +13,7 @@ import base64
 import concurrent.futures
 import csv
 import hashlib
+import io
 import json
 import mimetypes
 import os
@@ -26,6 +27,12 @@ from pathlib import Path
 from typing import Any
 
 import yaml
+
+try:
+    from PIL import Image, ImageOps
+except ImportError:  # pragma: no cover
+    Image = None
+    ImageOps = None
 
 try:
     from tqdm import tqdm
@@ -44,6 +51,7 @@ REFUSAL_RETRY_SLEEP_SECONDS = 300
 DEFAULT_VLLM_BASE_URL = "http://127.0.0.1:22002/v1"
 DEFAULT_VLLM_MODEL = "haixin_stage12"
 DEFAULT_VLLM_API_KEY = "EMPTY"
+MAX_IMAGE_PIXELS_CAP = 1048576
 REFUSAL_ERROR_MARKERS = (
     "sensitive_words_detected",
     "content_filter",
@@ -653,9 +661,65 @@ def progress(iterable, **kwargs):
     return tqdm(iterable, **kwargs)
 
 
-def image_to_base64(path: Path) -> tuple[str, str]:
+def effective_image_max_pixels(requested: int | None = None) -> int:
+    raw_value: Any = requested
+    if raw_value is None:
+        raw_value = os.environ.get("MAX_PIXELS") or MAX_IMAGE_PIXELS_CAP
+    try:
+        value = int(raw_value)
+    except (TypeError, ValueError) as exc:
+        raise SystemExit(f"MAX_PIXELS must be an integer, got {raw_value!r}.") from exc
+    if value < 1:
+        raise SystemExit("MAX_PIXELS must be >= 1.")
+    return min(value, MAX_IMAGE_PIXELS_CAP)
+
+
+def resized_image_bytes(path: Path, max_pixels: int) -> tuple[str, bytes]:
+    if Image is None or ImageOps is None:
+        raise SystemExit(
+            "Pillow is required to enforce image max_pixels before extraction. "
+            "Install pillow or use an environment that already includes PIL."
+        )
+    with Image.open(path) as image:
+        original_format = (image.format or "").upper()
+        width, height = image.size
+        if width * height <= max_pixels:
+            return mimetypes.guess_type(path.name)[0] or "image/jpeg", path.read_bytes()
+
+        image = ImageOps.exif_transpose(image)
+        width, height = image.size
+        scale = (max_pixels / float(width * height)) ** 0.5
+        new_width = max(1, int(width * scale))
+        new_height = max(1, int(height * scale))
+        while new_width * new_height > max_pixels:
+            if new_width >= new_height and new_width > 1:
+                new_width -= 1
+            elif new_height > 1:
+                new_height -= 1
+            else:
+                break
+
+        resampling = getattr(Image, "Resampling", Image).LANCZOS
+        resized = image.resize((new_width, new_height), resampling)
+        buffer = io.BytesIO()
+        if original_format == "PNG":
+            resized.save(buffer, format="PNG", optimize=True)
+            return "image/png", buffer.getvalue()
+
+        if resized.mode not in ("RGB", "L"):
+            resized = resized.convert("RGB")
+        resized.save(buffer, format="JPEG", quality=95, optimize=True)
+        return "image/jpeg", buffer.getvalue()
+
+
+def image_to_base64(path: Path, max_pixels: int = MAX_IMAGE_PIXELS_CAP) -> tuple[str, str]:
     mime = mimetypes.guess_type(path.name)[0] or "image/jpeg"
-    data = base64.b64encode(path.read_bytes()).decode("ascii")
+    if max_pixels < MAX_IMAGE_PIXELS_CAP:
+        mime, image_bytes = resized_image_bytes(path, max_pixels)
+    else:
+        maybe_mime, image_bytes = resized_image_bytes(path, max_pixels)
+        mime = maybe_mime or mime
+    data = base64.b64encode(image_bytes).decode("ascii")
     return mime, data
 
 
@@ -1395,6 +1459,7 @@ def cache_key_for_request(
         "model": config.get("model", ""),
         "mode": mode,
         "image_sha256": image_sha256,
+        "image_max_pixels": config.get("image_max_pixels", MAX_IMAGE_PIXELS_CAP),
         "image_detail": config.get("image_detail", "high"),
         "temperature": config.get("temperature", 0),
         "prompt_tag_fields": fields,
@@ -1418,6 +1483,7 @@ def cache_key_for_nested_review(
         "model": config.get("model", ""),
         "mode": "nested_review",
         "image_sha256": image_sha256,
+        "image_max_pixels": config.get("image_max_pixels", MAX_IMAGE_PIXELS_CAP),
         "image_detail": config.get("image_detail", "high"),
         "temperature": config.get("temperature", 0),
         "list_order_policy": "image_reading_order_v1",
@@ -2210,6 +2276,15 @@ def main() -> None:
         help="Parallel model requests per image. Overrides max_workers in YAML.",
     )
     parser.add_argument(
+        "--max-pixels",
+        type=int,
+        default=None,
+        help=(
+            "Maximum pixels sent to the extraction model. Defaults to "
+            "min(MAX_PIXELS, 1048576), with 1048576 as a hard cap."
+        ),
+    )
+    parser.add_argument(
         "--cache-scope",
         choices=("per-image", "shared"),
         default="per-image",
@@ -2253,6 +2328,7 @@ def main() -> None:
     )
     args = parser.parse_args()
     args.disable_nested_review = True
+    image_max_pixels = effective_image_max_pixels(args.max_pixels)
     args.tag_csv = resolve_bundle_path(args.tag_csv)
     args.remove_json = resolve_bundle_path(args.remove_json)
     args.add_jsonl = resolve_bundle_path(args.add_jsonl)
@@ -2287,12 +2363,16 @@ def main() -> None:
         presence_config_path,
         require_credentials=not args.dry_run,
     )
+    presence_config["image_max_pixels"] = image_max_pixels
+    for _, fallback_config in presence_fallback_config_chain:
+        fallback_config["image_max_pixels"] = image_max_pixels
     extra_presence_config = None
     if extra_presence_config_path is not None and extra_presence_config_path.exists():
         extra_presence_config = load_config(
             extra_presence_config_path,
             require_credentials=not args.dry_run,
         )
+        extra_presence_config["image_max_pixels"] = image_max_pixels
     elif extra_presence_config_path is not None and not args.disable_extra_presence:
         extra_presence_config_path = None
     extract_config = load_config(extract_config_path, require_credentials=not args.dry_run)
@@ -2301,6 +2381,9 @@ def main() -> None:
         extract_config_path,
         require_credentials=not args.dry_run,
     )
+    extract_config["image_max_pixels"] = image_max_pixels
+    for _, fallback_config in extract_fallback_config_chain:
+        fallback_config["image_max_pixels"] = image_max_pixels
     remove_tag_names = load_remove_tag_names(args.remove_json)
     add_tags = load_add_tags(args.add_jsonl)
     all_tags = merge_add_tags(load_tags(args.tag_csv), add_tags)
@@ -2343,6 +2426,7 @@ def main() -> None:
     if extra_presence_config is not None:
         print(f"extra_presence_chunks_per_image={len(extra_tag_chunks)}")
     print(f"max_workers={max_workers}")
+    print(f"image_max_pixels={image_max_pixels}")
     print(
         f"cache_scope={args.cache_scope}"
         f"{' keep_image_cache=true' if args.keep_image_cache else ''}"
@@ -2458,7 +2542,10 @@ def main() -> None:
                 write_records(extra_presence_path, extra_presence_records)
             presence_records = default_presence_records(tags)
             write_records(presence_path, presence_records)
-            image_media_type, image_base64 = image_to_base64(image_path)
+            image_media_type, image_base64 = image_to_base64(
+                image_path,
+                max_pixels=image_max_pixels,
+            )
             image_sha256 = image_row.get("source_sha256", "")
             cache_dir = cache_dir_for_image(
                 image_path,
