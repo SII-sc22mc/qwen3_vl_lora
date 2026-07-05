@@ -303,6 +303,28 @@ def merge_preserving_metadata(base: dict[str, Any], row: dict[str, Any]) -> dict
     return merged
 
 
+def normalize_jsonl_label_row(row: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(row)
+    if not clean_str(normalized.get("table_name_cn")):
+        for key in ("table_name", "table", "table_cn"):
+            if clean_str(row.get(key)):
+                normalized["table_name_cn"] = row.get(key)
+                break
+    if not clean_str(normalized.get("tag_name")):
+        for key in ("field_name", "name", "tag"):
+            if clean_str(row.get(key)):
+                normalized["tag_name"] = row.get(key)
+                break
+    if not clean_str(normalized.get("description")):
+        for key in ("desc", "remark", "备注"):
+            if clean_str(row.get(key)):
+                normalized["description"] = row.get(key)
+                break
+    if "v" not in normalized and "value" in normalized:
+        normalized["v"] = normalized.get("value")
+    return normalized
+
+
 class TagLookup:
     def __init__(self, tags: list[dict[str, Any]]):
         self.by_exact: dict[tuple[str, str], dict[str, Any]] = {}
@@ -453,41 +475,6 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
     if not train_dir.exists():
         raise FileNotFoundError(f"train_dir does not exist: {train_dir}")
 
-    extraction_bundle_dir = args.extraction_bundle_dir
-    if extraction_bundle_dir is None and not args.no_auto_extraction_bundle:
-        extraction_bundle_dir = infer_extraction_bundle_dir()
-    if extraction_bundle_dir is not None:
-        extraction_bundle_dir = extraction_bundle_dir.expanduser().resolve()
-        if not extraction_bundle_dir.exists():
-            raise FileNotFoundError(
-                f"extraction_bundle_dir does not exist: {extraction_bundle_dir}"
-            )
-
-    tag_csv = args.tag_csv
-    if tag_csv is None and not args.no_auto_tag_csv:
-        tag_csv = (
-            file_from_extraction_bundle(
-                extraction_bundle_dir, "tag-pool_乳腺癌_20260610.csv"
-            )
-            or infer_tag_csv(train_dir)
-        )
-    add_jsonl = args.add_jsonl
-    if add_jsonl is None and not args.no_auto_add_jsonl:
-        add_jsonl = file_from_extraction_bundle(
-            extraction_bundle_dir, "add.jsonl"
-        ) or infer_add_jsonl(train_dir)
-    remove_json = args.remove_json
-    if remove_json is None and not args.no_auto_remove_json:
-        remove_json = file_from_extraction_bundle(
-            extraction_bundle_dir, "remove.json"
-        ) or infer_remove_json(train_dir)
-    remove_tag_names = load_remove_tag_names(remove_json)
-    tag_library = merge_add_tags(
-        load_tag_csv(tag_csv, remove_tag_names=remove_tag_names),
-        load_add_tags(add_jsonl),
-    )
-    tag_lookup = TagLookup(tag_library)
-
     rng = random.Random(args.seed)
     examples: list[dict[str, Any]] = []
     image_count = 0
@@ -502,42 +489,18 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
     skipped_empty_jsonl = 0
     missing_tag_id = 0
     missing_description = 0
+    skipped_missing_tag_name = 0
     missing_examples: list[dict[str, str]] = []
-    unmatched_records: list[dict[str, str]] = []
-    skipped_unmatched_records = 0
 
     for image_path, jsonl_path in iter_image_label_pairs(train_dir):
         image_count += 1
         records = []
         for raw_row in read_jsonl(jsonl_path):
-            matched_tag = tag_lookup.match(raw_row)
-            if not matched_tag:
-                unmatched = {
-                    "image": image_path.name,
-                    "table_name_cn": clean_str(raw_row.get("table_name_cn")),
-                    "table_key": clean_str(raw_row.get("table_key")),
-                    "field_key": clean_str(raw_row.get("field_key")),
-                    "tag_id": clean_str(raw_row.get("tag_id")),
-                    "tag_name": clean_str(raw_row.get("tag_name")),
-                }
-                unmatched_records.append(unmatched)
-                if args.allow_unmatched:
-                    skipped_unmatched_records += 1
-                    continue
-                if len(unmatched_records) >= args.max_missing_examples:
-                    raise ValueError(
-                        "Some jsonl records do not match the final tag pool "
-                        "(tag-pool minus remove plus add). Examples: "
-                        + strict_json(unmatched_records[: args.max_missing_examples])
-                    )
+            row = normalize_jsonl_label_row(raw_row)
+            if not clean_str(row.get("tag_name")):
+                skipped_missing_tag_name += 1
                 continue
-            records.append(merge_preserving_metadata(matched_tag, raw_row))
-        if unmatched_records and not args.allow_unmatched:
-            raise ValueError(
-                "Some jsonl records do not match the final tag pool "
-                "(tag-pool minus remove plus add). Examples: "
-                + strict_json(unmatched_records[: args.max_missing_examples])
-            )
+            records.append(row)
         if not records:
             skipped_empty_jsonl += 1
             continue
@@ -650,16 +613,17 @@ def build_dataset(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[
         "stage1_null_kept_records": stage1_null_kept_count,
         "stage1_null_skipped_records": stage1_null_skipped_count,
         "total_examples": len(examples),
-        "extraction_bundle_dir": str(extraction_bundle_dir) if extraction_bundle_dir else "",
-        "tag_csv": str(tag_csv) if tag_csv else "",
-        "add_jsonl": str(add_jsonl) if add_jsonl else "",
-        "remove_json": str(remove_json) if remove_json else "",
-        "remove_tag_names_loaded": len(remove_tag_names),
-        "tag_library_loaded": len(tag_library),
-        "records_missing_tag_id_after_enrich": missing_tag_id,
-        "records_missing_description_after_enrich": missing_description,
+        "tag_source": "jsonl_only",
+        "tag_csv": "",
+        "add_jsonl": "",
+        "remove_json": "",
+        "remove_tag_names_loaded": 0,
+        "tag_library_loaded": 0,
+        "records_missing_tag_id_in_jsonl": missing_tag_id,
+        "records_missing_description_in_jsonl": missing_description,
         "missing_description_examples": missing_examples,
-        "skipped_unmatched_records": skipped_unmatched_records,
+        "skipped_missing_tag_name_records": skipped_missing_tag_name,
+        "skipped_unmatched_records": 0,
     }
     return examples, summary
 
@@ -697,53 +661,53 @@ def parse_args() -> argparse.Namespace:
         "--tag-csv",
         type=Path,
         default=None,
-        help="Optional tag-pool CSV used to enrich tag_id/description by table_name_cn + tag_name.",
+        help="Deprecated compatibility option. The builder now uses each jsonl row directly.",
     )
     parser.add_argument(
         "--add-jsonl",
         type=Path,
         default=None,
-        help="Optional add.jsonl used to enrich manually added/merged tags.",
+        help="Deprecated compatibility option. The builder now uses each jsonl row directly.",
     )
     parser.add_argument(
         "--remove-json",
         type=Path,
         default=None,
-        help="Optional remove.json used exactly like API extraction: remove CSV tags by tag_name before adding add.jsonl.",
+        help="Deprecated compatibility option. The builder now uses each jsonl row directly.",
     )
     parser.add_argument(
         "--extraction-bundle-dir",
         type=Path,
         default=None,
         help=(
-            "Optional extraction_bundle directory. When present, tag-pool/add/remove "
-            "from this bundle are preferred over parent-directory auto-discovery."
+            "Deprecated compatibility option. tag-pool/add/remove are no longer "
+            "used during data construction."
         ),
     )
     parser.add_argument(
         "--no-auto-extraction-bundle",
         action="store_true",
-        help="Do not auto-detect a sibling extraction_bundle directory.",
+        help="Deprecated compatibility option. No extraction_bundle is auto-detected.",
     )
     parser.add_argument(
         "--no-auto-tag-csv",
         action="store_true",
-        help="Do not search parent directories for tag-pool_乳腺癌_20260610.csv.",
+        help="Deprecated compatibility option. No tag CSV is auto-detected.",
     )
     parser.add_argument(
         "--no-auto-add-jsonl",
         action="store_true",
-        help="Do not search parent directories for add.jsonl.",
+        help="Deprecated compatibility option. No add.jsonl is auto-detected.",
     )
     parser.add_argument(
         "--no-auto-remove-json",
         action="store_true",
-        help="Do not search parent directories for remove.json.",
+        help="Deprecated compatibility option. No remove.json is auto-detected.",
     )
     parser.add_argument(
         "--allow-unmatched",
         action="store_true",
-        help="Skip jsonl records that cannot be matched to tag-pool minus remove plus add. By default this is an error.",
+        help="Deprecated compatibility option. There is no tag-pool matching now.",
     )
     parser.add_argument(
         "--max-missing-examples",
