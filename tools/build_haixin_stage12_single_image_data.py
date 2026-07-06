@@ -30,10 +30,9 @@ PRESENCE_PROMPT_TEMPLATE = """请判断这张图片中是否存在下面每个 t
 6. 如果图片与某个 tag 无关，或没有明确证据，value 必须为 false。
 7. 每个 tag 的 table_name_cn 和 description 只用于理解字段含义，不能当作图片证据。
 
-返回 JSON 格式：
+返回 JSON 格式（下面仅示例一个 key；实际必须按输入 tags 逐一返回）：
 {{
-  "原始tag_name_1": false,
-  "原始tag_name_2": true
+  "原始tag_name": false
 }}
 
 本次需要判断的 tags：
