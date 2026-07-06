@@ -481,6 +481,22 @@ def is_refusal_error(error: BaseException | str) -> bool:
     return any(marker.lower() in text for marker in REFUSAL_ERROR_MARKERS)
 
 
+def is_timeout_error(error: BaseException | str) -> bool:
+    for item in iter_error_chain(error):
+        if isinstance(item, TimeoutError):
+            return True
+    text = " ".join(str(item).lower() for item in iter_error_chain(error))
+    return any(
+        marker in text
+        for marker in (
+            "timed out",
+            "timeout",
+            "read operation timed out",
+            "operation timed out",
+        )
+    )
+
+
 def request_context_from_error(error: BaseException) -> RequestContextError | None:
     for item in iter_error_chain(error):
         if isinstance(item, RequestContextError):
@@ -1053,6 +1069,21 @@ def request_label(
         if chunk_total is not None:
             chunk += f"/{chunk_total}"
     return f"stage={mode}{chunk} tags={tag_chunk_summary(tag_chunk)}"
+
+
+def log_timeout_skip(
+    mode: str,
+    tag_chunk: list[dict[str, Any]],
+    chunk_index: int | None,
+    chunk_total: int | None,
+    error: BaseException,
+) -> None:
+    print(
+        "REQUEST_TIMEOUT_SKIP "
+        f"{request_label(mode, tag_chunk, chunk_index, chunk_total)} "
+        f"error={compact_text(str(error), 1200)}",
+        flush=True,
+    )
 
 
 def compact_usage_value(value: Any) -> str:
@@ -1866,6 +1897,9 @@ def extract_chunk(
                         chunk_index=chunk_index,
                         chunk_total=chunk_total,
                     ) from e
+                if is_timeout_error(e):
+                    log_timeout_skip(mode, tag_chunk, chunk_index, chunk_total, e)
+                    return []
                 if not isinstance(e, (json.JSONDecodeError, ValueError)):
                     raise add_request_context_to_error(
                         e,
@@ -1979,6 +2013,9 @@ def review_nested_tag(
                         chunk_index=chunk_index,
                         chunk_total=chunk_total,
                     ) from e
+                if is_timeout_error(e):
+                    log_timeout_skip("nested-review", [tag], chunk_index, chunk_total, e)
+                    return []
                 if not isinstance(e, (json.JSONDecodeError, ValueError)):
                     raise add_request_context_to_error(
                         e,
