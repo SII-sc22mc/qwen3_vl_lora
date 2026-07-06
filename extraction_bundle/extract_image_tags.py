@@ -129,21 +129,18 @@ SYSTEM_PROMPT = """输入是渲染/转码后的文档图片，仅用于受控结
 PRESENCE_PROMPT_TEMPLATE = """请判断这张图片中是否存在下面每个 tag 对应的明确取值。
 
 要求：
-1. 每个输入 tag 都必须在返回 JSON 的 items 中出现一次。
-2. 这里只判断有没有值，不要抽取具体值。
-3. 只有图片中能看到与该 tag 对应的信息时，has_value 需要为 true。
-4. 如果图片与某个 tag 无关，或没有明确证据，has_value 应该为 false。
-5. 不要补充输入列表以外的 tag。
-6. 每个 tag 的 table_name_cn 和 description 只用于理解字段含义，不能当作图片证据。
+1. 这里只判断有没有值，不要抽取具体值。
+2. 返回必须是一个严格 JSON 对象，不要返回 items 数组。
+3. JSON 对象的 key 必须逐一使用输入 tags 中的 tag_name 原文，value 必须是 true 或 false。
+4. key 的顺序必须与输入 tags 顺序一致；不要补充输入列表以外的 tag。
+5. 只有图片中能看到与该 tag 对应的信息时，value 才能为 true。
+6. 如果图片与某个 tag 无关，或没有明确证据，value 必须为 false。
+7. 每个 tag 的 table_name_cn 和 description 只用于理解字段含义，不能当作图片证据。
 
 返回 JSON 格式：
 {{
-  "items": [
-    {{
-      "tag_name": "原始tag_name",
-      "has_value": false
-    }}
-  ]
+  "原始tag_name_1": false,
+  "原始tag_name_2": true
 }}
 
 本次需要判断的 tags：
@@ -154,33 +151,28 @@ PRESENCE_PROMPT_TEMPLATE = """请判断这张图片中是否存在下面每个 t
 EXTRACTION_PROMPT_TEMPLATE = """请从这张图片中判断并抽取下面单个 tag 的值。
 
 要求：
-1. 返回 JSON 的 items 中必须出现这个 tag。
+1. 返回必须是一个严格 JSON 对象，不要返回 items 数组，不要输出 tag_name。
 2. 先再次判断图片中是否有这个 tag 的明确取值，写入 has_value。
-3. has_value 为 false 时，value 必须为 null。
-4. has_value 为 true 时，value 写图片中的明确取值。
+3. has_value 为 false 时，"值" 必须为 null。
+4. has_value 为 true 时，"值" 写图片中的明确取值。
 5. 不要根据医学常识、字段名或上下文猜测。
 6. 注意同一段原文可能同时对应多个 tag。遇到组合值时要在相关字段里分别填写拆分值，同时在整体字段里保留原文整体值。
-   例如图片原文是“pTNM分期：pT2N0Mx”，如果当前 tag 是 t_stage，则 value 应为 "pT2"；
-   如果当前 tag 是 n_stage，则 value 应为 "N0"；如果当前 tag 是 overall_stage，则 value 应为 "pT2N0Mx"。
-7. 如果当前 tag 对应表格明细中的一行或多行项目，除非 description 明确指定返回字段，否则 value 必须按图片表头原文返回对象或对象数组。
+   例如图片原文是“pTNM分期：pT2N0Mx”，如果当前 tag 是 t_stage，则 "值" 应为 "pT2"；
+   如果当前 tag 是 n_stage，则 "值" 应为 "N0"；如果当前 tag 是 overall_stage，则 "值" 应为 "pT2N0Mx"。
+7. 如果当前 tag 对应表格明细中的一行或多行项目，除非 description 明确指定返回字段，否则 "值" 必须按图片表头原文返回对象或对象数组。
    - 对象 key 使用图片中对应表格的列名原文，不要改写成固定字段名。
    - key 的顺序必须与表头从左到右一致；多行对象必须按表格从上到下顺序排列。
    - 例如图片表头为“检验项目、测定结果、参考区间、单位、测定方法”，则对象 key 也按这个顺序。
    - 只填写图片中明确出现的信息；某列缺失或该行为空就写 null。
-8. 如果 value 是数组/列表，必须按照图片中的出现顺序排列：从上到下、从左到右；表格按行顺序；多栏内容按人类正常阅读顺序。
+8. 如果 "值" 是数组/列表，必须按照图片中的出现顺序排列：从上到下、从左到右；表格按行顺序；多栏内容按人类正常阅读顺序。
 9. 对日期、分期、TNM、ER/PR/HER2/Ki-67、检验指标等结构化内容，优先保留图片中的原始写法，不要自行标准化。
 10. 当前 tag 的 table_name_cn 和 description 只用于理解字段含义，不能当作图片证据。
 11. 对药物、医嘱、治疗方案等明细字段，最小对象粒度应由“名称/药品/方案”和“日期/时间/周期”等共同决定。如果图片写明多个具体日期且同一段同时列出多个药品/方案，如“2024-3-15、2025-4-15、2026-5-16（药品A+药品B+药品C+药品D）”，原则上要按“日期 × 药品/方案”拆成多条对象；这个例子应返回 12 条，而不是 4 条。
 
 返回 JSON 格式：
 {{
-  "items": [
-    {{
-      "tag_name": "原始tag_name",
-      "has_value": false,
-      "value": null
-    }}
-  ]
+  "has_value": false,
+  "值": null
 }}
 
 本次需要抽取的 tag：
@@ -1290,6 +1282,65 @@ def parse_model_json(text: str) -> dict[str, Any]:
         raise ValueError(f"Model returned non-JSON content: {snippet}") from None
 
 
+def parse_bool_field(value: Any, *, field_name: str) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        lowered = value.strip().lower()
+        if lowered in {"true", "1", "yes", "y"}:
+            return True
+        if lowered in {"false", "0", "no", "n"}:
+            return False
+    if isinstance(value, int) and value in {0, 1}:
+        return bool(value)
+    raise ValueError(f"{field_name} must be true or false, got {value!r}.")
+
+
+def response_items_from_parsed(
+    parsed: dict[str, Any],
+    mode: str,
+    tag_chunk: list[dict[str, str]],
+) -> list[dict[str, Any]]:
+    legacy_items = parsed.get("items")
+    if isinstance(legacy_items, list):
+        return legacy_items
+
+    if mode == "presence":
+        items: list[dict[str, Any]] = []
+        for tag in tag_chunk:
+            tag_name = str(tag.get("tag_name", "")).strip()
+            if tag_name not in parsed:
+                raise ValueError(f"Presence JSON missing tag key: {tag_name}")
+            items.append(
+                {
+                    "tag_name": tag_name,
+                    "has_value": parse_bool_field(
+                        parsed[tag_name],
+                        field_name=tag_name,
+                    ),
+                }
+            )
+        return items
+
+    if mode == "extract":
+        if len(tag_chunk) != 1:
+            raise ValueError("Compact extract JSON requires exactly one tag.")
+        tag_name = str(tag_chunk[0].get("tag_name", "")).strip()
+        if "has_value" not in parsed:
+            raise ValueError("Extract JSON missing has_value.")
+        has_value = parse_bool_field(parsed.get("has_value"), field_name="has_value")
+        value = parsed.get("值", parsed.get("value"))
+        return [
+            {
+                "tag_name": tag_name,
+                "has_value": has_value,
+                "value": value if has_value else None,
+            }
+        ]
+
+    raise ValueError(f"Unsupported compact response mode: {mode}")
+
+
 def default_records(tags: list[dict[str, str]]) -> list[dict[str, Any]]:
     return [
         {
@@ -1882,9 +1933,7 @@ def extract_chunk(
                 content = extract_text_from_response(response, api_type)
                 last_content = content
                 parsed = parse_model_json(content)
-                items = parsed.get("items", [])
-                if not isinstance(items, list):
-                    raise ValueError("Model JSON has no items list.")
+                items = response_items_from_parsed(parsed, mode, tag_chunk)
                 if cache_path is not None:
                     write_cached_items(cache_path, items)
                 return items
